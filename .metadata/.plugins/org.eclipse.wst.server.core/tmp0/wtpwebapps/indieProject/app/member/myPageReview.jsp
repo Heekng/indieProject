@@ -83,7 +83,7 @@
 											<c:forEach var="myReviewVO"  items="${myReviewListAll}" >
 											 	<tr onmouseover="this.style.backgroudColor='F8F8F8'" onmouseout="this.style.backgroundColor='FFFFFF'">
 	               								
-	               						<%-- 		<td>
+	               						<%-- 	<td>
 	               								영화번호
 	               								${myReviewVO.getAmaNum()}
 	               								</td> --%>

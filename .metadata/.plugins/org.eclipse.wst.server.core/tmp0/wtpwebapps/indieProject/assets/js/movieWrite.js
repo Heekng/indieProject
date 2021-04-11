@@ -223,13 +223,32 @@ function writeFormSubmit(){
 		alert("연출의도를 입력해주세요.");
 		return false;
 	}
+	
+	//제작진 한명이상 확인
 	if(($("input[name='makerPosition']").val().trim() == "") || ($("input[name='makerName']").val().trim() == "")){
 		alert("제작진은 한명 이상 입력해주세요.");
 		return false;
 	}
+	//제작진 비어있는 내용 있는지 확인
+	var makerPositionLength = $("input[name='makerPosition']").length;
+	for(let i=0; i<makerPositionLength; i++){
+		if(($("input[name='makerPosition']").eq(i).val().trim() == "") || ($("input[name='makerName']").eq(i).val().trim() == "")){
+			alert("제작진에 비어있는 항목이 있습니다.")
+			return false;
+		} 
+	}
+	//출연진 한명 이상 확인
 	if(($("input[name='actorCast']").val().trim() == "") || ($("input[name='actorName']").val().trim() == "")){
 		alert("출연진은 한명 이상 입력해주세요.");
 		return false;
+	}
+	//출연진 비어있는 내용 있는지 확인
+	var actorCastLength = $("input[name='actorCast']").length;
+	for(let i=0; i<actorCastLength; i++){
+		if(($("input[name='actorCast']").eq(i).val().trim() == "") || ($("input[name='actorName']").eq(i).val().trim() == "")){
+			alert("출연진에 비어있는 항목이 있습니다.")
+			return false;
+		} 
 	}
 	
 	document.movieWriteForm.submit();

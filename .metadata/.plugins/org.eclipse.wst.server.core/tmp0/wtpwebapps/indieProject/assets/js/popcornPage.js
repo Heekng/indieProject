@@ -128,13 +128,18 @@
 					console.log(rsp);
 						if (rsp.success) {
 							var msg = '결제가 완료되었습니다.';
+							alert(msg);
 							$.ajax({
-								url: contextPath + "/member/MemberMyPopcornCharge.me?popcorn="+100,
+								url: contextPath + "/member/MemberMyPopcornChargeAction.me?popcorn="+100,
 							    type: "get",
 								dataType: "text",
 								success:function(result){
-									alert(msg);
-									location.reload();
+									if(result.trim() == "success"){
+										location.href = contextPath + "/member/memberMyPopcorn.me";
+									}
+									else{
+										alert("팝콘 충전 오류");
+									}
 								},
 								error:function(data){
 							    	  console.log(data);

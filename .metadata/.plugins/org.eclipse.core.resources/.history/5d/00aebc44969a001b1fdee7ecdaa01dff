@@ -1,0 +1,19 @@
+package com.indieProject.app.amamovie.dao;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import com.indieProject.mybatis.config.SqlMapConfig;
+
+public class AmaMovieDAO {
+	SqlSessionFactory sessionf = SqlMapConfig.getSqlMapInstance();
+	SqlSession session;
+	
+	public AmaMovieDAO() {
+		session = sessionf.openSession(true);
+	}
+	
+	public boolean insertMovie() {
+		
+	}
+}

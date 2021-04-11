@@ -47,11 +47,11 @@
 	</select>
 	
 	<select id="myPopcornNum" parameterType="string" resultType="_int">
-		SELECT MYPOPCORN FROM MEMBER_TABLE WHERE MEMBERID = #{memberId}
+		SELECT POPCORNNUM FROM MEMBER_TABLE WHERE MEMBERID = #{memberId}
 	</select>
 	
 	<select id="myReceivedPopcornNum" parameterType="string" resultType="_int">
-		SELECT POPCORNNUM FROM MEMBER_TABLE WHERE MEMBERID = #{memberId}
+		SELECT MYPOPCORN FROM MEMBER_TABLE WHERE MEMBERID = #{memberId}
 	</select>
 	
 	<select id="myMovieList" parameterType="string" resultType="amaMovieVO">
@@ -99,7 +99,7 @@
             (SELECT * FROM BOARDREPLY_TABLE WHERE MEMBERID = #{memberId} ORDER BY REPLYDATE DESC) D) B
       WHERE B.R BETWEEN #{startRow} AND #{endRow}
    </select>
-   <select id="popcornCharge" parameterType="_int">
+   <select id="popcornCharge" parameterType="hashMap">
    		UPDATE MEMBER_TABLE SET POPCORNNUM = #{popCorn} WHERE MEMBERID = #{memberId}
    </select>
 </mapper>

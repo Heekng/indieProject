@@ -135,7 +135,7 @@ li {
       	<c:set var="myReceivedPopcornNum" value="0"/>
       </c:if>
       
-
+	
 		<!-- Header -->
 		<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
 
