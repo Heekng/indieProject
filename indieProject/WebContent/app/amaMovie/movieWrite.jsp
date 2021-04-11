@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
@@ -101,6 +102,12 @@
 
 </style>
 <body class="is-preload">
+	<c:if test="${session_id eq null}">
+		<script>
+		   alert("로그인 후 이용해주세요");
+		   location.replace("${pageContext.request.contextPath}/member/Login.me");
+		</script>
+	</c:if>
 	<!-- Header -->
 	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
 
@@ -119,7 +126,7 @@
 			</header>
 
 			<!-- Content -->
-			<form name="movieWriteForm" method="post" action="${pageContext.request.contextPath}/amaMovie/MovieWriteOkAction.ama">
+			<form name="movieWriteForm" method="post" action="${pageContext.request.contextPath}/amaMovie/MovieWriteOkAction.ama" enctype="multipart/form-data">
 				<section id="step1">
 					<h3 style="display: inline;">포스터</h3>
 					<span><img id="poster" style="width: 17px; cursor: help;"

@@ -9,5 +9,20 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/heekng/coding/unityTeam/indieProject/WebContent/WEB-INF/lib/activation.jar"/>
+	<classpathentry kind="lib" path="/Users/heekng/coding/unityTeam/indieProject/WebContent/WEB-INF/lib/cos.jar"/>
+	<classpathentry kind="lib" path="/Users/heekng/coding/unityTeam/indieProject/WebContent/WEB-INF/lib/dsn.jar"/>
+	<classpathentry kind="lib" path="/Users/heekng/coding/unityTeam/indieProject/WebContent/WEB-INF/lib/gimap.jar"/>
+	<classpathentry kind="lib" path="/Users/heekng/coding/unityTeam/indieProject/WebContent/WEB-INF/lib/imap.jar"/>
+	<classpathentry kind="lib" path="/Users/heekng/coding/unityTeam/indieProject/WebContent/WEB-INF/lib/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/heekng/coding/unityTeam/indieProject/WebContent/WEB-INF/lib/jstl.jar"/>
+	<classpathentry kind="lib" path="/Users/heekng/coding/unityTeam/indieProject/WebContent/WEB-INF/lib/mail.jar"/>
+	<classpathentry kind="lib" path="/Users/heekng/coding/unityTeam/indieProject/WebContent/WEB-INF/lib/mailapi.jar"/>
+	<classpathentry kind="lib" path="/Users/heekng/coding/unityTeam/indieProject/WebContent/WEB-INF/lib/mybatis-3.5.4.jar"/>
+	<classpathentry kind="lib" path="/Users/heekng/coding/unityTeam/indieProject/WebContent/WEB-INF/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="/Users/heekng/coding/unityTeam/indieProject/WebContent/WEB-INF/lib/pop3.jar"/>
+	<classpathentry kind="lib" path="/Users/heekng/coding/unityTeam/indieProject/WebContent/WEB-INF/lib/smtp.jar"/>
+	<classpathentry kind="lib" path="/Users/heekng/coding/unityTeam/indieProject/WebContent/WEB-INF/lib/standard.jar"/>
+	<classpathentry kind="lib" path="/Users/heekng/coding/unityTeam/indieProject/WebContent/WEB-INF/lib/tomcat-dbcp.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
