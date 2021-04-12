@@ -114,7 +114,7 @@ function posterAddOk(obj){
 		+"<label for='posterImg"+posterCnt+"'>"
 		+"<img class='camera' src='"+contextPath+"/images/add.png' alt='영화 포스터' style='width:50px; margin:47% auto auto auto; cursor:pointer;'/>"
 		+"</label></span>"
-		+"<input id='posterImg"+posterCnt+"' name='posterImg' type='file' onchange='posterAddOk(this)' style='display:none;'></div>";
+		+"<input id='posterImg"+posterCnt+"' name='posterImg"+posterCnt+"' type='file' onchange='posterAddOk(this)' style='display:none;'></div>";
 	
 	$(obj).parent().parent().append(poster);
 };
@@ -133,7 +133,7 @@ function stillCutAddOk(obj){
 		+"<label for='stillCutImg"+stillCutCnt+"'>"
 		+"<img class='camera' src='"+contextPath+"/images/add.png' alt='영화 포스터' style='width:50px; margin:47% auto auto auto; cursor:pointer;'/>"
 		+"</label></span>"
-		+"<input id='stillCutImg"+stillCutCnt+"' name='stillCutImg' type='file' onchange='stillCutAddOk(this)' style='display:none;'></div>";
+		+"<input id='stillCutImg"+stillCutCnt+"' name='stillCutImg"+stillCutCnt+"' type='file' onchange='stillCutAddOk(this)' style='display:none;'></div>";
 	
 	$(obj).parent().parent().append(stillCut);
 };
@@ -169,6 +169,7 @@ $(document).on("click", "#deleteActor", function(){
 });
 
 function writeFormSubmit(){
+	
 	//포스터 하나 이상 확인
 	if($("input[name='posterImgMain']").val() == ""){
 		alert("포스터는 하나 이상 등록되어야 합니다.");
@@ -251,6 +252,7 @@ function writeFormSubmit(){
 		} 
 	}
 	
+
 	document.movieWriteForm.submit();
 	
 }

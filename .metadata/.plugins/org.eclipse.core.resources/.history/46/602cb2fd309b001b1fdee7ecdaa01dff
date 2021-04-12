@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AmaMovie">
+	<insert id="insertMovie" parameterType="amaMovieVO">
+		INSERT INTO AMAMOVIE_TABLE 
+		VALUES (AMAMOVIE_SEQ.NEXTVAL, #{amaTitleEng}, #{amaTitleKor}, TO_DATE('#{amaMakeDate}','YYYY.MM.DD'), #{amaMovieLength}, #{amaDirector}, #{genre}, #{rating}, #{link}, #{popcorn}, #{synopsis}, #{theme}, #{memberId}, 0, SYSDATE);
+	</insert>
+	
+	<select id="getMovieNum" parameterType="amaMovieVO" resultType="_int">
+		SELECT AMANUM FROM AMAMOVIE_TABLE WHERE AMATITLEENG = #{amaTitleEng} AND AMATITLEKOR = #{amaTitleKor} AND AMAMAKEDATE = #{amaMakeDate}
+	</select>
+	
+	<insert id="insertMaker" parameterType="amaMovieMakerVO">
+		INSERT INTO AMAMOVIEMAKER_TABLE VALUES 
+		(#{amaNum), #{makerPosition}, #{makerName})
+	</insert>
+	
+	<insert id="insertActor" parameterType="amaMovieActorVO">
+		INSERT INTO AMAMOVIEMAKER_TABLE VALUES 
+		(#{amaNum), #{amaCast}, #{actorName})
+	</insert>
+	
+	<insert id="insertPoster" parameterType="amaMoviePosterVO">
+		INSERT INTO AMAPOSTERFILES_TABLE VALUES 
+		(#{amaNum}, #{fileName})
+	</insert>
+	
+	<insert id="insertStillCut" parameterType="amaMovieStillCutVO">
+		INSERT INTO AMASTILLCUTFILES_TABLE VALUES 
+		(${amaNum}, #{fileName})
+	</insert>
+	
+</mapper>

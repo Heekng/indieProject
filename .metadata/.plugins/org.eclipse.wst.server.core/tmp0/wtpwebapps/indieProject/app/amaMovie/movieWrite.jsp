@@ -230,12 +230,12 @@
 						<div class="col-5 col-7-medium col-12-small" style="margin-right:auto;">
 							<select name="genre" id="genre">
 								<option value="">- 영화 장르 선택 -</option>
-								<option value="1">드라마</option>
-								<option value="1">공포 / 스릴러</option>
-								<option value="1">판타지</option>
-								<option value="1">코미디</option>
-								<option value="1">애니메이션</option>
-								<option value="1">기타</option>
+								<option value="drama">드라마</option>
+								<option value="horror">공포 / 스릴러</option>
+								<option value="fantasy">판타지</option>
+								<option value="comedy">코미디</option>
+								<option value="animation">애니메이션</option>
+								<option value="other">기타</option>
 							</select>
 						</div>
 					</div>
@@ -246,10 +246,10 @@
 						<div class="col-5 col-7-medium col-12-small" style="margin-right:auto;">
 							<select name="rating" id="rating">
 								<option value="">- 미분류 -</option>
-								<option value="1">전체관람가</option>
-								<option value="1">12세이상관람가</option>
-								<option value="1">15세이상관람가</option>
-								<option value="1">청소년관람불가</option>
+								<option value="all">전체관람가</option>
+								<option value="12">12세이상관람가</option>
+								<option value="15">15세이상관람가</option>
+								<option value="19">청소년관람불가</option>
 							</select>
 						</div>
 					</div>
@@ -267,11 +267,11 @@
 							<h4>팝콘 후원</h4>
 						</div>
 						<div class="col-2 col-3-medium col-6-small">
-							<input type="radio" id="priority-low" name="popcorn" value="1" checked>
+							<input type="radio" id="priority-low" name="popcorn" value="popcornOn" checked>
 							<label for="priority-low">팝콘 받기</label>
 						</div>
 						<div class="col-3 col-4-medium col-6-small" style="margin-right:auto;">
-							<input type="radio" id="priority-normal" value="0" name="popcorn">
+							<input type="radio" id="priority-normal" value="popcornOff" name="popcorn">
 							<label for="priority-normal">팝콘 받지 않기</label>
 						</div>
 					</div>

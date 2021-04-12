@@ -46,7 +46,7 @@ public class AmaMovieFrontController extends HttpServlet {
 		}else if(command.equals("/amaMovie/MovieWriteOkAction.ama")) {
 			try {
 				forward = new AmaMovieWriteOkAction().execute(req, resp);
-			} catch (Exception e) {;}
+			} catch (Exception e) {e.printStackTrace();}
 		}
 		
 		
