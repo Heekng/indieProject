@@ -25,7 +25,7 @@
 }
 
 .oneLine2 {
-	width: 80% !important;
+	width: 60% !important;
 }
 
 .searchBtn {
@@ -39,8 +39,6 @@
 .pagingTable {
 	width: 50%;
 }
-
-
 
 .swiper-container {
 	width: 100%;
@@ -111,7 +109,13 @@
 
 .floating { position: fixed; right: 50%; top: 180px; margin-right: -720px; text-align:center; width: 120px; }
 
-@media screen and (max-width: 683px) {
+@media screen and (max-width: 980px) {
+	.searchZone {
+		width: 80%;
+	}
+	
+}
+@media screen and (max-width: 736px) {
 	.searchZone {
 		width: 100%;
 	}
@@ -130,24 +134,17 @@
 	.pagingTable {
 		width: 100%;
 	}
-
-	.image{
-		width:80%;
-	}
-	
-	.col-poster{
-		margin-left: auto !important;
-		margin-right: auto !important;
-	}
-	
 }
-
-
 @media screen and (max-width: 480px) {
+	ul {
+		width: 80%;
+	}
+	.choiceBtn {
+		width:32%;
+	}
 	iframe {
 		max-width: 330px !important;
 	}
-	
 	.image{
 		width:40%;
 	}
@@ -157,6 +154,7 @@
 		margin-right: auto !important;
 	}
 }
+
 </style>
 <body class="is-preload">
 
@@ -192,7 +190,7 @@
 								</div>
 								<div class="col-3 col-6-large col-12-medium searchBtn">
 									<ul class="actions stacked">
-										<li><a href="${pageContext.request.contextPath}/board/BoardWrite.bo" data-poptrox="ignore" class="button small fit">게시글 작성</a></li>
+										<li><a href="${pageContext.request.contextPath}/board/BoardWrite.bo" data-poptrox="ignore" style="padding:0 0;" class="button small fit">게시글 작성</a></li>
 									</ul>
 								</div>
 							</div>

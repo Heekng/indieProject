@@ -60,7 +60,7 @@
 										<input style="width:94%; margin-bottom: 15px;" type="text" name="memberId" id="memberId" placeholder="ID" />
 										<h4>비밀번호</h4>
 										<input style="width:94%;" type="password" name="memberPw" id="memberPw" placeholder="PASSWORD" />
-										<div style="text-align: left; margin-top:3rem;"><a href="#">아이디 / 비밀번호 찾기</a></div>
+										<div style="text-align: left; margin-top:3rem;"><a href="${pageContext.request.contextPath}/member/FindIdPwOk.me">아이디 / 비밀번호 찾기</a></div>
 										<div style="width:94%; margin-top:2rem; text-align:center;">
 											<a style="width:10em;" href="javascript:primaryLogin();" class="button">로그인</a>
 											<a style="width:10em;" href="#" class="button alt">회원가입</a>

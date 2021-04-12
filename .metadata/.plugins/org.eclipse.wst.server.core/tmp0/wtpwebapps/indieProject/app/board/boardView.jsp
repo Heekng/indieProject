@@ -311,6 +311,7 @@ img {vertical-align: middle;}
 		</div>
 			
 	<div class="rest">
+		<!-- 게시글 내용 -->
 		<section id="layer_fixed" style=" margin-left:40%; top:0px; width:90%;">
 				<div style="width:100%;">							
 					<table style="all:revert; width:100%; margin-right:0;">				
@@ -328,7 +329,7 @@ img {vertical-align: middle;}
 					</table>
 				</div>
 		</section>
-		
+		<!-- 댓글 등록 -->
 		<section  id="layer_fixed" style=" margin-left:40%; bottom:0px; width:90%;">
 				<div style="width:100%;">		
 					<table style="all:revert;">
@@ -342,7 +343,7 @@ img {vertical-align: middle;}
 					</table>
 				</div>
 		</section>
-
+		<!-- 댓글 목록 -->
 		<section  id="main" style="padding:0;">
 			<div class="container" style="margin-right:0;">
 				<!-- Content -->
@@ -371,7 +372,7 @@ img {vertical-align: middle;}
 		<script src="${pageContext.request.contextPath}/assets/js/breakpoints.min.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
-		
+		<script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
 		<script src="//code.jquery.com/jquery-3.5.1.min.js" ></script>
 		<script src="https://unpkg.com/swiper@6.5.0/swiper-bundle.min.js"></script>
 		

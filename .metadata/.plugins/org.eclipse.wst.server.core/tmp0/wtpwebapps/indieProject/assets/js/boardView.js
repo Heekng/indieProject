@@ -84,23 +84,23 @@ function showBoardReplies(replies){
 			$.each(replies, function(index, reply){
 				text += "<tr style='background:transparent;'><td style='padding:10px;'>" + reply.memberId + "</td>";
 				text += "<td valign='top' style='text-align:left;'>";
-				text += "<div name='content" + (index + 1) + "' id='" + (index + 1) + "' class='re' style='width:750px; height:85px; resize:none;' readonly>" + reply.replyContent + "</div>";
-				console.log(reply.memberId);
+				text += "<div name='dContent" + (index + 1) + "' id='d" + (index + 1) + "' class='re'>" + reply.replyContent + "</div>";
+				text += "<textarea name='tContent" + (index + 1) + "' id='t" + (index + 1) + "' class='re' style='resize:none; display:none;'>" + reply.replyContent + "</textarea>";
 				
 				if(sessionId == reply.memberId){
-					console.log("여기 왜 안 들어와")
-						text += "<a id='ready" + (index + 1) + "' href='javascript:updateReply(" + (index + 1) + ")style='float:right; text-decoration:none;'>[수정]</a>";
-						text += "<a id='ok"+ (index + 1) + "' href='javascript:updateOkReply(" + reply.replyNum + ", " + (index + 1) + ")' style='display:none;'>[수정 완료]</a>";
-						text += "<a href='javascript:deleteReply(" + reply.replyNum + ") style='float:right; text-decoration:none;'>[삭제]</a>"
+					text += "<a href='javascript:deleteReply(" + reply.replyNum + ")' style='float:right; text-decoration:none;'>[삭제]</a>"
+					text += "<a id='ready" + (index + 1) + "' href='javascript:updateReply(" + (index + 1) + ")' style='float:right; text-decoration:none;'>[수정]</a>";
+					text += "<a id='ok"+ (index + 1) + "' href='javascript:updateReplyOk(" + reply.replyNum + ", " + (index + 1) + ")' style='text-decoration:none; display:none;'>[수정 완료]</a>";
 				}
 				text += "</td></tr>";
+
 			});
 		}else{
 			text += "<tr align='center'><td align='center' width='150px' colspan='2'>댓글이 없습니다.</td></tr>";
 		}
 		
 		$("#replyTable").html(text);
-//		autosize($("textarea.re"));
+		//autosize($("textarea.re"));
 }
 
 // 댓글 등록
@@ -113,7 +113,57 @@ function insertReply(){
 			dataType : "text",
 			success : function(result){
 				alert(result);
-				getList();
+				$("textarea[name='replyContent']").val("");
+				getBoardReplies();
 			}
 		});
+}
+
+var check = false;
+// 댓글 수정
+function updateReply(num){
+	if(!check){
+		var div = $("#d"+num);
+		var textarea = $("#t"+num);
+		var a_ready = $("a#ready" + num);
+		var a_ok = $("a#ok" + num);
+		
+		div.hide()
+		textarea.show();
+		a_ready.hide();
+		a_ok.show();
+		check = true;
+	}else {
+		alert("수정 중인 댓글이 있습니다.");
+	}
+}
+function updateReplyOk(replyNum, seq){
+	var content = $("#t"+seq).val();
+	console.log(replyNum);
+	$.ajax({
+		url : pageContext + "/board/BoardReplyUpdate.bo",
+		type : "post",
+		data : {"replyNum" : replyNum, "replyContent" : content},
+		dataType : "text",
+		success : function(result){
+			alert(result);
+			check = false;
+			getBoardReplies();
+		}
+	});
+}
+function deleteReply(replyNum){
+	if(confirm('댓글을 삭제하시겠습니까?')){
+		$.ajax({
+			url : pageContext + "/board/BoardReplyDelete.bo?replyNum="+replyNum,
+			type : "get",
+			dataType : "text",
+			success : function(result){
+				alert(result);
+				getBoardReplies();
+			}
+		});
+	}else{
+		alert("댓글 삭제를 취소했습니다.");
+	}
 }

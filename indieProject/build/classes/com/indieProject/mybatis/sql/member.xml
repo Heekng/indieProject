@@ -102,4 +102,10 @@
    <select id="popcornCharge" parameterType="hashMap">
    		UPDATE MEMBER_TABLE SET POPCORNNUM = #{popCorn} WHERE MEMBERID = #{memberId}
    </select>
+   <select id="myMovieListAll" parameterType="hashMap" resultType="amaMovieVO">
+		SELECT * FROM AMAMOVIE_TABLE WHERE MEMBERID = #{memberId} ORDER BY AMADATE DESC
+	</select>
+	<select id="myMovieListAllPoster" parameterType="_int" resultType="amaMoviePosterVO">
+		SELECT * FROM AMAPOSTERFILES_TABLE WHERE AMANUM = #{amaNum}
+	</select>
 </mapper>

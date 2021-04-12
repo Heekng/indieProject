@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.indieProject.app.amamovie.vo.AmaMoviePosterVO;
 import com.indieProject.app.amamovie.vo.AmaMovieReviewVO;
 import com.indieProject.app.amamovie.vo.AmaMovieVO;
 import com.indieProject.app.board.vo.BoardReplyVO;
@@ -204,5 +205,12 @@ public class MemberDAO {
 		map.put("memberId", memberId);
 		session.update("Member.popcornCharge",map);
 	}
-	
+	//내 영화 리스트 전체
+	public List<AmaMovieVO> myMovieListAll(String memberId){
+		return session.selectList("Member.myMovieListAll", memberId);
+	}
+	//해당영화 포스터 이름 가져오기
+	public List<AmaMoviePosterVO> myMovieListAllPoster(int amaNum){
+		return session.selectList("Member.myMovieListAllPoster", amaNum);
+	}
 }

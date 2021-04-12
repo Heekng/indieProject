@@ -84,12 +84,12 @@
 											
 												<%-- 내용 --%>
 												<td>
-												 <a href="${pageContext.request.contextPath}//board/Board.bo?boardNum=${replay.getBoardNum()}&page=${nowPage}">
+												 <a href="${pageContext.request.contextPath}/board/BoardView.bo?boardNum=${replay.getBoardNum()}&page=${nowPage}">
 												${replay.getReplyContent()}
 												</a>
 												</td>
 												<%-- 작성시간 --%>
-												<td>${replay.getDate()}</td>
+												<td>${replay.getReplyDate()}</td>
 												
 											</c:forEach>
 											</c:when>

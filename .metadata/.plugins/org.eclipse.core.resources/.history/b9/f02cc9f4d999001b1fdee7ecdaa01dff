@@ -1,7 +1,0 @@
-package com.indieProject.app.amamovie;
-
-import com.indieProject.action.Action;
-
-public class AmaMovieWriteOkAction implements Action{
-	
-}

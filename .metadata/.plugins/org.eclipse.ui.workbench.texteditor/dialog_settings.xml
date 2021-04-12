@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="fn"/>
+		<item key="selection" value="memberMyMovie.me"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="memberMyMovie.me"/>
+			<item value="NEXT"/>
+			<item value="makerPosition"/>
+			<item value="firstImg"/>
 			<item value="fn"/>
 			<item value="checkPw"/>
 			<item value="email"/>
@@ -19,16 +23,12 @@
 			<item value="popt"/>
 			<item value="pop"/>
 			<item value="gtr-50"/>
-			<item value="@media screen and (max-width: 1280px)"/>
-			<item value="button"/>
-			<item value="imp-medium"/>
-			<item value="sidebar"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1455"/>
+		<item key="DIALOG_X_ORIGIN" value="888"/>
 		<item key="DIALOG_Y_ORIGIN" value="147"/>
 		<item key="DIALOG_WIDTH" value="292"/>
 		<item key="DIALOG_HEIGHT" value="402"/>

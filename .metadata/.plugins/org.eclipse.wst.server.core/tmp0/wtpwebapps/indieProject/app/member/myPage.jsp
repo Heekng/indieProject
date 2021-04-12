@@ -286,7 +286,7 @@
 														<tr>
 															<td>${rp_vo.getReplyNum()}</td>
 															<td>${rp_vo.getReplyContent()}</td>
-															<td>${rp_vo.getDate()}</td>
+															<td>${rp_vo.getReplyDate()}</td>
 														</tr>
 													</tbody>
 												</c:forEach>

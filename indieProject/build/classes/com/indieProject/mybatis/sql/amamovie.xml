@@ -15,7 +15,7 @@
 	</insert>
 	
 	<insert id="insertActor" parameterType="amaMovieActorVO">
-		INSERT INTO AMAMOVIEMAKER_TABLE VALUES (#{amaNum}, #{amaCast}, #{actorName})
+		INSERT INTO AMAMOVIEACTOR_TABLE VALUES (#{amaNum}, #{amaCast}, #{actorName})
 	</insert>
 	
 	<insert id="insertPoster" parameterType="amaMoviePosterVO">

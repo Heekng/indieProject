@@ -3,10 +3,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Untitled</title>
+		<title>인디프로젝트</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
+		<script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
+		<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 	</head>
 	<body class="is-preload">
 
@@ -23,7 +25,7 @@
 
 					<!-- Content -->
 						<section id="content">
-							<form method="post" action="#">
+							<form name="customerForm" method="post" action="${pageContext.request.contextPath}/member/MemberCustomerAction.me">
 								<div class="row">
 									<div class="col-3 col-12-small" style="margin-left: auto; margin-bottom:1em;">								
 										<input type="text" name="memberId" id="name" value="" placeholder="ID" />				
@@ -36,16 +38,16 @@
 									<div class="col-6 col-12-small" style="margin: 1em auto 1em auto;">
 										<select name="category" id="category">
 											<option value="">- 문의 내용 -</option>
-											<option value="1">서비스 이용</option>
-											<option value="1">후원 문의</option>
-											<option value="1">게시글 삭제 요청</option>
-											<option value="1">기타</option>
+											<option value="service">서비스 이용</option>
+											<option value="popcorn">후원 문의</option>
+											<option value="boardDelete">게시글 삭제 요청</option>
+											<option value="ather">기타</option>
 										</select>
 										<br>
 										<textarea name="message" id="message" placeholder="문의할 내용을 작성 바랍니다." rows="6" style="resize:none"></textarea>
 										<br>
 										<ul class="actions">
-											<li style="margin:auto;"><input type="submit" value="문의하기" /></li>
+											<li style="margin:auto;"><input type="submit" value="문의하기"  onclick="submit()"/></li>
 										</ul>
 									</div>									
 								</div>
@@ -58,6 +60,7 @@
 			<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
 
 		<!-- Scripts -->
+			
 			<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
 			<script src="${pageContext.request.contextPath}/assets/js/jquery.dropotron.min.js"></script>
 			<script src="${pageContext.request.contextPath}/assets/js/jquery.poptrox.min.js"></script>
@@ -65,6 +68,8 @@
 			<script src="${pageContext.request.contextPath}/assets/js/breakpoints.min.js"></script>
 			<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
 			<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
+			<script>var contextPath = "${pageContext.request.contextPath}";</script>
+			<script type="${pageContext.request.contextPath}/assets/js/customer.js"></script>
 
 	</body>
 </html>

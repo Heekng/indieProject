@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <!--
 	Gravity by Pixelarity
@@ -101,8 +102,11 @@ li {
 }
 </style>
 <body class="is-preload">
-	<c:set var="movies" value="${movies}"/>
-	<c:set var="poster" value="${poster}"/>
+	<c:set var="boardSize" value="${boardSize}"/>
+	<c:set var="totalCnt" value="${totalCnt}"/>
+	<c:set var="totalPageCnt" value="${totalPageCnt}"/>
+	<c:set var="movieList" value="${movieList}"/>
+	<c:set var="moviePosterList" value="${moviePosterList}"/>
 
 	<!-- Header -->
 	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
@@ -134,7 +138,19 @@ li {
 										<c:otherwise> --%>
 											<div class="col-poster" style="width: 30%; height: 10%; margin: 10px;">
 												<div class="image fit posterTag" style="margin-bottom: 0px;">
-													<img src="${pageContext.request.contextPath}/images/amaMovie/poster/${poster}" alt="" style="" onclick=""/>
+													<img src="${pageContext.request.contextPath}/images/amaMovie/poster/testPoster1.jpg" alt="" style="" onclick=""/>
+													<p>영화제목</p>
+												</div>
+											</div>
+											<div class="col-poster" style="width: 30%; height: 10%; margin: 10px;">
+												<div class="image fit posterTag" style="margin-bottom: 0px;">
+													<img src="${pageContext.request.contextPath}/images/amaMovie/poster/testPoster1.jpg" alt="" style="" onclick=""/>
+													<p>영화제목</p>
+												</div>
+											</div>
+											<div class="col-poster" style="width: 30%; height: 10%; margin: 10px;">
+												<div class="image fit posterTag" style="margin-bottom: 0px;">
+													<img src="${pageContext.request.contextPath}/images/amaMovie/poster/testPoster1.jpg" alt="" style="" onclick=""/>
 													<p>영화제목</p>
 												</div>
 											</div>
@@ -168,6 +184,7 @@ li {
 	<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/floatMenu.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/myPageMovie.js"></script>
 	<script>$("#mm").css("background", "rgba(144, 144, 144, 0.075)");</script>
 
 	<script>
