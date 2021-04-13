@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Untitled</title>
+		<title>인디프로젝트</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
@@ -16,7 +18,14 @@
 		}
 	</style>
 	<body class="is-preload">
-
+		<c:set var="ama_vo" value="${ama_vo}" />
+		<c:set var="mainPoster" value="${mainPoster}" />
+		<c:set var="posters" value="${posters}" />
+		<c:set var="stillcuts" value="${stillcuts}" />
+		<c:set var="makers" value="${makers}" />
+		<c:set var="actors" value="${actors}" />
+		<c:set var="popcornSenders" value="${popcornSenders}" />
+		<c:set var="reviews" value="${reviews}" />
 		<!-- Header -->
 			<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
 
@@ -33,100 +42,158 @@
 						<div class="row gtr-200 aln-middle">
 							<div class="col-4 col-12-medium">
 								<span class="image fit">
-									<img src="${pageContext.request.contextPath}/images/pic02.jpg" alt="영화 포스터" />
+									<img src="${pageContext.request.contextPath}/images/amaMovie/${mainPoster}" alt="영화 포스터" />
 								</span>
 							</div>
 							<div class="col-8 col-12-medium">
 								<header class="major">
-									<h2>영화 제목</h2>
-									<p>2021.03.29</p>
+									<h2><c:out value="${ama_vo.getAmaTitleKor()}"/> (<c:out value="${ama_vo.getAmaTitleEng()}"></c:out>)</h2>
+									<p><c:out value="${ama_vo.getAmaMakeDate()}"/></p>
 								</header>
 									<p>
-										감독 : <br>
-										길이 : <br>
-										장르 : <br>
-										영상물 등급 :
+										감독 : <c:out value="${ama_vo.getAmaDirector()}"/><br>
+										길이 : <c:out value="${ama_vo.getAmaMovieLength()}"/><br>
+										장르 : <c:out value="${ama_vo.getGenre()}"/><br>
+										영상물 등급 : <c:out value="${ama_vo.getRating()}"/>
 									</p>
-								<ul class="actions" id="test">
-									<li><a href="https://youtu.be/86BST8NIpNM" class="button alt">영화 보러 가기</a></li>
-									<li><a class="button" onclick="sendPopcorn()">팝콘 보내기</a></li>
+								<ul class="actions">
+									<li><a href="${pageContext.request.contextPath}/amaMovie/AmaMovieWatch.ama?amaNum=${ama_vo.getAmaNum()}" class="button alt">영화 보러 가기</a></li>
+									<li id="popcorn" style="display:none;"><a class="button" onclick="sendPopcorn()">팝콘 보내기</a></li>
+									<c:choose>
+										<c:when test="${ama_vo.getPopcorn() eq 'popcornOn'}">
+											<script>$("#popcorn").show()</script>
+										</c:when>
+									</c:choose>
 								</ul>
-								
 							</div>
 						</div>
 					</section>
 					<section id="content">
-							<br>
-							<h2>포스터 / 스틸컷</h2>
-							<section class="carousel">
-								<article>
-									<a href="${pageContext.request.contextPath}/images/fulls/01.jpg" class="image"><img src="${pageContext.request.contextPath}/images/thumbs/01.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-								</article>
-								<article>
-									<a href="${pageContext.request.contextPath}/images/fulls/02.jpg" class="image"><img src="${pageContext.request.contextPath}/images/thumbs/02.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-								</article>
-								<article>
-									<a href="${pageContext.request.contextPath}/images/fulls/03.jpg" class="image"><img src="${pageContext.request.contextPath}/images/thumbs/03.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-								</article>
-								<article>
-									<a href="${pageContext.request.contextPath}/images/fulls/04.jpg" class="image"><img src="${pageContext.request.contextPath}/images/thumbs/04.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-								</article>
-								<article>
-									<a href="${pageContext.request.contextPath}/images/fulls/05.jpg" class="image"><img src="${pageContext.request.contextPath}/images/thumbs/05.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-								</article>
-							</section>
-							<hr>
-							<h2>시놉시스</h2>
-							<p>영화 줄거리에 대한 내용.</p>
-							<hr>
-							<h2>연출 의도 / 제작 이야기</h2>
-							<p>적고 싶은 내용들 ~~~~ </p>
-							<hr>
-							<div class="row">
-								<div class="col-6 col-12-medium">
-									<h2>만든 사람들</h2>
-								<p> 연출 : </p>
-								<p> 각본 : 등등</p>							
-								</div>
-								<div class="col-6 col-12-medium">
-									<h2>나오는 사람들</h2>
-								<p> 누구 : 무슨 역</p>
-								<p> 누구 : 등등등 </p>
-								</div>
+						<br>
+						<h2>포스터 / 스틸컷</h2>
+						<section class="carousel">
+							<c:if test="${posters != null and fn:length(posters) > 0}">
+								<c:forEach var="p" items="${posters}">
+									<article>
+										<a href="${pageContext.request.contextPath}/images/amaMovie/${p}" class="image"><img src="${pageContext.request.contextPath}/images/amaMovie/${p}" alt="" title="${ama_vo.getAmaTitleKor()}" /></a>
+									</article>
+								</c:forEach>
+							</c:if>
+							<c:if test="${stillcuts != null and fn:length(stillcuts) > 0}">
+								<c:forEach var="s_vo" items="${stillcuts}">
+									<article>
+										<a href="${pageContext.request.contextPath}/images/amaMovie/${s_vo.getFileName()}" class="image"><img src="${pageContext.request.contextPath}/images/amaMovie/${s_vo.getFileName()}" alt="" title="${ama_vo.getAmaTitleKor()}" /></a>
+									</article>
+								</c:forEach>
+							</c:if>
+						</section>
+						<hr>
+						<h2>시놉시스</h2>
+						<p><c:out value="${ama_vo.getSynopsis()}"/></p>
+						<hr>
+						<h2>연출 의도</h2>
+						<p><c:out value="${ama_vo.getTheme()}"/></p>
+						<hr>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<h2>만든 사람들</h2>
+								<c:choose>
+									<c:when test="${makers != null and fn:length(makers) > 0}">
+										<c:forEach var="m_vo" items="${makers}">
+										<p> <c:out value="${m_vo.getMakerPosition()}"/> : <c:out value="${m_vo.getMakerName()}"/></p>
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<p>등록된 정보가 없습니다.</p>
+									</c:otherwise>
+								</c:choose>							
 							</div>
-							<hr>
-							<h2>팝콘 보낸 사람들?,,</h2>
-							<div class="table-wrapper">
-								<table>
-									<thead>
-										<tr>
-											<th>아이디</th>
-											<th>한마디</th>
-											<th>보낸 팝콘 수</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>후원자1</td>
-											<td>팝콘 쏜 사람만 할 수 있는 한마디!!!!</td>
-											<td>10</td>
-										</tr>
-										<tr>
-											<td>후원자2</td>
-											<td>인생 영화입니다 꼭 보세요!@!!</td>
-											<td>100</td>
-										</tr>
-									</tbody>
-								</table>
+							<div class="col-6 col-12-medium">
+								<h2>나오는 사람들</h2>
+								<c:choose>
+									<c:when test="${actors != null and fn:length(actors) > 0}">
+										<c:forEach var="a_vo" items="${actors}">
+										<p> <c:out value="${a_vo.getAmaCast()}"/> : <c:out value="${a_vo.getActorName()}"/></p>
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<p>등록된 정보가 없습니다.</p>
+									</c:otherwise>
+								</c:choose>
 							</div>
-							<hr>
-							<h2>영화 후기</h2>
-							<p>아직 등록된 후기가 없습니다.</p>
-							<ul class="actions">
-									<li><a href="#" class="button alt small fit">후기 작성하러 가기</a></li>
-							</ul>
+						</div>
+						<hr>
+						<h2>팝콘 후원자</h2>
+						<div class="table-wrapper">
+							<table>
+								<thead>
+									<tr>
+										<th>아이디</th>
+										<th>한마디</th>
+										<th>보낸 팝콘 수</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:choose>
+										<c:when test="${popcornSenders != null and fn:length(popcornSenders) > 0}">
+											<c:forEach var="p_vo" items="${popcornSenders}">
+												<tr>
+													<td><c:out value="${p_vo.getSendId()}"/></td>
+													<td><c:out value="${p_vo.getPopcornContent()}"/></td>
+													<td><c:out value="${p_vo.getPopcornNum()}"/></td>
+												</tr>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<tr>
+												<td colspan="3" align="center">따뜻한 팝콘이 필요합니다...</td>
+											</tr>
+										</c:otherwise>
+									</c:choose>
+								</tbody>
+							</table>
+						</div>
+						<hr>
+						<h2>영화 감상평</h2>
+						<ul class="actions">
+							<li><a href="${pageContext.request.contextPath}/amaMovie/AmaMovieWatch.ama?amaNum=${ama_vo.getAmaNum()}" class="button alt small fit">감상평 등록하러 가기</a></li>
+						</ul>
+						<table style="margin-bottom: 0;">
+							<thead>
+								<tr>
+									<th>아이디</th>
+									<th>별점</th>
+									<th>내용</th>
+									<th>작성시간</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:choose>
+									<c:when test="${reviews !=null and fn:length(reviews) > 0 }">
+										<c:forEach var="mr_vo"  items="${reviews}" >
+								 			<tr>
+               								<td>${mr_vo.getMemberId()}</td>
+											<td>
+												<c:choose>
+													<c:when test="${mr_vo.getStars() eq 1}">⭐</c:when>
+													<c:when test="${mr_vo.getStars() eq 2}">⭐⭐</c:when>
+													<c:when test="${mr_vo.getStars() eq 3}">⭐⭐⭐</c:when>
+													<c:when test="${mr_vo.getStars() eq 4}">⭐⭐⭐⭐</c:when>
+													<c:when test="${mr_vo.getStars() eq 5}">⭐⭐⭐⭐⭐</c:when>
+												</c:choose>
+											</td>	
+											<td>${mr_vo.getReplyContent()}</td>
+											<td>${mr_vo.getReplyDate()}</td>
+											</tr>
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<td colspan="4" align="center"><strong>아직 등록된 감상평이 없습니다.</strong></td>
+									</c:otherwise>
+								</c:choose>		
+							</tbody>
+						</table>
 					</section>
-					
 				</div>
 			</section>
 
@@ -142,12 +209,7 @@
 			<script src="${pageContext.request.contextPath}/assets/js/breakpoints.min.js"></script>
 			<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
 			<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
-			<script>
-				var test = $('#test');
-				test.poptrox({
-					usePopupCloser: false
-				});
-				
+			<script>			
 				function sendPopcorn(){
 					var _width = 380;
 					var _height = 500;

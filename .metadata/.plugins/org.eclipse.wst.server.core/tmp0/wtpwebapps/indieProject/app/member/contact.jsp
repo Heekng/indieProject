@@ -7,8 +7,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
-		<script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
-		<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+
+	
 	</head>
 	<body class="is-preload">
 
@@ -19,19 +19,19 @@
 			<section id="main">
 				<div class="container">
 					<header class="major">
+					
 						<h2>문의하기</h2>
 						<p>메일로 답변을 드립니다.</p>
 					</header>
 
 					<!-- Content -->
 						<section id="content">
-							<form name="customerForm" method="post" action="${pageContext.request.contextPath}/member/MemberCustomerAction.me">
 								<div class="row">
 									<div class="col-3 col-12-small" style="margin-left: auto; margin-bottom:1em;">								
-										<input type="text" name="memberId" id="name" value="" placeholder="ID" />				
+										<input type="text" name="memberName" id="memberName" value="" placeholder="Name" />				
 									</div>
 									<div class="col-3 col-12-small" style="margin-right: auto; margin-bottom:1em;">											
-										<input type="email" name="email" id="email" value="" placeholder="EMAIL" />
+										<input type="email" name="memberEmail" id="email" value="" placeholder="EMAIL" />
 									</div>
 								</div>
 								<div class="row">
@@ -51,7 +51,7 @@
 										</ul>
 									</div>									
 								</div>
-							</form>
+				
 						</section>
 				</div>
 			</section>
@@ -60,16 +60,20 @@
 			<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
 
 		<!-- Scripts -->
-			
-			<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+			<%-- <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script> --%> 
 			<script src="${pageContext.request.contextPath}/assets/js/jquery.dropotron.min.js"></script>
 			<script src="${pageContext.request.contextPath}/assets/js/jquery.poptrox.min.js"></script>
 			<script src="${pageContext.request.contextPath}/assets/js/browser.min.js"></script>
 			<script src="${pageContext.request.contextPath}/assets/js/breakpoints.min.js"></script>
 			<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
 			<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
+			<script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
+			<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 			<script>var contextPath = "${pageContext.request.contextPath}";</script>
-			<script type="${pageContext.request.contextPath}/assets/js/customer.js"></script>
+			<script src="${pageContext.request.contextPath}/assets/js/customer.js"></script>
 
+<script>
+
+</script>
 	</body>
 </html>

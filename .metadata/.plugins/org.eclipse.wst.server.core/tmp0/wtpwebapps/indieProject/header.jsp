@@ -78,7 +78,7 @@
 				
 				</li>
 				<li><a href="${pageContext.request.contextPath}/board/Board.bo">Board</a></li>
-				<li><a href="${pageContext.request.contextPath}/member/Customer.me">Customer</a></li>
+				<li><a href="${pageContext.request.contextPath}/member/MemberCustomerOk.me">Customer</a></li>
 				<li><a href="${pageContext.request.contextPath}/member/SignUp.me" id="signUp"><b>SignUp</b></a></li>
 				<li style="margin-left:0.5rem;"><a href="${pageContext.request.contextPath}/member/Login.me" id="logIn"><b>Login</b></a></li>					
 			</ul>

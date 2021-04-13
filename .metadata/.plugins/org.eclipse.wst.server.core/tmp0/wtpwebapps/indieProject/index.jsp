@@ -138,7 +138,7 @@
 						<li><a href="${pageContext.request.contextPath}/proMovie/ProMovie.pro">IndieMovie</a></li>
 						<li><a href="${pageContext.request.contextPath}/amaMovie/AmaMovie.ama">AmateurMovie</a></li>
 						<li><a href="${pageContext.request.contextPath}/board/Board.bo">Board</a></li>
-						<li><a href="${pageContext.request.contextPath}/member/Customer.me">Customer</a></li>
+						<li><a href="${pageContext.request.contextPath}/member/MemberCustomerOk.me">Customer</a></li>
 						<li style="position: absolute;right: 4.55em;"><a href="${pageContext.request.contextPath}/member/SignUp.me" id="signUp"><b>SignUp</b></a></li>
 						<li style="position: absolute;right: 0;"><a href="${pageContext.request.contextPath}/member/Login.me" id="logIn"><b>Login</b></a></li>										
 					</ul>

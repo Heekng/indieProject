@@ -70,7 +70,7 @@
 	</select>
 
 	<select id="myReviewList" parameterType="string" resultType="amaMovieReviewVO">
-		SELECT * FROM (SELECT AR.AMANUM, A.AMATITLEKOR, AR.REPLYCONTENT, AR.REPLYDATE FROM AMAREVIEW_TABLE AR, AMAMOVIE_TABLE A WHERE AR.MEMBERID = A.MEMBERID AND AR.MEMBERID = #{memberId} ORDER BY AR.REPLYDATE DESC) <![CDATA[WHERE ROWNUM <= 5]]>		
+		SELECT * FROM (SELECT * FROM AMAREVIEW_TABLE WHERE MEMBERID = #{memberId} ORDER BY REPLYDATE DESC) <![CDATA[WHERE ROWNUM <= 5]]>
 	</select>
 	
 	<select id="checkPwGetData" parameterType="hashMap" resultType="memberVO">
@@ -80,7 +80,7 @@
 		SELECT MEMBERNAME FROM MEMBER_TABLE WHERE MEMBERID = #{memberId}
 	</select>
 	<select id="myPopcornList" parameterType="hashMap" resultType="myPagePopcornVO">
-		SELECT PU.RECEIVEID, A.AMATITLEKOR, PU.POPCORNNUM, PU.SENDDATE FROM POPCORN_USE_TABLE PU, AMAMOVIE_TABLE A <![CDATA[WHERE ROWNUM <= 5]]> AND PU.SENDID = A.MEMBERID AND PU.SENDID = #{memberId} AND PU.SENDDATE BETWEEN TO_DATE(#{date1}, 'YYYY-MM-DD') AND TO_DATE(#{date2}, 'YYYY-MM-DD') ORDER BY PU.SENDDATE DESC		
+		SELECT PU.RECEIVEID, A.AMATITLEKOR, PU.POPCORNNUM, PU.SENDDATE FROM POPCORN_USE_TABLE PU JOIN AMAMOVIE_TABLE A ON PU.AMANUM = A.AMANUM WHERE PU.SENDID = #{memberId} <![CDATA[AND ROWNUM <= 5]]> AND PU.SENDDATE BETWEEN TO_DATE('2021-04-12', 'YYYY-MM-DD') AND TO_DATE('2021-04-13', 'YYYY-MM-DD') ORDER BY PU.SENDDATE DESC
 	</select>
 	<select id="myReviewListAll" parameterType="hashMap" resultType="amaMovieReviewVO">
       SELECT * FROM
@@ -88,10 +88,10 @@
             (SELECT * FROM AMAREVIEW_TABLE WHERE MEMBERID = #{memberId} ORDER BY REPLYDATE DESC) D) B
       WHERE B.R BETWEEN #{startRow} AND #{endRow}
    </select>
-   <select id="amaMovieTitle" parameterType="string" resultType="amaMovieVO">
+   <select id="amaMovieTitle"  resultType="amaMovieVO">
    		SELECT A.AMATITLEKOR, A.AMANUM 
    		FROM AMAMOVIE_TABLE A, AMAREVIEW_TABLE R 
-   		WHERE A.AMANUM = R.AMANUM AND R.MEMBERID = #{memberId}
+   		WHERE A.AMANUM = R.AMANUM 
    </select>
 	<select id="myBoardReplyListAll" parameterType="hashMap" resultType="boardReplyVO">
       SELECT * FROM
@@ -103,7 +103,7 @@
    		UPDATE MEMBER_TABLE SET POPCORNNUM = #{popCorn} WHERE MEMBERID = #{memberId}
    </select>
    <select id="myMovieListAll" parameterType="hashMap" resultType="amaMovieVO">
-		SELECT * FROM AMAMOVIE_TABLE WHERE MEMBERID = #{memberId} ORDER BY AMADATE DESC
+		SELECT AMANUM, AMATITLEENG, AMATITLEKOR, AMAMAKEDATE, AMAMOVIELENGTH, AMADIRECTOR, GENRE, RATING, LINK, POPCORN, SYNOPSIS, THEME, MEMBERID, AMACOUNT, AMADATE FROM (SELECT am.*, ROWNUM rn FROM (SELECT * FROM AMAMOVIE_TABLE WHERE MEMBERID = #{memberId} ORDER BY AMADATE DESC) am) WHERE rn BETWEEN #{startRow} AND #{endRow}
 	</select>
 	<select id="myMovieListAllPoster" parameterType="_int" resultType="amaMoviePosterVO">
 		SELECT * FROM AMAPOSTERFILES_TABLE WHERE AMANUM = #{amaNum}

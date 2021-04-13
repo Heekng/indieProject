@@ -10,7 +10,7 @@
 -->
 <html>
 	<head>
-		<title>Untitled</title>
+		<title>인디프로젝트</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
@@ -85,7 +85,7 @@
 												<%-- 내용 --%>
 												<td>
 												 <a href="${pageContext.request.contextPath}/board/BoardView.bo?boardNum=${replay.getBoardNum()}&page=${nowPage}">
-												${replay.getReplyContent()}
+													${replay.getReplyContent()}
 												</a>
 												</td>
 												<%-- 작성시간 --%>

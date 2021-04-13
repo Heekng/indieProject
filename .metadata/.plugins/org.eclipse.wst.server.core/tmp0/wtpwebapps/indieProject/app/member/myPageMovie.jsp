@@ -102,8 +102,11 @@ li {
 }
 </style>
 <body class="is-preload">
-	<c:set var="movies" value="${movies}"/>
-	<c:set var="poster" value="${poster}"/>
+	<c:set var="boardSize" value="${boardSize}"/>
+	<c:set var="totalCnt" value="${totalCnt}"/>
+	<c:set var="totalPageCnt" value="${totalPageCnt}"/>
+	<c:set var="movieList" value="${movieList}"/>
+	<c:set var="moviePosterList" value="${moviePosterList}"/>
 
 	<!-- Header -->
 	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
@@ -123,37 +126,38 @@ li {
 						</header>
 						<div style="text-align: center;">
 							<fieldset style="padding-left: 5%; margin-bottom: 0; border-width: 3px; background: white;">
-								<div class="row" style="width: 100%;">
-									<%-- <c:choose>
-										<c:when test="${movies eq null}">
+								<div class="row" style="width: 100%;" id="posterRow">
+									<c:choose>
+										<c:when test="${fn:length(movieList) eq 0}">
 											<div style="height:400px; margin:0 auto;">
 												<p>
 													내가 올린 영화가 없습니다.
 												</p>
 											</div>
 										</c:when>
-										<c:otherwise> --%>
-											<div class="col-poster" style="width: 30%; height: 10%; margin: 10px;">
-												<div class="image fit posterTag" style="margin-bottom: 0px;">
-													<img src="${pageContext.request.contextPath}/images/amaMovie/poster/testPoster1.jpg" alt="" style="" onclick=""/>
-													<p>영화제목</p>
+										<c:otherwise>
+											<c:forEach var="movie" items="${movieList}">
+												<div class="col-poster" style="width: 30%; height: 10%; margin: 10px;" onclick="moveDetail(${movie.getAmaNum()})">
+													<div class="image fit posterTag" style="margin-bottom: 0px;">
+														<c:forEach var="poster" items="${moviePosterList}">
+															<c:if test="${poster.getAmaNum() eq movie.getAmaNum()}">
+																<c:choose>
+																	<c:when test="${!empty poster.getFileName()}">
+																		<c:set var="textSize" value="${fn:length(poster.getFileName())}"/>
+																		<img src="${pageContext.request.contextPath}/images/amaMovie/${fn:substring(poster.getFileName(),5,textSize)}" alt="${poster.getFileName()}"/>
+																	</c:when>
+																	<c:otherwise>
+																		<img src="${pageContext.request.contextPath}/images/amaMovie/poster/testPoster1.jpg" alt=""/>
+																	</c:otherwise>
+																</c:choose>
+															</c:if>
+														</c:forEach>
+														<p>${movie.getAmaTitleKor()}</p>
+													</div>
 												</div>
-											</div>
-											<div class="col-poster" style="width: 30%; height: 10%; margin: 10px;">
-												<div class="image fit posterTag" style="margin-bottom: 0px;">
-													<img src="${pageContext.request.contextPath}/images/amaMovie/poster/testPoster1.jpg" alt="" style="" onclick=""/>
-													<p>영화제목</p>
-												</div>
-											</div>
-											<div class="col-poster" style="width: 30%; height: 10%; margin: 10px;">
-												<div class="image fit posterTag" style="margin-bottom: 0px;">
-													<img src="${pageContext.request.contextPath}/images/amaMovie/poster/testPoster1.jpg" alt="" style="" onclick=""/>
-													<p>영화제목</p>
-												</div>
-											</div>
-										<%-- </c:otherwise>
-									
-									</c:choose> --%>
+											</c:forEach>
+										</c:otherwise>											
+									</c:choose>
 									
 								</div>
 							</fieldset>
@@ -181,19 +185,18 @@ li {
 	<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/floatMenu.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/js/myPageMovie.js"></script>
 	<script>$("#mm").css("background", "rgba(144, 144, 144, 0.075)");</script>
 
 	<script>
-			if(window.matchMedia('(max-width: 9999px)').matches){
-			}
-		</script>
+		var contextPath = "${pageContext.request.contextPath}";
+		var boardSize = Number("${boardSize}");
+		var totalCnt = Number("${totalCnt}");
+		var totalPageCnt = Number("${totalPageCnt}");
+		var session_id = "${session_id}"
+	</script>
+	<script src="${pageContext.request.contextPath}/assets/js/myPageMovie.js"></script>
 
 	<script src="https://unpkg.com/swiper@6.5.0/swiper-bundle.min.js"></script>
-
-	<script>
-		if(window.matchMedia('(max-width: 736px)').matches){}
-	</script>
 
 </body>
 </html>

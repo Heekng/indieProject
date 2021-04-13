@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <style>
@@ -26,25 +28,27 @@
 	
 </style>
 	<head>
-		<title>Untitled</title>
+		<title>인디프로젝트</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
 	</head>
 	<body class="is-preload">
-
+		<c:set var="ama_vo" value="${ama_vo}" />
+		<c:set var="amaReviews" value="${amaReviews}" />
+		<c:set var="movieLink" value="${movieLink}" />
 		<!-- Header -->
 			<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
 
 		<!-- Movie -->
 			<section id="banner" class="wrapper style1 special">
 				<div class="container">
-						<h2>영화 시청</h2>
+						<h2><c:out value="${ama_vo.getAmaTitleKor()}"/></h2>
 						<br>
 						<section id="content">
 							<div class="embed-container">
 								<div class="col-8 col-12-medium" style="margin:auto;">
-									<iframe src='https://www.youtube.com/embed//v7bnOxV4jAc' frameborder='0' allowfullscreen></iframe>
+									<iframe src='${movieLink}' frameborder='0' allowfullscreen></iframe>
 								</div>
 							</div>
 						</section>
@@ -85,61 +89,62 @@
 			<section>
 				<div class="container">
 					<section>
-						<div class="table-wrapper">
-							<table>
+						<fieldset id="movie" style="padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+							<table style="margin-bottom: 0;">
 								<thead>
 									<tr>
-										<th>별점</th>
-										<th>감상평</th>
 										<th>아이디</th>
-										<th class="date">날짜</th>
+										<th>별점</th>
+										<th>내용</th>
+										<th>작성시간</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>⭐⭐⭐⭐⭐</td>
-										<td>너무 재밌었어요~~~</td>
-										<td>abc123</td>
-										<td class="date">2021.03.25</td>
-									</tr>
-									<tr>
-										<td>⭐⭐⭐⭐</td>
-										<td>재밌었어요~~</td>
-										<td>qwe123</td>
-										<td class="date">2021.03.25</td>
-									</tr>
-									<tr>
-										<td>⭐⭐⭐</td>
-										<td>괜찮았어요~</td>
-										<td>fds123</td>
-										<td class="date">2021.03.25</td>
-									</tr>
-									<tr>
-										<td>⭐⭐</td>
-										<td>별로,,</td>
-										<td>zvc19</td>
-										<td class="date">2021.03.25</td>
-									</tr>
-									<tr>
-										<td>⭐</td>
-										<td>재미없어요</td>
-										<td>gg132</td>
-										<td class="date">2021.03.25</td>
-									</tr>
+									<c:choose>
+										<c:when test="${amaReviews !=null and fn:length(amaReviews) > 0 }">
+											<c:forEach var="mr_vo"  items="${amaReviews}" >
+									 			<tr>
+	               								<td>${mr_vo.getMemberId()}</td>
+												<td>
+													<c:choose>
+														<c:when test="${mr_vo.getStars() eq 1}">⭐</c:when>
+														<c:when test="${mr_vo.getStars() eq 2}">⭐⭐</c:when>
+														<c:when test="${mr_vo.getStars() eq 3}">⭐⭐⭐</c:when>
+														<c:when test="${mr_vo.getStars() eq 4}">⭐⭐⭐⭐</c:when>
+														<c:when test="${mr_vo.getStars() eq 5}">⭐⭐⭐⭐⭐</c:when>
+													</c:choose>
+												</td>	
+												<td>${mr_vo.getReplyContent()}</td>
+												<td>${mr_vo.getReplyDate()}</td>
+												</tr>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<td colspan="4" align="center"><strong>아직 등록된 감상평이 없습니다.</strong></td>
+										</c:otherwise>
+									</c:choose>		
 								</tbody>
 							</table>
-						</div>
-							<table>
-								<tfoot style="text-align:center;">
-									<tr>
-										<td><a>1</a></td>
-										<td><a>2</a></td>
-										<td><a>3</a></td>
-										<td><a>4</a></td>
-										<td><a>5</a></td>
-									</tr>
-								</tfoot>
-							</table>
+							<div style="text-align: center;">
+							<c:if test="${nowPage>1}">
+								<a href="${pageContext.request.contextPath}/member/memberMyReview.me?page=${nowPage-1}">[이전]</a>
+							</c:if>
+	
+							<c:forEach var="i" begin="${startPage}" end="${endPage}">
+							<c:choose>
+							<c:when test="${i eq nowPage}">
+								${i}&nbsp;&nbsp;
+								</c:when>
+								<c:otherwise>
+								<a href="${pageContext.request.contextPath}/member/memberMyReview.me?page=${i}">${i}&nbsp;</a>
+							</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${realEndPage != nowPage}">
+       							<a href="${pageContext.request.contextPath}/member/memberMyReview.me?page=${nowPage + 1}">[다음]</a>
+       						</c:if>
+							</div>
+						</fieldset>
 					</section>
 				</div>
 			</section>

@@ -76,7 +76,7 @@
 										<div style="height: 65%; text-overflow: ellipsis; line-height: initial; overflow: hidden; font-size: 0.8em; margin: 10px;">
 											인피니티워 이후 절반만 살아남은 지구마지막 희망이 된 어벤져스 먼저 떠난 그들을 위해 모든 것을 걸었다! 위대한 어벤져스운명을 바꿀 최후의 전쟁이 펼쳐진다!
 										</div>
-										<a class="button primary small" href="" 
+										<a class="button primary small" href="${pageContext.request.contextPath}/amaMovie/AmaMovieDetail.ama?amaNum=4" 
 											style="position: absolute; left: 16px; right: 16px; bottom: 16px; height: 38px; line-height: 38px; padding: 0 0;">
 											상세보기 <img alt="" src="" title="영화제목">
 										</a>

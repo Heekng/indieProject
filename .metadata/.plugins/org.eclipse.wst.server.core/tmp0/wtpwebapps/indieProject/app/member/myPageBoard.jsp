@@ -151,7 +151,9 @@ li {
 											</c:forEach>
 										</c:when>
 										<c:otherwise>
-											<h4>내가 올린 게시글이 없습니다.</h4>
+											<div style="height: 400px; margin: 0 auto;">
+												<p>내가 올린 게시글이 없습니다.</p>
+											</div>
 										</c:otherwise>
 									</c:choose>
 

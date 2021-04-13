@@ -16,6 +16,7 @@
 		<typeAlias type="com.indieProject.app.amamovie.vo.AmaMovieReviewVO" alias="amaMovieReviewVO"/>
 		<typeAlias type="com.indieProject.app.amamovie.vo.AmaMovieStillCutVO" alias="amaMovieStillCutVO"/>
 		<typeAlias type="com.indieProject.app.amamovie.vo.AmaMovieVO" alias="amaMovieVO"/>
+		<typeAlias type="com.indieProject.app.amamovie.vo.PopcornVO" alias="popcornVO"/>
 	</typeAliases>
 	
 	<environments default="development">

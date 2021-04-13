@@ -72,6 +72,8 @@
 		<c:set var="reviews" value="${myReviewList}"/>
 		<c:set var="boards" value="${myBoardList}"/>
 		<c:set var="replies" value="${myBoardReplyList}"/>
+		<c:set var="movieTitles" value="${movieTitles}"/>
+		
 		<c:if test="${session_id eq null}">
 			<script>
 			   alert("로그인 후 이용해주세요");
@@ -198,8 +200,8 @@
 									<table style="margin-bottom: 0;">
 										<thead>
 											<tr>
-												<th>글 번호</th>
 												<th>영화 제목</th>
+												<th>별점</th>
 												<th>내용</th>
 												<th>작성시간</th>
 											</tr>
@@ -209,8 +211,26 @@
 												<c:forEach var="r_vo" items="${reviews}">
 													<tbody>
 														<tr>
-															<td>${r_vo.getAmaNum()}</td>
-															<td>${r_vo.getMemberId()}</td>
+															<td>
+																<c:set var="loop_flag" value="false"/>
+																<c:forEach var="mt_vo"  items="${movieTitles}" >
+																	<c:if test="${not loop_flag }">
+				               								 			<c:if test="${r_vo.getAmaNum() eq mt_vo.getAmaNum()}"> 
+				               												<c:out value="${mt_vo.getAmaTitleKor()}"/>
+				               												<c:set var="loop_flag" value="true"/>
+				               							 				</c:if>
+				               							 			</c:if>
+			               										</c:forEach>
+															</td>
+															<td>
+																<c:choose>
+																	<c:when test="${r_vo.getStars() eq 1}">⭐</c:when>
+																	<c:when test="${r_vo.getStars() eq 2}">⭐⭐</c:when>
+																	<c:when test="${r_vo.getStars() eq 3}">⭐⭐⭐</c:when>
+																	<c:when test="${r_vo.getStars() eq 4}">⭐⭐⭐⭐</c:when>
+																	<c:when test="${r_vo.getStars() eq 5}">⭐⭐⭐⭐⭐</c:when>
+																</c:choose>
+															</td>
 															<td>${r_vo.getReplyContent()}</td>
 															<td>${r_vo.getReplyDate()}</td>
 														</tr>

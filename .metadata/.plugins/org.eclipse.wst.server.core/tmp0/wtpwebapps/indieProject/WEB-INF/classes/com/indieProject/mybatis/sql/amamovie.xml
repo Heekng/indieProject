@@ -25,5 +25,25 @@
 	<insert id="insertStillCut" parameterType="amaMovieStillCutVO">
 		INSERT INTO AMASTILLCUTFILES_TABLE VALUES (${amaNum}, #{fileName})
 	</insert>
-	
+	<select id="getAmaData" parameterType="_int" resultType="amaMovieVO">
+		SELECT * FROM AMAMOVIE_TABLE WHERE AMANUM = #{amaNum}
+	</select>
+	<select id="getAmaPoster" parameterType="_int" resultType="amaMoviePosterVO">
+		SELECT * FROM AMAPOSTERFILES_TABLE WHERE AMANUM = #{amaNum}
+	</select>
+	<select id="getAmaStillcut" parameterType="_int" resultType="amaMovieStillCutVO">
+		SELECT * FROM AMASTILLCUTFILES_TABLE WHERE AMANUM = #{amaNum}
+	</select>
+	<select id="getAmaMaker" parameterType="_int" resultType="amaMovieMakerVO">
+		SELECT * FROM AMAMOVIEMAKER_TABLE WHERE AMANUM = #{amaNum}
+	</select>
+	<select id="getAmaActor" parameterType="_int" resultType="amaMovieActorVO">
+		SELECT * FROM AMAMOVIEACTOR_TABLE WHERE AMANUM = #{amaNum}
+	</select>
+	<select id="getAmaReview" parameterType="_int" resultType="amaMovieReviewVO">
+		SELECT * FROM AMAREVIEW_TABLE WHERE AMANUM = #{amaNum}
+	</select>
+	<select id="getPopcornSender" parameterType="_int" resultType="popcornVO">
+		SELECT * FROM POPCORN_USE_TABLE WHERE AMANUM = #{amaNum}
+	</select>
 </mapper>
