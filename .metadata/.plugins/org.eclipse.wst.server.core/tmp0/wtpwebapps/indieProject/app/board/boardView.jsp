@@ -278,6 +278,7 @@ img {vertical-align: middle;}
 	<body class="is-preload">
 	<c:set var="board" value="${board}"/>
 	<c:set var="boardImages" value="${boardImages}"/>
+
 		<!-- Header -->
 
 		<!-- Main -->

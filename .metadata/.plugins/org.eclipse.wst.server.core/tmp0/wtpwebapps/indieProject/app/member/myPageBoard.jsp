@@ -100,9 +100,13 @@ li {
 		margin-right: auto !important;
 	}
 }
+
 </style>
 <body class="is-preload">
-	<c:set var="boards" value="${myBoardList}" />
+	<c:set var="boards" value="${MyBoardList}" />
+	<c:set var="boardSize" value="${boardSize}"/>
+	<c:set var="totalCnt" value="${totalCnt}"/>
+	<c:set var="totalPageCnt" value="${totalPageCnt}"/>
 	<!-- Header -->
 	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
 
@@ -122,7 +126,7 @@ li {
 						<div id="" style="text-align: center;">
 							<fieldset
 								style="padding-left: 5%; margin-bottom: 0; border-width: 3px; background: white;">
-								<div class="row" style="width: 100%;">
+								<div class="row" style="width: 100%;" id="posterRow">
 									<c:choose>
 										<c:when test="${boards != null and fn:length(boards) > 0}">
 											<c:forEach var="b_vo" items="${boards}">
@@ -139,8 +143,7 @@ li {
 															style="width: 80%; height: 100%; background: transparent;">
 															<span id="detailText"
 															style="padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;">
-																${b_vo.getBoardNum()} <c:out
-																	value="${b_vo.getBoardContent()}" />
+																<c:out value="${b_vo.getBoardContent()}" />
 														</span>
 														</a>
 
@@ -187,39 +190,14 @@ li {
 	<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/floatMenu.js"></script>
-	<script>$("#mb").css("background", "rgba(144, 144, 144, 0.075)");</script>
-
-	<script>
-			if(window.matchMedia('(max-width: 9999px)').matches){
-			}
-		</script>
-
 	<script src="https://unpkg.com/swiper@6.5.0/swiper-bundle.min.js"></script>
-
 	<script>
-		$('.posterTag').on('mouseover', function(){
-			//event.stopPropagation();
-			$(this).children().children('#detailText').css('display', 'block');
-			$(this).children().children('#detailText').toggleClass("on");
-		})
-		
-		$('.posterTag').on('mouseout', function(){
-			$(this).children().children('#detailText').css('display', 'none');
-			$(this).children().children('#detailText').toggleClass("on");
-		})
-	
-
-		//poptrox
-		$(function() {
-			$('.gallery').poptrox({
-				usePopupCaption : true,
-				usePopupNav : true,
-				popupPadding : 0
-			});
-		});
-		
-	
+		var contextPath = "${pageContext.request.contextPath}";
+		var boardSize = Number("${boardSize}");
+		var totalCnt = Number("${totalCnt}");
+		var totalPageCnt = Number("${totalPageCnt}");
 	</script>
+	<script src="${pageContext.request.contextPath}/assets/js/myPageBoard.js"></script>
 
 </body>
 </html>

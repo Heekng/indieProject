@@ -229,7 +229,7 @@
 						</div>
 						<div class="col-5 col-7-medium col-12-small" style="margin-right:auto;">
 							<select name="genre" id="genre">
-								<option value="">- 영화 장르 선택 -</option>
+								<option value="none">- 영화 장르 선택 -</option>
 								<option value="드라마">드라마</option>
 								<option value="공포 / 스릴러">공포 / 스릴러</option>
 								<option value="판타지">판타지</option>
@@ -245,7 +245,7 @@
 						</div>
 						<div class="col-5 col-7-medium col-12-small" style="margin-right:auto;">
 							<select name="rating" id="rating">
-								<option value="미분류">- 미분류 -</option>
+								<option value="">- 미분류 -</option>
 								<option value="전체관람가">전체관람가</option>
 								<option value="12세이상관람가">12세이상관람가</option>
 								<option value="15세이상관람가">15세이상관람가</option>

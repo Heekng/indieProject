@@ -15,6 +15,33 @@
 
 	</head>
 	<style>
+.modal_wrap {
+	display: none;
+	width: 500px;
+	height: 500px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -250px 0 0 -250px;
+	background: #eee;
+	z-index: 2;
+}
+
+.modal_close {
+	width: 26px;
+	height: 26px;
+	position: absolute;
+	top: -30px;
+	right: 0;
+}
+
+.modal_close>a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	background: url(../images/button.png);
+	text-indent: -9999px;
+}
 
 .button {
 	width: 100%;
@@ -23,12 +50,6 @@
 li {
 	padding: 0 0 !important;
 }
-
-@media screen and (max-width: 1200px) {
-
-}
-
-
 
 @media screen and (max-width: 760px) {
 	#sidebarDiv {
@@ -85,7 +106,6 @@ li {
 	}
 }
 
-
 @media screen and (max-width: 480px) {
 	#sidebarDiv {
 		display: none;
@@ -110,16 +130,21 @@ li {
 		height: 619px !important;
 		margin-left: 10% !important;
 	}
-	.text{
-	font-size:30px !important;
+	.text {
+		font-size: 30px !important;
 	}
-
-	.date{
-		width:100% !important;
+	.date {
+		width: 100% !important;
 	}
 }
 </style>
 	<body class="is-preload">
+		<c:if test="${session_id eq null}">
+		<script>
+			   alert("로그인 후 이용해주세요");
+			   location.replace("${pageContext.request.contextPath}/member/Login.me");
+			</script>
+	</c:if>
       
       <c:if test="${myPopcornNum ne null}">
       	<c:set var="myPopcornNum" value="${myPopcornNum}"/>
@@ -154,152 +179,180 @@ li {
 								</header>
 							
 								<hr style="margin-bottom:0;">
-								<fieldset class="main" style="padding: 5%; border-radius: 10px; background-color:#e6e6d6; position:relative;">
-									<div style="height:60px;">
-										<div style="float: left;"><h2 id = "popCornNum" style="margin-bottom:0;"><c:out value="${myName}"/> 고객님의 팝콘</h2></div>
-									</div>
-								
-									<div  class="popcorn_add" style="background-color:white;position:absolute; top:5%; left:50%; width:45%;height:60%; padding:3%; border-radius:3%;">
-									<h1 style="margin-bottom:0%;">팝콘 충전</h1>
-										<hr style="margin-bottom:0; margin-top:5%; margin-bottom:4%;">
-									<div class="popcorn_menu">
-										<div style="display: flex;">
-											<img
-												src="${pageContext.request.contextPath}/images/smallpopcorn.png"
-												style='display: inline-block; width: 19%;' > <span
-												style="font-weight: 700; margin-top: 5%;">X 10개</span>
-												<div style="display:inline-block; text-align: center;">
-													<a href="#" class="button primary small"  id="check_module1"
-														style="margin-left: 132%; margin-top:10%; width:109%;">1,000원</a>
-											</div>
-										</div>
-								
-
-										<div style="display: flex;">
-											<img
-												src="${pageContext.request.contextPath}/images/smallpopcorn.png"
-												style='display: inline; width: 19%;'> <span
-												style="font-weight: 700; margin-top: 5%;">X  50개</span>
-												<div style="display:inline-block; text-align: center;">
-												 <a
-												href="#" class="button primary small"  id="check_module2"
-												style="margin-left: 131%; margin-top:10%; width:109%;">5,000원</a>
-										
-												</div>
-										</div>
-
-										<div style="display: flex;">
-											<img
-												src="${pageContext.request.contextPath}/images/smallpopcorn.png"
-												style='display: inline; width: 19%;'> <span
-												style="font-weight: 700; margin-top: 5%;">X 100개</span> 
-												<div style="display:inline-block; text-align: center;">
-												<a
-												href="#" class="button primary small"  id="check_module3"
-												style="margin-left: 115%;margin-top:10%; ">10,000원</a>
-												</div>
-										</div>
-
-										<div style="display: flex;">
-											<img
-												src="${pageContext.request.contextPath}/images/smallpopcorn.png"
-												style='display: inline; width: 19%;'> <span
-												style="font-weight: 700; margin-top: 5%;">X  500개</span>
-											<div style="display:inline-block; text-align: center;">
-												<a
-												href="#" class="button primary small"  id="check_module4"
-												style="margin-left: 115%; margin-top:10%;">50,000원</a>
-										
-												</div>
-										</div>
-									</div>
+						<fieldset class="main"
+							style="padding: 5%; border-radius: 10px; background-color: #e6e6d6; position: relative;">
+							<div style="height: 60px;">
+								<div style="float: left;">
+									<h2 id="popCornNum" style="margin-bottom: 0;">
+										<c:out value="${myName}" />
+										고객님의 팝콘
+									</h2>
 								</div>
-						<!--"popcorn_add"  -->
+							</div>
 
-								<div class="popcorn_money"
-									style="background-color: white; position: absolute; top: 67%; left: 50%; width: 45%; height: 30%; padding: 3%; border-radius: 3%;">
-									<h1>환전가능한 팝콘 : 1000개</h1>
-									<ul style="margin: 3%;">
-										<li>100개 이상부터 환전 가능</li>
-									</ul>
+							<div class="popcorn_add"
+								style="background-color: white; position: absolute; top: 5%; left: 50%; width: 45%; height: 60%; padding: 3%; border-radius: 3%;">
+								<h1 style="margin-bottom: 0%;">팝콘 충전</h1>
+								<hr style="margin-bottom: 0; margin-top: 5%; margin-bottom: 4%;">
+								<div class="popcorn_menu">
 									<div style="display: flex;">
-										<input type="text" name="change_popcorn" id="change_popcorn"
-											placeholder="팝콘갯수" style="width: 70%; display: inline;" />
+										<img
+											src="${pageContext.request.contextPath}/images/smallpopcorn.png"
+											style='display: inline-block; width: 19%;'> <span
+											style="font-weight: 700; margin-top: 5%;">X 10개</span>
 										<div style="display: inline-block; text-align: center;">
-											<a href="#" class="button primary small">환전하기</a>
+											<a href="#" class="button primary small" id="check_module1"
+												style="margin-left: 132%; margin-top: 10%; width: 109%;">1,000원</a>
+										</div>
+									</div>
+
+
+									<div style="display: flex;">
+										<img
+											src="${pageContext.request.contextPath}/images/smallpopcorn.png"
+											style='display: inline; width: 19%;'> <span
+											style="font-weight: 700; margin-top: 5%;">X 50개</span>
+										<div style="display: inline-block; text-align: center;">
+											<a href="#" class="button primary small" id="check_module2"
+												style="margin-left: 131%; margin-top: 10%; width: 109%;">5,000원</a>
+
+										</div>
+									</div>
+
+									<div style="display: flex;">
+										<img
+											src="${pageContext.request.contextPath}/images/smallpopcorn.png"
+											style='display: inline; width: 19%;'> <span
+											style="font-weight: 700; margin-top: 5%;">X 100개</span>
+										<div style="display: inline-block; text-align: center;">
+											<a href="#" class="button primary small" id="check_module3"
+												style="margin-left: 115%; margin-top: 10%;">10,000원</a>
+										</div>
+									</div>
+
+									<div style="display: flex;">
+										<img
+											src="${pageContext.request.contextPath}/images/smallpopcorn.png"
+											style='display: inline; width: 19%;'> <span
+											style="font-weight: 700; margin-top: 5%;">X 500개</span>
+										<div style="display: inline-block; text-align: center;">
+											<a href="#" class="button primary small" id="check_module4"
+												style="margin-left: 115%; margin-top: 10%;">50,000원</a>
+
 										</div>
 									</div>
 								</div>
+							</div>
+							<!--"popcorn_add"  -->
+
+							<div class="popcorn_money"
+								style="background-color: white; position: absolute; top: 67%; left: 50%; width: 45%; height: 30%; padding: 3%; border-radius: 3%;">
+								<h1>환전가능한 팝콘 : 1000개</h1>
+								<ul style="margin: 3%;">
+									<li>100개 이상부터 환전 가능</li>
+								</ul>
+								<div style="display: flex;">
+									<input type="text" name="change_popcorn" id="change_popcorn"
+										placeholder="팝콘갯수" style="width: 70%; display: inline;" />
+									<div style="display: inline-block; text-align: center;">
+										<a id="modal_button"  class="button primary small" onclick="change()">환전하기</a>
+									</div>
+								</div>
+							</div>
 							<!--  popcorn_money"-->
+							<div class="modal_warp">
+								<div class="modal_close">
+									<a href="#"  class="modal_close">close</a>
+								</div>
+								<div>모달창 내용</div>
+							</div>
+
 
 							<div id="popcorn_main">
-									<div id="img_popcorn_head">
-								<img alt=""
-									src="${pageContext.request.contextPath}/images/popcornhead.png" class="img">
-							</div>
-									<div  class="my_popcorn">
-										<div style="display:inline-block; vertical-align: text-bottom;">
-										</div>
-								 <div class="popcorn_box" style="display:inline-block;  text-align: center; border:solid; border-radius:10px; padding: 10px; vertical-align: text-bottom; background-color:#ebd490;">
-											<h3 style="font-size: 1.5em;" class="text">보유 팝콘</h3>
-											<h4><c:out value="${myPopcornNum}"/>개</h4>
-										</div>
-										
-										<div class="popcorn_box" style="display:inline-block;  margin-left:30px; text-align: center; border:solid; border-radius: 10px; padding:10px; vertical-align: text-bottom;background-color:#ebd490;">
-											<h3 style="font-size: 1.5em;" class="text">받은 팝콘</h3>
-											<h4><c:out value="${myReceivedPopcornNum}"/>개</h4>
-										</div>
-										
-										<div id="img_popcorn_body">
-										<img alt="" src="${pageContext.request.contextPath}/images/popcornbody.png" class="img">
-										</div>  
+								<div id="img_popcorn_head">
+									<img alt=""
+										src="${pageContext.request.contextPath}/images/popcornhead.png"
+										class="img">
+								</div>
+								<div class="my_popcorn">
+									<div
+										style="display: inline-block; vertical-align: text-bottom;">
 									</div>
-							</div>
-							
-							</fieldset>
-							
-							<div class="popcoen_give" style="margin-top:5%;">
-									<h2 style="color:black;">후원내역 조회</h2>
-									<ul>
-									<li style="color:black;">이미 후원한 금액은 다시 환불 할 수 없습니다</li>
-									</ul>
-							</div>
-							<div class="date">
-						<fieldset  style="padding: 3%; margin-bottom: 5%; border-width: 3px; background:#8080800f;">
-							<form name="해당 폼의 이름" style="margin:0;" action="" method="post">
-									<p style="margin:0;float:left; margin-top:1%; font-weight:bold; margin-left:6%;">조회기간</p>
-							<div style="display:flex;">
-								<input type='date' name='date1' id='date1' style="margin-left:5%; width:230px; border:1px solid #d8d9db; padding:0 10px;" value=''/>
-								<span style="font-weight:900; font-size:25px;">~</span>
-								<input type='date' name='date2' id='date2' style="display:inline;  width:230px;  border:1px solid #d8d9db; padding:0 10px;"value='' />
-										<a href="javascript:search();" class="button alt small fit" style="width:20%;">조회</a>
+									<div class="popcorn_box"
+										style="display: inline-block; text-align: center; border: solid; border-radius: 10px; padding: 10px; vertical-align: text-bottom; background-color: #ebd490;">
+										<h3 style="font-size: 1.5em;" class="text">보유 팝콘</h3>
+										<h4>
+											<c:out value="${myPopcornNum}" />
+											개
+										</h4>
 									</div>
-							</form>
+
+									<div class="popcorn_box"
+										style="display: inline-block; margin-left: 30px; text-align: center; border: solid; border-radius: 10px; padding: 10px; vertical-align: text-bottom; background-color: #ebd490;">
+										<h3 style="font-size: 1.5em;" class="text">받은 팝콘</h3>
+										<h4>
+											<c:out value="${myReceivedPopcornNum}" />
+											개
+										</h4>
+									</div>
+
+									<div id="img_popcorn_body">
+										<img alt=""
+											src="${pageContext.request.contextPath}/images/popcornbody.png"
+											class="img">
+									</div>
+								</div>
+							</div>
 						</fieldset>
+
+						<div class="popcoen_give" style="margin-top: 5%;">
+							<h2 style="color: black;">후원내역 조회</h2>
+							<ul>
+								<li style="color: black;">이미 후원한 금액은 다시 환불 할 수 없습니다</li>
+							</ul>
 						</div>
+						<div class="date">
+							<fieldset
+								style="padding: 3%; margin-bottom: 5%; border-width: 3px; background: #8080800f;">
+								<form name="해당 폼의 이름" style="margin: 0;" action="" method="post">
+									<p
+										style="margin: 0; float: left; margin-top: 1%; font-weight: bold; margin-left: 6%;">조회기간</p>
+									<div style="display: flex;">
+										<input type='date' name='date1' id='date1'
+											style="margin-left: 5%; width: 230px; border: 1px solid #d8d9db; padding: 0 10px;"
+											value='' /> <span style="font-weight: 900; font-size: 25px;">~</span>
+										<input type='date' name='date2' id='date2'
+											style="display: inline; width: 230px; border: 1px solid #d8d9db; padding: 0 10px;"
+											value='' /> <a href="javascript:search();"
+											class="button alt small fit" style="width: 20%;">조회</a>
+									</div>
+								</form>
+							</fieldset>
+						</div>
+
 						<div id="popchon_table">
-						<table style="margin-bottom: 0;" id="table">
-										<thead>
-											<tr>
-												<th>번호</th>
-												<th>영화제목</th>
-												<th>후원받은아이디</th>
-												<th>금액</th>
-												<th>팝콘갯수</th>
-												<th>후원날짜</th>
-											</tr>
-										</thead>
-	 											
-											<tr id="popCornTr">
+							<table style="margin-bottom: 0;" id="table">
+								<thead>
+									<tr>
+										<th>번호</th>
+										<th>영화제목</th>
+										<th>후원받은아이디</th>
+										<th>금액</th>
+										<th>팝콘갯수</th>
+										<th>후원날짜</th>
+									</tr>
+								</thead>
 
-											</tr>
-										
-										</tbody>
-									</table>
+								<tr id="popCornTr">
+
+								</tr>
+
+								</tbody>
+							</table>
 
 						</div>
-						
-							</section>
+
+					</section>
 						</div>
 					</div>
 				</div>

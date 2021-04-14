@@ -84,7 +84,7 @@
 											<br>
 											<c:out value = "${poster.date}"/>
 											</div>
-											<a class="button primary small" href="${pageContext.request.contextPath}/app/proMovie/proMovieDetail2.jsp"
+											<a class="button primary small" href="${pageContext.request.contextPath}/proMovie/LoadMovieDetailAction.pro?title=${poster.title}"
 												data-poptrox="iframe,800x500"
 												style="position: absolute; left: 16px; right: 16px; bottom: 16px; height: 38px; line-height: 38px; padding: 0 0;">
 												상세보기 <img alt="" src="" title="영화제목">

@@ -23,7 +23,7 @@ public class ProMovieAction implements Action{
 	private String url;
 	
     public static final String WEB_DRIVER_ID ="webdriver.chrome.driver";
-    public static final String WEB_DRIVER_PATH ="C:\\chromedriver.exe";
+    public static final String WEB_DRIVER_PATH ="/Users/heekng/coding/lib/chromedriver";
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		req.setCharacterEncoding("UTF-8");
@@ -67,11 +67,6 @@ public class ProMovieAction implements Action{
 		el3 = driver.findElements(By.cssSelector("p.title"));
 		el4 = driver.findElements(By.cssSelector("p.info"));
 		
-		
-		
-		System.out.println(el2);
-		System.out.println(el3);
-		System.out.println(el4);
 		JSONArray jsonPoster = new JSONArray();
 		for(int i = 0; i < el2.size(); i++) {
 			

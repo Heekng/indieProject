@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <!--
 	Gravity by Pixelarity
@@ -157,7 +159,11 @@
 
 </style>
 <body class="is-preload">
-
+	<c:set var="boards" value="${BoardList}" />
+	<c:set var="boardSize" value="${boardSize}"/>
+	<c:set var="totalCnt" value="${totalCnt}"/>
+	<c:set var="totalPageCnt" value="${totalPageCnt}"/>
+	
 	<!-- Header -->
 	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
 
@@ -173,8 +179,6 @@
 			<section id="content">
 				<div id="gallery" style="text-align: center;">
 				
-
-
 					<!-- 검색창 -->
 					<form method="post" action="#">
 						<div class="row gtr-uniform gtr-50">
@@ -197,230 +201,39 @@
 						</div>
 					</form>
 					<!-- 포스터 이미지 출력 -->
-						<div class="row" style=" width:100%;">
-								<div class="col-poster" style="width:30%; height:10%; margin:10px;">
-									<div class="image fit posterTag" style="margin-bottom: 0px;">
-										<img src="${pageContext.request.contextPath}/images/testImage.jpg" alt=""
-											style="" />
-										<div id="detailText"
-											style="padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;">
-											
-											<a class="button primary small" href="${pageContext.request.contextPath}/app/board/boardView.jsp"
+					<div class="row" style="width: 100%;" id="posterRow">
+						<c:choose>
+							<c:when test="${boards != null and fn:length(boards) > 0}">
+								<c:forEach var="b_vo" items="${boards}">
+									<div class="col-poster"
+										style="width: 30%; height: 10%; margin: 10px;">
+										<div  class="image fit posterTag gallery"
+											style="margin-bottom: 0px;">
+											<img
+												src="${pageContext.request.contextPath}/images/board/${b_vo.getBoardImage()}"
+												alt="" style="" /> 
+											<a	class="LinkBoardView"
+												href="${pageContext.request.contextPath}/board/BoardView.bo?boardNum=${b_vo.getBoardNum()}"
+												onclick="link(${b_vo.getBoardNum()})"
 												data-poptrox="iframe,800x500"
-												style="width:80%; height:100%; background:transparent;">
-												
+												style="width: 80%; height: 100%; background: transparent;">
+												<span id="detailText"
+												style="padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;">
+													<c:out value="${b_vo.getBoardContent()}" />
+											</span>
 											</a>
 										</div>
 									</div>
-								
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<div style="height: 400px; margin: 0 auto;">
+									<p>등록된 게시글이 없습니다.</p>
 								</div>
-								<div class="col-poster" style="width:30%; height:10%; margin:10px;">
-									<div class="image fit posterTag" style="margin-bottom: 0px;">
-										<img src="${pageContext.request.contextPath}/images/testImage.jpg" alt=""
-											style="" />
-										<div id="detailText"
-											style="padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;">
-											
-											<a class="button primary small" href="${pageContext.request.contextPath}/app/board/boardView.jsp"
-												data-poptrox="iframe,800x500"
-												style="width:80%; height:100%; background:transparent;">
-												
-											</a>
-										</div>
-									</div>
-								
-								</div>
-								<div class="col-poster" style="width:30%; height:10%; margin:10px;">
-									<div class="image fit posterTag" style="margin-bottom: 0px;">
-										<img src="${pageContext.request.contextPath}/images/testImage.jpg" alt=""
-											style="" />
-										<div id="detailText"
-											style="padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;">
-											
-											<a class="button primary small" href="${pageContext.request.contextPath}/app/board/boardView.jsp"
-												data-poptrox="iframe,800x500"
-												style="width:80%; height:100%; background:transparent;">
-												
-											</a>
-										</div>
-									</div>
-								
-								</div>
-								<div class="col-poster" style="width:30%; height:10%; margin:10px;">
-									<div class="image fit posterTag" style="margin-bottom: 0px;">
-										<img src="${pageContext.request.contextPath}/images/testImage.jpg" alt=""
-											style="" />
-										<div id="detailText"
-											style="padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;">
-											
-											<a class="button primary small" href="${pageContext.request.contextPath}/app/board/boardView.jsp"
-												data-poptrox="iframe,800x500"
-												style="width:80%; height:100%; background:transparent;">
-												
-											</a>
-										</div>
-									</div>
-								
-								</div>
-								<div class="col-poster" style="width:30%; height:10%; margin:10px;">
-									<div class="image fit posterTag" style="margin-bottom: 0px;">
-										<img src="${pageContext.request.contextPath}/images/testImage.jpg" alt=""
-											style="" />
-										<div id="detailText"
-											style="padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;">
-											
-											<a class="button primary small" href="${pageContext.request.contextPath}/app/board/boardView.jsp"
-												data-poptrox="iframe,800x500"
-												style="width:80%; height:100%; background:transparent;">
-												
-											</a>
-										</div>
-									</div>
-								
-								</div>
-								<div class="col-poster" style="width:30%; height:10%; margin:10px;">
-									<div class="image fit posterTag" style="margin-bottom: 0px;">
-										<img src="${pageContext.request.contextPath}/images/testImage.jpg" alt=""
-											style="" />
-										<div id="detailText"
-											style="padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;">
-											
-											<a class="button primary small" href="${pageContext.request.contextPath}/app/board/boardView.jsp"
-												data-poptrox="iframe,800x500"
-												style="width:80%; height:100%; background:transparent;">
-												
-											</a>
-										</div>
-									</div>
-								
-								</div>
-								<div class="col-poster" style="width:30%; height:10%; margin:10px;">
-									<div class="image fit posterTag" style="margin-bottom: 0px;">
-										<img src="${pageContext.request.contextPath}/images/testImage.jpg" alt=""
-											style="" />
-										<div id="detailText"
-											style="padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;">
-											
-											<a class="button primary small" href="${pageContext.request.contextPath}/app/board/boardView.jsp"
-												data-poptrox="iframe,800x500"
-												style="width:80%; height:100%; background:transparent;">
-												
-											</a>
-										</div>
-									</div>
-								
-								</div>
-								<div class="col-poster" style="width:30%; height:10%; margin:10px;">
-									<div class="image fit posterTag" style="margin-bottom: 0px;">
-										<img src="${pageContext.request.contextPath}/images/testImage.jpg" alt=""
-											style="" />
-										<div id="detailText"
-											style="padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;">
-											
-											<a class="button primary small" href="${pageContext.request.contextPath}/app/board/boardView.jsp"
-												data-poptrox="iframe,800x500"
-												style="width:80%; height:100%; background:transparent;">
-												
-											</a>
-										</div>
-									</div>
-								
-								</div>
-								<div class="col-poster" style="width:30%; height:10%; margin:10px;">
-									<div class="image fit posterTag" style="margin-bottom: 0px;">
-										<img src="${pageContext.request.contextPath}/images/testImage.jpg" alt=""
-											style="" />
-										<div id="detailText"
-											style="padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;">
-											
-											<a class="button primary small" href="${pageContext.request.contextPath}/app/board/boardView.jsp"
-												data-poptrox="iframe,800x500"
-												style="width:80%; height:100%; background:transparent;">
-												
-											</a>
-										</div>
-									</div>
-								
-								</div>
-								<div class="col-poster" style="width:30%; height:10%; margin:10px;">
-									<div class="image fit posterTag" style="margin-bottom: 0px;">
-										<img src="${pageContext.request.contextPath}/images/testImage.jpg" alt=""
-											style="" />
-										<div id="detailText"
-											style="padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;">
-											
-											<a class="button primary small" href="${pageContext.request.contextPath}/app/board/boardView.jsp"
-												data-poptrox="iframe,800x500"
-												style="width:80%; height:100%; background:transparent;">
-												
-											</a>
-										</div>
-									</div>
-								
-								</div>
-								<div class="col-poster" style="width:30%; height:10%; margin:10px;">
-									<div class="image fit posterTag" style="margin-bottom: 0px;">
-										<img src="${pageContext.request.contextPath}/images/testImage.jpg" alt=""
-											style="" />
-										<div id="detailText"
-											style="padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;">
-											
-											<a class="button primary small" href="${pageContext.request.contextPath}/app/board/boardView.jsp"
-												data-poptrox="iframe,800x500"
-												style="width:80%; height:100%; background:transparent;">
-												
-											</a>
-										</div>
-									</div>
-								
-								</div>
-								<div class="col-poster" style="width:30%; height:10%; margin:10px;">
-									<div class="image fit posterTag" style="margin-bottom: 0px;">
-										<img src="${pageContext.request.contextPath}/images/testImage.jpg" alt=""
-											style="" />
-										<div id="detailText"
-											style="padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;">
-											
-											<a class="button primary small" href="${pageContext.request.contextPath}/app/board/boardView.jsp"
-												data-poptrox="iframe,800x500"
-												style="width:80%; height:100%; background:transparent;">
-												
-											</a>
-										</div>
-									</div>
-								
-								</div>
-								<div class="col-poster" style="width:30%; height:10%; margin:10px;">
-									<div class="image fit posterTag" style="margin-bottom: 0px;">
-										<img src="${pageContext.request.contextPath}/images/testImage.jpg" alt=""
-											style="" />
-										<div id="detailText"
-											style="padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;">
-											
-											<a class="button primary small" href="${pageContext.request.contextPath}/app/board/boardView.jsp"
-												data-poptrox="iframe,800x500"
-												style="width:80%; height:100%; background:transparent;">
-												
-											</a>
-										</div>
-									</div>
-								
-								</div>
+							</c:otherwise>
+						</c:choose>
 					</div>
-						
-						
-						
-						
-					
-						<%-- <div class="floating" style="width: 20%; height:50%; margin-top:13%;">
-						<img alt="" src="${pageContext.request.contextPath}/images/ad.jpg" style="width:100%; height:100%;">
-						</div> --%>
-						
-				</div>
-				
-
-
-						
+				</div>	
 			</section>
 		</div>
 	</section>
@@ -436,71 +249,14 @@
 	<script src="${pageContext.request.contextPath}/assets/js/breakpoints.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
-
-	<!-- 슬라이드 js -->
-	<script src="https://unpkg.com/swiper@6.5.0/swiper-bundle.min.js"></script>
-
-	
 	<script>
-		$('.posterTag').on('mouseover', function(){
-			//event.stopPropagation();
-			$(this).children('#detailText').css('display', 'block');
-			$(this).children('#detailText').toggleClass("on");
-		})
-		
-		$('.posterTag').on('mouseout', function(){
-			$(this).children('#detailText').css('display', 'none');
-			$(this).children('#detailText').toggleClass("on");
-		})
-	
-		$('.moveBtn').on('mouseover', function(){
-			$(this).toggleClass("btnMouseOver");
-		})
-		$('.moveBtn').on('mouseout', function(){
-			$(this).toggleClass("btnMouseOver");
-		})
-		
-		$('.detailText').on('click', function(){
-			
-		});
-		
-		if(window.matchMedia('(max-width: 736px)').matches){}
-		
-		
-		var swiper = new Swiper('.swiper-container', {
-			spaceBetween : 10,
-			loop : false,
-			loopFillGroupWithBlank : true,
-			allowTouchMove: false,
-			pagination : {
-				el : '.swiper-pagination',
-				clickable : true,
-			},
-			navigation : {
-				nextEl : '.swiper-button-next',
-				prevEl : '.swiper-button-prev',
-			},
-			breakpoints : { // 반응형 설정이 가능 width값으로 조정
-				768: {
-					slidesPerView : 5,
-					slidesPerGroup : 5
-				},
-				1: {
-					slidesPerView : 3,
-					slidesPerGroup : 3
-				}
-			}
-		});
-
-		//poptrox
-		$(function() {
-			$('#gallery').poptrox({
-				usePopupCaption : true,
-				usePopupNav : true,
-				popupPadding : 0
-			});
-		});
+		var contextPath = "${pageContext.request.contextPath}";
+		var boardSize = Number("${boardSize}");
+		var totalCnt = Number("${totalCnt}");
+		var totalPageCnt = Number("${totalPageCnt}");
+		var sessionId = "${session_id}";
 	</script>
+	<script src="${pageContext.request.contextPath}/assets/js/board.js"></script>
 	
 </body>
 </html>

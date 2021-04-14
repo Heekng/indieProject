@@ -109,7 +109,7 @@
 					참고하세요.
 					나중에 포스팅 해볼게요.
 					*/
-					name: '주문명:결제테스트',
+					name: '주문명:팝콘결제',
 					//결제창에서 보여질 이름
 					amount: 100,
 					//가격
@@ -336,3 +336,32 @@
 					alert(msg);
 				});
 			});
+			
+/*			
+			function change(){
+				var memberId=sessionStorage.getItem('session_id'); 
+				var changePopcorn=$("input[name='change_popcorn']").val();
+				var popcorn; 
+				//ajax로 받은 팝콘갯수 가져오기 
+				//그래서 환전 할려는 갯수랑 비교하기
+				
+				$ajax({
+					url:contextPath+"/member/MemberReceivedPopcornAction.me",
+					type:"post",
+					data:({"memberId":memberId}),
+					dataType:
+					success:functoin
+				});
+				
+				if(changePopcorn==""){
+					alert("환전할 팝콘 갯수를 적어주세요.");
+					return false;
+				}else if(changePopcorn<100){
+					alert("팝콘은 100개 이상부터 환전이 가능합니다.");
+					return false;
+				}
+				
+			}
+			
+			
+		*/

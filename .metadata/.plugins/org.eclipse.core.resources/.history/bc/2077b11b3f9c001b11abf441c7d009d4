@@ -1,0 +1,30 @@
+package com.indieProject.app.amamovie;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.indieProject.action.Action;
+import com.indieProject.action.ActionForward;
+import com.indieProject.app.amamovie.dao.AmaMovieDAO;
+
+public class AmaMovieAction implements Action{
+	@Override
+	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		
+		ActionForward forward = new ActionForward();
+		AmaMovieDAO a_dao = new AmaMovieDAO();
+		
+		//현재 업로드된 장르 종류 가져오기 -> 장르에 맞춰서 데이터 가져오기[각각 한번씩? 어차피 객체로 받아오니까 장르받아온거로 json그룹만들고 그룹이름에 맞을 때 해당 그룹에 집어넣기
+		List<String> genreList = a_dao.getGenre();
+		
+		
+		forward.setPath("/app/amaMovie/amaMovie.jsp");
+		forward.setRedirect(false);
+		
+		return forward;
+	}
+}

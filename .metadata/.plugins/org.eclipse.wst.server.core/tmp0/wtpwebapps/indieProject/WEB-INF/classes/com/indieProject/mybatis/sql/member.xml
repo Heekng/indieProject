@@ -61,10 +61,10 @@
 	<select id="myBoardList" parameterType="string" resultType="boardVO">
 		SELECT * FROM (SELECT * FROM BOARD_TABLE WHERE MEMBERID = #{memberId} ORDER BY BOARDDATE DESC) <![CDATA[WHERE ROWNUM <= 5]]>
 	</select>
-	<select id="myBoardListAll" parameterType="string" resultType="boardVO">
-		SELECT * FROM (SELECT * FROM BOARD_TABLE WHERE MEMBERID = #{memberId} ORDER BY BOARDDATE DESC)
+	<select id="myBoardListAll" parameterType="map" resultType="boardVO">
+		SELECT * FROM (SELECT ROWNUM R, D.* FROM (SELECT * FROM BOARD_TABLE WHERE MEMBERID = #{memberId} ORDER BY BOARDDATE DESC) D) B WHERE B.R BETWEEN #{startRow} AND #{endRow}
 	</select>
-	
+
 	<select id="myBoardReplyList" parameterType="string" resultType="boardReplyVO">
 		SELECT * FROM (SELECT * FROM BOARDREPLY_TABLE WHERE MEMBERID = #{memberId} ORDER BY REPLYDATE DESC) <![CDATA[WHERE ROWNUM <= 5]]>
 	</select>

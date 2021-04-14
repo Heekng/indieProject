@@ -24,5 +24,6 @@
 	<classpathentry kind="lib" path="/Users/heekng/coding/unityTeam/indieProject/WebContent/WEB-INF/lib/smtp.jar"/>
 	<classpathentry kind="lib" path="/Users/heekng/coding/unityTeam/indieProject/WebContent/WEB-INF/lib/standard.jar"/>
 	<classpathentry kind="lib" path="/Users/heekng/coding/unityTeam/indieProject/WebContent/WEB-INF/lib/tomcat-dbcp.jar"/>
+	<classpathentry kind="lib" path="/Users/heekng/coding/unityTeam/indieProject/WebContent/WEB-INF/lib/selenium-server-standalone-3.141.59.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

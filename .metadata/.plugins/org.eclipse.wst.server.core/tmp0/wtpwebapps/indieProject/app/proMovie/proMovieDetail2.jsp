@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <!--
 	Gravity by Pixelarity
@@ -36,6 +38,8 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
 	</head>
 	<body class="is-preload" style="padding-top:0;">
+	<c:set var="jsonDetail" value="${jsonDetail}"/>
+
 		<!-- Main -->
 			<section id="main">
 				<div class="container">
@@ -43,37 +47,36 @@
 					<section id="content">
 						 <div class="box alt">
 							<div class="row gtr-50 gtr-uniform">
-								<div class="col-4"><span class="image fit"><img name="moviePoster" src="${pageContext.request.contextPath}/images/testImage.jpg" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img name="moviePoster" src="${jsonDetail.poster}" alt="" /></span></div>
 								<div class="col-8">
-									<div><h2>영화제목</h2></div>
+									<div><h2><c:out value = "${jsonDetail.title}"/></h2></div>
 									<table>
 										<tr>
 											<td><b>감독</b></td>
-											<td>존 파브로</td>
+											<td><c:out value = "${jsonDetail.director}"/></td>
 										</tr>
 										<tr>
 											<td><b>영상 길이</b></td>
-											<td>1234:1234</td>
+											<td><c:out value = "${jsonDetail.length}"/></td>
 										</tr>
 										<tr>
 											<td><b>장르</b></td>
-											<td>???</td>
+											<td><c:out value = "${jsonDetail.genre}"/></td>
 										</tr>
 										<tr>
 											<td><b>영상물 등급</b></td>
-											<td>???</td>
+											<td><c:out value = "${jsonDetail.age}"/></td>
 										</tr>
 										<tr>
 											<td><b>배급 영화사</b></td>
-											<td>???</td>
+											<td><c:out value = "${jsonDetail.company}"/></td>
 										</tr>
 									</table>
 								</div>
 							</div>
 							<div class="row gtr-50 gtr-uniform">
 								<h3>시놉시스</h3>
-								<blockquote style="margin-bottom: 0;">워 이후 절반만 살아남은 지구마지막 희망이 된 어벤져스 먼저 떠난 그들을 위해 모든 것을 걸었다! 위대한
-										어벤져스운명을 바꿀 최후의 전쟁이 펼쳐진다!</blockquote>
+								<blockquote style="margin-bottom: 0;"><c:out value = "${jsonDetail.synop}"/></blockquote>
 							</div>
 						</div>
 					</section>

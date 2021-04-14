@@ -169,7 +169,6 @@ $(document).on("click", "#deleteActor", function(){
 });
 
 function writeFormSubmit(){
-	
 	//포스터 하나 이상 확인
 	if($("input[name='posterImgMain']").val() == ""){
 		alert("포스터는 하나 이상 등록되어야 합니다.");
@@ -200,7 +199,7 @@ function writeFormSubmit(){
 		return false;
 	}
 	//장르 입력 확인
-	if($("input[name='genre']").val() == ""){
+	if($("select[name='genre']").val() == "none"){
 		alert("영화 장르를 선택해주세요.");
 		return false;
 	}
@@ -251,7 +250,6 @@ function writeFormSubmit(){
 			return false;
 		} 
 	}
-	
 
 	document.movieWriteForm.submit();
 	

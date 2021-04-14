@@ -21,9 +21,22 @@
 		.date{
 			display:none;
 		}
+		#sendButton{
+			width:100%;
+		}
 	}
-	@media screen and (max-width: 741px) {
-
+	@media screen and (max-width: 659px) {
+		#starSelection {
+			width: 100% !important;
+		}
+		#reviewInput {
+			width: 100% !important;
+			padding-left: 1.25em !important;
+		}
+		#reviewButton {
+			width: 100% !important;
+			padding-left: 1.25em !important;
+		}
 	}
 	
 </style>
@@ -37,6 +50,7 @@
 		<c:set var="ama_vo" value="${ama_vo}" />
 		<c:set var="amaReviews" value="${amaReviews}" />
 		<c:set var="movieLink" value="${movieLink}" />
+
 		<!-- Header -->
 			<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
 
@@ -64,20 +78,30 @@
 					</header>
 					<section>
 						<div class="row">
-							<div style="width:80%">								
-								<input type="text">			
+							<div id="starSelection" style="width:25%">						
+								<select name="star" id="star">
+									<option value="">- 별점 선택 -</option>
+									<option value="1">⭐</option>
+									<option value="2">⭐⭐</option>
+									<option value="3">⭐⭐⭐</option>
+									<option value="4">⭐⭐⭐⭐</option>
+									<option value="5">⭐⭐⭐⭐⭐</option>
+								</select>			
 							</div>
-							<div style="padding:0; width:20%">
+							<div id="reviewInput" style="width:50%; padding:0;">								
+								<input id="review" type="text">			
+							</div>
+							<div id="reviewButton" style="padding:0; width:25%">
 								<ul class="actions stacked">
-									<li><a href="#" class="button small fit alt" >내 감상평 남기기</a></li>
+									<li><a href="javascript:insertReview()" class="button small fit alt" >내 감상평 남기기</a></li>
 								</ul>										
 							</div>
 						</div>
 						<div class="row">
 							<div style="text-align:left;">								
-								<h2>⭐5.0</h2>
+								<h2 id="starAvg">⭐ 평균 평점 0</h2>
 							</div>
-							<div>
+							<div id="sendButton">
 								<ul class="actions special">
 									<li><a href="#" class="button small fit">팝콘 보내기</a></li>
 								</ul>			
@@ -96,53 +120,15 @@
 										<th>아이디</th>
 										<th>별점</th>
 										<th>내용</th>
-										<th>작성시간</th>
+										<th class="date">작성시간</th>
 									</tr>
 								</thead>
-								<tbody>
-									<c:choose>
-										<c:when test="${amaReviews !=null and fn:length(amaReviews) > 0 }">
-											<c:forEach var="mr_vo"  items="${amaReviews}" >
-									 			<tr>
-	               								<td>${mr_vo.getMemberId()}</td>
-												<td>
-													<c:choose>
-														<c:when test="${mr_vo.getStars() eq 1}">⭐</c:when>
-														<c:when test="${mr_vo.getStars() eq 2}">⭐⭐</c:when>
-														<c:when test="${mr_vo.getStars() eq 3}">⭐⭐⭐</c:when>
-														<c:when test="${mr_vo.getStars() eq 4}">⭐⭐⭐⭐</c:when>
-														<c:when test="${mr_vo.getStars() eq 5}">⭐⭐⭐⭐⭐</c:when>
-													</c:choose>
-												</td>	
-												<td>${mr_vo.getReplyContent()}</td>
-												<td>${mr_vo.getReplyDate()}</td>
-												</tr>
-											</c:forEach>
-										</c:when>
-										<c:otherwise>
-											<td colspan="4" align="center"><strong>아직 등록된 감상평이 없습니다.</strong></td>
-										</c:otherwise>
-									</c:choose>		
+								<tbody id="reviewTable">
+									<!-- ajax로 감상평 가져오기 -->	
 								</tbody>
 							</table>
-							<div style="text-align: center;">
-							<c:if test="${nowPage>1}">
-								<a href="${pageContext.request.contextPath}/member/memberMyReview.me?page=${nowPage-1}">[이전]</a>
-							</c:if>
-	
-							<c:forEach var="i" begin="${startPage}" end="${endPage}">
-							<c:choose>
-							<c:when test="${i eq nowPage}">
-								${i}&nbsp;&nbsp;
-								</c:when>
-								<c:otherwise>
-								<a href="${pageContext.request.contextPath}/member/memberMyReview.me?page=${i}">${i}&nbsp;</a>
-							</c:otherwise>
-							</c:choose>
-						</c:forEach>
-						<c:if test="${realEndPage != nowPage}">
-       							<a href="${pageContext.request.contextPath}/member/memberMyReview.me?page=${nowPage + 1}">[다음]</a>
-       						</c:if>
+							<div id="paging" style="text-align: center;">
+								<!-- ajax로 페이징 가져오기 -->
 							</div>
 						</fieldset>
 					</section>
@@ -161,6 +147,11 @@
 			<script src="${pageContext.request.contextPath}/assets/js/breakpoints.min.js"></script>
 			<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
 			<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
-
+			<script>
+				var pageContext = "${pageContext.request.contextPath}";
+				var amaNum = "${ama_vo.getAmaNum()}";
+				var sessionId = "${session_id}"
+			</script>
+			<script src="${pageContext.request.contextPath}/assets/js/watchMovie.js"></script>
 	</body>
 </html>

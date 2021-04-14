@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <!--
 	Gravity by Pixelarity
@@ -20,10 +22,13 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/amaMovie.css">
 <body class="is-preload">
-
+	<script>
+		var movieJson = ${movieJson};
+		var contextPath = "${pageContext.request.contextPath}";
+	</script>
 	<!-- Header -->
 	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
-
+	
 	<!-- Main -->
 	<section id="main">
 		<div class="container">
@@ -55,9 +60,9 @@
 			<!-- Content -->
 			<section id="content">
 				<!-- 영화리스트 이미지 출력 -->
-
+				
 				<!-- 포스터 이미지 출력 -->
-				<div class="box alt">
+				<!-- <div class="box alt">
 					<div style="text-align: left;">
 						<b style="font-size:2em;">장르1</b>
 					</div>
@@ -87,10 +92,9 @@
 						</div>
 
 					</div>
-					<!-- Add Arrows -->
 					<div class="swiper-button-prev leftBtn moveBtn"></div>
 					<div class="swiper-button-next rightBtn moveBtn"></div>
-				</div>
+				</div> -->
 			</section>
 		</div>
 	</section>
@@ -110,8 +114,8 @@
 
 	<!-- 슬라이드 js -->
 	<script src="https://unpkg.com/swiper@6.5.0/swiper-bundle.min.js"></script>
-	
 	<script src="${pageContext.request.contextPath}/assets/js/amaMovie.js"></script>
+	
 
 	
 	

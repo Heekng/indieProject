@@ -1,0 +1,18 @@
+package com.indieProject.app.board;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.indieProject.action.Action;
+import com.indieProject.action.ActionForward;
+
+public class BoardModifyActionOk implements Action{
+
+	@Override
+	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+			//Tㅅ
+		
+		return null;
+	}
+
+}
