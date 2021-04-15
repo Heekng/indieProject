@@ -70,7 +70,6 @@ function showPage(boards){
 					"data-poptrox='iframe,800x500' style='width: 80%; height: 100%; background: transparent;'>"+
 					"<span id='detailText' style='padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;'>"+
 					board.boardContent+"</span></a></div></div>";
-			nowPage++;
 			$("#posterRow").append(text);
 			$(function() {
 				$('.gallery').poptrox({
@@ -79,6 +78,7 @@ function showPage(boards){
 					popupPadding : 0
 				});
 			});
-		})
+		});
+		nowPage++;
 	}
 }

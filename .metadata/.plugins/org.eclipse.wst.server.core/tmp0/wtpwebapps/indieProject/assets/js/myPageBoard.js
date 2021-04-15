@@ -4,7 +4,6 @@
 $("#mb").css("background", "rgba(144, 144, 144, 0.075)");
 
 $(document).on("mouseover", ".posterTag", function(){
-	//event.stopPropagation();
 	$(this).children().children('#detailText').css('display', 'block');
 	$(this).children().children('#detailText').toggleClass("on");
 });
@@ -68,7 +67,6 @@ function showPage(boards){
 					"<a href='#' style='text-decoration: none; float: right;'>[삭제]</a>"+
 					"<a href='#' style='text-decoration: none; float: right;'>[수정]</a>"+
 					"</div>";
-			nowPage++;
 			$("#posterRow").append(text);
 			$(function() {
 				$('.gallery').poptrox({
@@ -77,6 +75,34 @@ function showPage(boards){
 					popupPadding : 0
 				});
 			});
-		})
+		});
+		nowPage++;
 	}
 }
+
+
+//삭제 버튼
+function deleteBoard(num){
+	var boardNum=$("input#"+num).val();
+	var con=confirm("정말로 삭제 하시겠습니까?");
+	if(con==true){
+		console.log( boardNum);
+		$.ajax({
+			url : contextPath + "/board/BoardDelete.bo?boardNum=" + boardNum,
+			type : "get",
+			success : function(result){
+				if(result.trim() == "ok"){
+				alert("삭제되었습니다.");
+				history.go(0);
+				}else{
+				alert("삭제를 실패 하였습니다.");
+				}
+			},
+			error:function(){//통신 오류 시
+				console.log("오류");
+			}
+
+		})
+	}
+	
+} 

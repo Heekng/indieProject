@@ -23,7 +23,7 @@ public class ProMovieAction implements Action{
 	private String url;
 	
     public static final String WEB_DRIVER_ID ="webdriver.chrome.driver";
-    public static final String WEB_DRIVER_PATH ="/Users/heekng/coding/lib/chromedriver";
+    public static final String WEB_DRIVER_PATH ="C:\\chromedriver.exe";
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		req.setCharacterEncoding("UTF-8");

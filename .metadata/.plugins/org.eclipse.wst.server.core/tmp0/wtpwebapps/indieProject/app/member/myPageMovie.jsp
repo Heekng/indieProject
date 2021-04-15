@@ -137,14 +137,14 @@ li {
 										</c:when>
 										<c:otherwise>
 											<c:forEach var="movie" items="${movieList}">
-												<div class="col-poster" style="width: 30%; height: 10%; margin: 10px;" onclick="moveDetail(${movie.getAmaNum()})">
+												<div class="col-poster" style="width: 30%; height: 10%; margin: 10px;">
 													<div class="image fit posterTag" style="margin-bottom: 0px;">
 														<c:forEach var="poster" items="${moviePosterList}">
 															<c:if test="${poster.getAmaNum() eq movie.getAmaNum()}">
 																<c:choose>
 																	<c:when test="${!empty poster.getFileName()}">
 																		<c:set var="textSize" value="${fn:length(poster.getFileName())}"/>
-																		<img src="${pageContext.request.contextPath}/images/amaMovie/${fn:substring(poster.getFileName(),5,textSize)}" alt="${poster.getFileName()}"/>
+																		<img src="${pageContext.request.contextPath}/images/amaMovie/${fn:substring(poster.getFileName(),5,textSize)}" alt="${poster.getFileName()}" onclick="moveDetail(${movie.getAmaNum()})"/>
 																	</c:when>
 																	<c:otherwise>
 																		<img src="${pageContext.request.contextPath}/images/amaMovie/poster/testPoster1.jpg" alt=""/>
@@ -152,7 +152,7 @@ li {
 																</c:choose>
 															</c:if>
 														</c:forEach>
-														<p>${movie.getAmaTitleKor()}</p>
+														<p>${movie.getAmaTitleKor()}<a style="position: absolute; right:0;" href="javascript:modifyMovie(${movie.getAmaNum()})">수정</a></p>
 													</div>
 												</div>
 											</c:forEach>

@@ -68,7 +68,7 @@
 											<td><c:out value = "${jsonDetail.age}"/></td>
 										</tr>
 										<tr>
-											<td><b>배급 영화사</b></td>
+											<td><b>제작사</b></td>
 											<td><c:out value = "${jsonDetail.company}"/></td>
 										</tr>
 									</table>

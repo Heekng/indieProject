@@ -345,6 +345,8 @@ li {
 
 								<tr id="popCornTr">
 
+									<td colspan="6" align="center">후원 내역이 없습니다.</td>
+													
 								</tr>
 
 								</tbody>
@@ -369,8 +371,8 @@ li {
 		<script src="${pageContext.request.contextPath}/assets/js/browser.min.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/js/breakpoints.min.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/js/floatMenu.js"></script>
+<%-- 		<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
+ --%>		<script src="${pageContext.request.contextPath}/assets/js/floatMenu.js"></script>
 		<script>$("#mp").css("background", "rgba(144, 144, 144, 0.075)");</script>
 		
 		<script>

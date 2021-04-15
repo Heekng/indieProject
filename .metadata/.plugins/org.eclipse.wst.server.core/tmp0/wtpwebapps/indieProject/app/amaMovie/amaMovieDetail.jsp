@@ -58,7 +58,7 @@
 									</p>
 								<ul class="actions">
 									<li><a href="${pageContext.request.contextPath}/amaMovie/AmaMovieWatch.ama?amaNum=${ama_vo.getAmaNum()}" class="button alt">영화 보러 가기</a></li>
-									<li id="popcorn" style="display:none;"><a class="button" onclick="sendPopcorn()">팝콘 보내기</a></li>
+									<li id="popcorn" style="display:none;"><a id="popcornBtn" onclick="sendPopcorn()" class="button" >팝콘 보내기</a></li>
 									<c:choose>
 										<c:when test="${ama_vo.getPopcorn() eq 'popcornOn'}">
 											<script>$("#popcorn").show()</script>
@@ -211,14 +211,22 @@
 			<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 			<script>			
 				function sendPopcorn(){
-					var _width = 380;
-					var _height = 500;
+					if ("${session_id}" == ""){
+						alert("로그인 후 이용해주세요");
+						location.replace("${pageContext.request.contextPath}/member/Login.me");
+					}else{
+/* 						$("#popcornBtn").attr("href", "${pageContext.request.contextPath}/amaMovie/PopcornSend.ama?amaNum=${ama_vo.getAmaNum()}"); */
+						var _width = 380;
+						var _height = 500;
+						
+						var _left = Math.ceil(( window.screen.width - _width )/2);
+					    var _top = Math.ceil(( window.screen.height - _height )/2);
+					    
+						var sendPopcornFrame = window.open("${pageContext.request.contextPath}/amaMovie/PopcornSend.ama?amaNum=${ama_vo.getAmaNum()}&amaTitle=${ama_vo.getAmaTitleKor()}", 
+								"popup","width=380px, height=500px, left="+_left+", top="+_top+", resizable=no, scrollbars=no", true);
+						
+					}
 					
-					var _left = Math.ceil(( window.screen.width - _width )/2);
-				    var _top = Math.ceil(( window.screen.height - _height )/2);
-				    
-					var sendPopcornFrame = window.open("${pageContext.request.contextPath}/app/amaMovie/sendPopcorn.jsp", 
-							"popup","width=380px, height=500px, left="+_left+", top="+_top+", resizable=no, scrollbars=no", true);
 				}
 			</script>
 

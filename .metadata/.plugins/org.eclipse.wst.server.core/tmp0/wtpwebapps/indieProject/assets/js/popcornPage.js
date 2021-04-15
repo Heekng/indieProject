@@ -2,6 +2,7 @@
  * 
  */
 
+
 			function search(){
 				var date1 = document.getElementById("date1").value.toString();
 				var date2 = document.getElementById("date2").value.toString();
@@ -27,15 +28,24 @@
 						data: {"date1" : date1,"date2" :date2},
 						dataType: "text",
 						success:function(result){
-							var table = document.getElementById("table");							
-							if(result.trim() != null){
+							var table = document.getElementById("table");	
+							
+							if(result.trim() != ""){
 								console.log("if 들어옴");
 								console.log(result + "result");
 								var k = 1;
-
+								if(table.rows.length > 1){
+									while(table.rows.length > 1){
+										table.deleteRow(-1);
+									}
+								}
+								var cnt = 0;
 								for(let i = 0; i < result.length; i++){
 									var popCorn = result.trim().split(",");
-									
+									cnt++;
+									if(cnt >= 6){
+										return false;
+									}
 									var row = table.insertRow(i+1);
 									
 									console.log(popCorn);
@@ -62,9 +72,25 @@
 									  cell6.innerHTML = popCornEl[4];
 									k++;
 								}
-							}else{
-								popCornTr.innerHTML = "후원 내역이 업습니다.";
-							}
+							}else if(result.trim() == ""){
+								if(table.rows.length > 1){
+									while(table.rows.length > 1){
+										table.deleteRow(-1);
+									}
+								}
+								var row = table.insertRow(1);
+								var cell1 = row.insertCell(0);
+								  var cell2 = row.insertCell(1);
+								  var cell3 = row.insertCell(2);
+								  var cell4 = row.insertCell(3);
+								  var cell5 = row.insertCell(4);
+								  var cell6 = row.insertCell(5);
+								  row.colspan = "6";
+								 
+								  
+								  
+
+							}//end else
 						},
 						error:function(data){
 					    	  console.log(data);

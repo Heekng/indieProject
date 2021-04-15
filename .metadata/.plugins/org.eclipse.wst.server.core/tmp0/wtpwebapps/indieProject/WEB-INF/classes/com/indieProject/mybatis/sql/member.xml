@@ -47,7 +47,7 @@
 	</select>
 	
 	<select id="myPopcornNum" parameterType="string" resultType="_int">
-		SELECT POPCORNNUM FROM MEMBER_TABLE WHERE MEMBERID = #{memberId}
+		SELECT MYPOPCORN FROM MEMBER_TABLE WHERE MEMBERID = #{memberId}
 	</select>
 	
 	<select id="myReceivedPopcornNum" parameterType="string" resultType="_int">
@@ -80,7 +80,7 @@
 		SELECT MEMBERNAME FROM MEMBER_TABLE WHERE MEMBERID = #{memberId}
 	</select>
 	<select id="myPopcornList" parameterType="hashMap" resultType="myPagePopcornVO">
-		SELECT PU.RECEIVEID, A.AMATITLEKOR, PU.POPCORNNUM, PU.SENDDATE FROM POPCORN_USE_TABLE PU JOIN AMAMOVIE_TABLE A ON PU.AMANUM = A.AMANUM WHERE PU.SENDID = #{memberId} <![CDATA[AND ROWNUM <= 5]]> AND PU.SENDDATE BETWEEN TO_DATE('2021-04-12', 'YYYY-MM-DD') AND TO_DATE('2021-04-13', 'YYYY-MM-DD') ORDER BY PU.SENDDATE DESC
+		SELECT PU.RECEIVEID, A.AMATITLEKOR, PU.POPCORNNUM, PU.SENDDATE FROM POPCORN_USE_TABLE PU JOIN AMAMOVIE_TABLE A ON PU.AMANUM = A.AMANUM WHERE PU.SENDID = #{memberId} AND PU.SENDDATE BETWEEN TO_DATE(#{date1}, 'YYYY-MM-DD') AND TO_DATE(#{date2}, 'YYYY-MM-DD') ORDER BY PU.SENDDATE DESC
 	</select>
 	<select id="myReviewListAll" parameterType="hashMap" resultType="amaMovieReviewVO">
       SELECT * FROM
@@ -108,4 +108,7 @@
 	<select id="myMovieListAllPoster" parameterType="_int" resultType="amaMoviePosterVO">
 		SELECT * FROM AMAPOSTERFILES_TABLE WHERE AMANUM = #{amaNum}
 	</select>
+	<update id="updateMyPopcorn" parameterType="map">
+		UPDATE MEMBER_TABLE SET MYPOPCORN = #{myPopcorn} WHERE MEMBERID = #{memberId}
+	</update>
 </mapper>

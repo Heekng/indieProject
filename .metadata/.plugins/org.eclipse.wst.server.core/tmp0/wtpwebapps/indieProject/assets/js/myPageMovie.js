@@ -36,19 +36,21 @@ function loadPage(){
 function showPage(movies){
 	if(movies != null && movies.length != 0){
 		$.each(movies, function(index, movie){
-			var text = "<div class='col-poster' style='width: 30%; height: 10%; margin: 10px;' onclick='moveDetail("+movie.amaNum+")'>"+
+			var text = "<div class='col-poster' style='width: 30%; height: 10%; margin: 10px;'>"+
 					"<div class='image fit posterTag' style='margin-bottom: 0px;'>"+
-					"<img src='"+contextPath+"/images/amaMovie/"+movie.fileName+"' alt='"+movie.fileName+"'/>"+
-					"<p>"+movie.amaTitleKor+"</p>"+
+					"<img src='"+contextPath+"/images/amaMovie/"+movie.fileName+"' alt='"+movie.fileName+"' onclick='moveDetail("+movie.amaNum+")'/>"+
+					"<p>"+movie.amaTitleKor+"<a style='position: absolute; right:0;' href='javascript:modifyMovie("+movie.amaNum+")'>수정</a></p>"+
 					"</div>"+
 					"</div>";
-			nowPage++;
 			$("#posterRow").append(text);
 			
-		})
+		});
+		nowPage++;
 	}
 }
-
+function modifyMovie(amaNum){
+	location.href=contextPath + "/amaMovie/AmaMovieModify.ama?amaNum="+amaNum;
+}
 function moveDetail(amaNum){
 	location.href = contextPath+"/amaMovie/AmaMovieDetail.ama?amaNum="+amaNum;
 }

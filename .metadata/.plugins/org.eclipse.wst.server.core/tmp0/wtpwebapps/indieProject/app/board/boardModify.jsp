@@ -37,6 +37,7 @@ fieldset {
 </style>
 <body class="is-preload">
 	<c:set var="b_vo"  value="${b_vo}"/>
+	<c:set var="image" value="${image}"/>
 		<!-- Header -->
 	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
 
@@ -162,6 +163,17 @@ fieldset {
 
 	<script>
 	
+	$(document).ready(function(){
+		//파일을 ajax로 불러와서 출력해주기..??
+		$.ajax({
+			url:pageContext+"/board/BoardModifyAction=" +boardNum,
+			type:"get",
+			dataType:"json",
+			
+		})
+	
+		
+	});
 	
 		function preview1() {
 

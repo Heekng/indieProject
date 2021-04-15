@@ -103,10 +103,16 @@ li {
 
 </style>
 <body class="is-preload">
-	<c:set var="boards" value="${MyBoardList}" />
+	<c:set var="boards" value="${myBoardList}" />
 	<c:set var="boardSize" value="${boardSize}"/>
 	<c:set var="totalCnt" value="${totalCnt}"/>
 	<c:set var="totalPageCnt" value="${totalPageCnt}"/>
+		<c:if test="${session_id eq null}">
+		<script>
+			   alert("로그인 후 이용해주세요");
+			   location.replace("${pageContext.request.contextPath}/member/Login.me");
+			</script>
+	</c:if>
 	<!-- Header -->
 	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
 
@@ -127,9 +133,11 @@ li {
 							<fieldset
 								style="padding-left: 5%; margin-bottom: 0; border-width: 3px; background: white;">
 								<div class="row" style="width: 100%;" id="posterRow">
+									<c:set var="i" value="${0}"/>
 									<c:choose>
 										<c:when test="${boards != null and fn:length(boards) > 0}">
 											<c:forEach var="b_vo" items="${boards}">
+												<c:set var="i" value="${i+1}"/>
 												<div class="col-poster"
 													style="width: 30%; height: 10%; margin: 10px;">
 													<div  class="image fit posterTag gallery"
@@ -146,21 +154,20 @@ li {
 																<c:out value="${b_vo.getBoardContent()}" />
 														</span>
 														</a>
-
+													
 													</div>
-													<a href="#" style="text-decoration: none; float: right;">[삭제]</a> 
-													<a href="#" style="text-decoration: none; float: right;">[수정]</a>
+													<a  style="text-decoration: none; float: right;" onclick="deleteBoard(${i})">[삭제]</a> 
+													<a href="${pageContext.request.contextPath}/board/BoardModify.bo?boardNum=${b_vo.getBoardNum()}" style="text-decoration: none; float: right;">[수정]</a>
+													<input id="${i}" type="hidden" name="boardNum" value="${b_vo.getBoardNum()}">
 												</div>
 											</c:forEach>
 										</c:when>
-										<c:otherwise>
+	 									<c:otherwise>
 											<div style="height: 400px; margin: 0 auto;">
 												<p>내가 올린 게시글이 없습니다.</p>
 											</div>
 										</c:otherwise>
 									</c:choose>
-
-
 								</div>
 							</fieldset>
 
@@ -198,6 +205,5 @@ li {
 		var totalPageCnt = Number("${totalPageCnt}");
 	</script>
 	<script src="${pageContext.request.contextPath}/assets/js/myPageBoard.js"></script>
-
 </body>
 </html>

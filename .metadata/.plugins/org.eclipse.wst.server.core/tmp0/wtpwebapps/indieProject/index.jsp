@@ -150,29 +150,16 @@
 				<div class="container">
 					<h2>최신 업로드 영화</h2>
 				</div>
-				<section class="carousel" style="margin-bottom:3%;">
+				
+				<section class="carousel" id="amaMovieSlide" style="margin-bottom:3%;">
+					
 					<article>
 						<a href="images/fulls/01.jpg" class="image"><img src="images/poster.jpeg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article><article>
-						<a href="images/fulls/02.jpg" class="image"><img src="images/thumbs/02.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article><article>
-						<a href="images/fulls/03.jpg" class="image"><img src="images/thumbs/03.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article><article>
-						<a href="images/fulls/04.jpg" class="image"><img src="images/thumbs/04.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article><article>
-						<a href="images/fulls/05.jpg" class="image"><img src="images/thumbs/05.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article><article>
-						<a href="images/fulls/01.jpg" class="image"><img src="images/thumbs/01.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article><article>
-						<a href="images/fulls/02.jpg" class="image"><img src="images/thumbs/02.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article><article>
-						<a href="images/fulls/03.jpg" class="image"><img src="images/thumbs/03.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article><article>
-						<a href="images/fulls/04.jpg" class="image"><img src="images/thumbs/04.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article><article>
-						<a href="images/fulls/05.jpg" class="image"><img src="images/thumbs/05.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
 					</article>
+					<script src="assets/js/indexAma.js"></script>
+					
 				</section>
+				
 				<div class="container">
 					<ul class="actions special">
 						<li><a href="${pageContext.request.contextPath}/amaMovie/AmaMovie.ama" class="button">최신 아마추어 영화 보러가기</a></li>
@@ -181,28 +168,8 @@
 				<div class="container">
 					<h2>현재 상영 중인 영화</h2>
 				</div>
-				<section class="carousel" style="margin-bottom:3%;">
-					<article>
-						<a href="images/fulls/01.jpg" class="image"><img src="images/thumbs/01.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article><article>
-						<a href="images/fulls/02.jpg" class="image"><img src="images/thumbs/02.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article><article>
-						<a href="images/fulls/03.jpg" class="image"><img src="images/thumbs/03.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article><article>
-						<a href="images/fulls/04.jpg" class="image"><img src="images/thumbs/04.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article><article>
-						<a href="images/fulls/05.jpg" class="image"><img src="images/thumbs/05.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article><article>
-						<a href="images/fulls/01.jpg" class="image"><img src="images/thumbs/01.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article><article>
-						<a href="images/fulls/02.jpg" class="image"><img src="images/thumbs/02.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article><article>
-						<a href="images/fulls/03.jpg" class="image"><img src="images/thumbs/03.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article><article>
-						<a href="images/fulls/04.jpg" class="image"><img src="images/thumbs/04.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article><article>
-						<a href="images/fulls/05.jpg" class="image"><img src="images/thumbs/05.jpg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article>
+				<section class="carousel" id = "proMovieSlide" style="margin-bottom:3%;">
+					<script src="assets/js/indexPro.js"></script>
 				</section>
 				<div class="container">
 					<ul class="actions special">
@@ -245,8 +212,10 @@
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
+			<script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
 			<script src="assets/js/jquery.dropotron.min.js"></script>
 			<script src="assets/js/jquery.poptrox.min.js"></script>
+			
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
