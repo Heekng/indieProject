@@ -93,7 +93,7 @@ function deleteBoard(num){
 			success : function(result){
 				if(result.trim() == "ok"){
 				alert("삭제되었습니다.");
-				history.go(0);
+				window.location.href = contextPath + "/member/memberMyBoard.me";
 				}else{
 				alert("삭제를 실패 하였습니다.");
 				}

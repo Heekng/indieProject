@@ -255,19 +255,12 @@ li {
 									<input type="text" name="change_popcorn" id="change_popcorn"
 										placeholder="팝콘갯수" style="width: 70%; display: inline;" />
 									<div style="display: inline-block; text-align: center;">
-										<a id="modal_button"  class="button primary small" onclick="change()">환전하기</a>
+										<a id="modal_button"  class="button primary small" onclick="goExchange()">환전하기</a>
 									</div>
 								</div>
 							</div>
 							<!--  popcorn_money"-->
-							<div class="modal_warp">
-								<div class="modal_close">
-									<a href="#"  class="modal_close">close</a>
-								</div>
-								<div>모달창 내용</div>
-							</div>
-
-
+						
 							<div id="popcorn_main">
 								<div id="img_popcorn_head">
 									<img alt=""
@@ -373,14 +366,10 @@ li {
 		<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
 <%-- 		<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
  --%>		<script src="${pageContext.request.contextPath}/assets/js/floatMenu.js"></script>
-		<script>$("#mp").css("background", "rgba(144, 144, 144, 0.075)");</script>
-		
-		<script>
-			if(window.matchMedia('(max-width: 9999px)').matches){
-			}
-		</script>
+ 		<script>
+ 			var myReceivedPopcornNum = "${myReceivedPopcornNum}";
+ 		</script>
 		<script src="${pageContext.request.contextPath}/assets/js/popcornPage.js"></script>
-
 
 
 	</body>

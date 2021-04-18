@@ -2,6 +2,36 @@
  * proMovie js파일
  */
 
+function search(){
+	var input = document.getElementById("name").value;
+	
+	var wrapper = document.getElementById("wrapper");
+	
+	var i = 1;
+	
+
+	for(let j = 0; j < i; j++){
+		var titles=$("input#"+i).val();
+		console.log(titles);
+		var slide = document.getElementById(i+"slide");
+		if(slide == undefined){
+			return false;
+		}
+		
+		if(!titles.includes(input)){
+			console.log("포함");
+			wrapper.removeChild(slide);
+			i++;
+		}
+		else{
+			i++;
+		}
+	}
+	
+}//end search
+
+
+
 $('.posterTag').on('mouseover', function(){
 			//event.stopPropagation();
 			$(this).children('#detailText').css('display', 'block');
@@ -76,6 +106,7 @@ $('.posterTag').on('mouseover', function(){
 			$("#pastBtn").attr('style', 'background-color:transparent; box-shadow:inset 0 0 0 2px rgb(144 144 144 / 25%); color:#616161 !important');
 			$("#presBtn").attr('style','color: white !important; background:#4fc2cd; box-shadow:none;');
 			$("#futureBtn").attr('style', 'background-color:transparent; box-shadow:inset 0 0 0 2px rgb(144 144 144 / 25%); color:#616161 !important');
+			window.location.href=contextPath + "/proMovie/ProMovie.pro";
 		}
 		
 		function future(){

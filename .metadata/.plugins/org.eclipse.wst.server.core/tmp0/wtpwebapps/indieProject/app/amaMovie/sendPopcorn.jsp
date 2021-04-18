@@ -53,7 +53,7 @@
 			</div>
 			<div>
 				<a style="width:45%" href="#" class="button fit small">충전하기</a>
-				<a style="width:45%" href="#" class="button fit small">나가기</a>
+				<a style="width:45%" href="javascript:window.close();" class="button fit small">나가기</a>
 			</div>
 		</div>
 	</div>
@@ -67,23 +67,28 @@
 		var myPopcorn = "${myPopcorn}";
  		var popcornNum = $("input[name='popcorn']").val();
  		var text = "영화 ["+amaTitle + "]에 팝콘 " + popcornNum +" 개를 선물합니다.\n진행하시겠습니까?";
+ 		console.log("내거"+myPopcorn);
+ 		console.log("입력"+popcornNum);
+ 		
 		if(popcornNum == ""){
 			alert("팝콘 수를 입력해 주십시오.");
 			return;
 		}else if(popcornNum <= 0){
 			alert("팝콘은 최소 1개부터 선물할 수 있습니다.");
 			return;
-		}else if (popcornNum < myPopcorn){
+		}else if (parseInt(myPopcorn) < parseInt(popcornNum)){
 			alert("팝콘 보유 개수가 모자랍니다. 충전 후 다시 시도해 주십시오.");
 			return;
+		}else{
+			
+			if(confirm(text)){
+				location.replace("${pageContext.request.contextPath}/amaMovie/PopcornSendOk.ama?amaNum="
+									+amaNum+"&amaTitle="+amaTitle+"&popcornNum="+popcornNum);
+			}else{
+				alert("팝콘 선물하기가 취소되었습니다.");
+			}
 		}
 			
-		if(confirm(text)){
-			location.replace("${pageContext.request.contextPath}/amaMovie/PopcornSendOkAction.ama?amaNum="
-								+amaNum+"&amaTitle="+amaTitle+"&popcornNum="+popcornNum);
-		}else{
-			alert("팝콘 선물하기가 취소되었습니다.");
-		}
 	}
 </script>
 </html>

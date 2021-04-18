@@ -14,17 +14,25 @@ public class MemberReceivedPopcornAction  implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		
 		MemberDAO m_dao=new MemberDAO();
 		HttpSession session = req.getSession();
 		PrintWriter out=resp.getWriter();
+
+		String memberId = (String)session.getAttribute("member_id");
+		int changePopcorn = Integer.parseInt(req.getParameter("changePopcorn"));
+		int myReceivedPopcornNum = m_dao.myReceivedPopcornNum(memberId);
 		
-		String memberId = req.getParameter("memberId");
+		if(changePopcorn > myReceivedPopcornNum) {
+			//혹시몰라 한번더 확인
+			out.print("not-ok");
+		}else {
+			
+		}
 		
-		req.setAttribute("myPopcorn", m_dao.myReceivedPopcornNum(memberId));
+		
 		out.print("ok");
 		return null;
 	}

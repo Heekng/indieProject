@@ -22,6 +22,7 @@
 <!-- 슬라이드 css -->
 
 <body class="is-preload">
+	<c:set var="i" value="${0}"/>
 
 	<c:set var="jsonPoster" value="${jsonPoster}"/>
 
@@ -37,9 +38,7 @@
 				<div class="row">
 					<ul style="margin:2rem auto 0 auto;">
 						<li style="list-style:none;">
-							<a href="javascript:past()" class="button alt small choiceBtn" id="pastBtn">지난 상영</a>
 							<a href="javascript:present()" class="button primary small choiceBtn" id="presBtn">현재 상영</a>
-							<a href="javascript:future()" class="button alt small choiceBtn"id="futureBtn">상영 예정</a>
 						</li>
 					</ul>
 				</div>
@@ -56,7 +55,7 @@
 						</div>
 						<div class="col-3 col-6-large col-12-medium searchBtn">
 							<ul class="actions stacked">
-								<li><a href="#" class="button alt small fit">검색</a></li>
+								<li><a href="javascript:search()" class="button alt small fit">검색</a></li>
 							</ul>
 						</div>
 					</div>
@@ -66,13 +65,13 @@
 			<section id="content">
 				<div id="gallery" style="text-align: center;">
 					<!-- 영화리스트 이미지 출력 -->
-
-					<!-- 포스터 이미지 출력 -->
 					
-					<div class="swiper-container" style="width:100%; height:100%;">
-						<div class="swiper-wrapper">
+					<!-- 포스터 이미지 출력 -->
+					<div class="swiper-container" style="width:100%; height:100%;" id="container">
+						<div class="swiper-wrapper" id="wrapper">
 						<c:forEach var="poster" items="${jsonPoster}">
-							<div class="swiper-slide">
+						<c:set var="i" value="${i+1}"/>
+							<div class="swiper-slide" id="${i}slide">
 							
 								<div class="col-poster">
 									<div class="image fit posterTag" style="margin-bottom: 4px;">
@@ -81,7 +80,7 @@
 											style="padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;">
 											<div style="height: 65%; text-overflow: ellipsis; line-height: initial; overflow: hidden; font-size: 0.8em; margin-top: 50%;">
 											<c:out value = "${poster.title}"/>
-											<br>
+											<br>	
 											<c:out value = "${poster.date}"/>
 											</div>
 											<a class="button primary small" href="${pageContext.request.contextPath}/proMovie/LoadMovieDetailAction.pro?title=${poster.title}"
@@ -91,7 +90,9 @@
 											</a>
 										</div>
 									</div>
-									<span><c:out value = "${poster.title}"/></span>
+									<span id="title"><c:out value = "${poster.title}"/></span>
+									<input id="${i}" type="hidden" name="titles" value="${poster.title}">
+									
 								</div>
 								
 							</div>
@@ -112,6 +113,7 @@
 
 	<!-- Scripts -->
 	<script>var contextPath = "${pageContext.request.contextPath}";</script>
+	<script>var img = "${poster.img}"; var title = "${poster.title}"; var date = "${poster.date}";</script>
 	<script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/jquery.dropotron.min.js"></script>

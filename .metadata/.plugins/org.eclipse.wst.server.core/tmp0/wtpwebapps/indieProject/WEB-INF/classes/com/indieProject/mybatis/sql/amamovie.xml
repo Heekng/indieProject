@@ -53,7 +53,7 @@
 		SELECT COUNT(*) FROM AMAREVIEW_TABLE WHERE AMANUM = #{amaNum}
 	</select>
 	<select id="getPopcornSender" parameterType="_int" resultType="popcornVO">
-		SELECT * FROM POPCORN_USE_TABLE WHERE AMANUM = #{amaNum}
+		SELECT * FROM POPCORN_USE_TABLE WHERE AMANUM = #{amaNum} ORDER BY POPCORNNUM DESC
 	</select>
 	<select id="getStarAvg" parameterType="_int" resultType="_double">
 		SELECT AVG(STARS) FROM AMAREVIEW_TABLE WHERE AMANUM = #{amaNum}
@@ -89,4 +89,15 @@
 	<select id="getMainAmaMovieAndPosterList" resultType="amaMovieAndPosterVO">
 		SELECT * FROM (SELECT * FROM AMAMOVIE_TABLE ORDER BY AMAMAKEDATE DESC) a, AMAPOSTERFILES_TABLE b WHERE ROWNUM <![CDATA[<=]]> 20 AND a.AMANUM = b.AMANUM AND b.FILENAME LIKE 'main_%'
 	</select>
+	
+	<insert id="sendPopcorn" parameterType="popcornVO">
+		INSERT INTO POPCORN_USE_TABLE VALUES (#{sendId}, #{receiveId}, SYSDATE, #{amaNum}, #{popcornNum}, #{popcornContent}, POPCORN_SEQ.NEXTVAL)
+	</insert>
+	
+	<select id="getSendNum" resultType="_int">
+		SELECT POPCORN_SEQ.CURRVAL FROM DUAL
+	</select>
+	<update id="updatePopcornContent" parameterType="map">
+		UPDATE POPCORN_USE_TABLE SET POPCORNCONTENT = #{content} WHERE SENDNUM = #{sendNum}
+	</update>
 </mapper>

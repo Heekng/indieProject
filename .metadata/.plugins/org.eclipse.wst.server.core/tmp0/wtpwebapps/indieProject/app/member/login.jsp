@@ -33,11 +33,8 @@
 		}
 	</style>
 	<body class="is-preload">
-	<c:if test="${not empty param.login }">
-	   		<c:if test="${not param.login}">
-	   				<script>alert("아이디 또는 비밀번호를 다시 확인해주세요.");</script>
-	   		</c:if>
-	   	</c:if>
+		<c:set var="to" value="${to}"/>
+		<c:set var="amaNum" value="${amaNum}"/>
 		<!-- Header -->
 			<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
 
@@ -63,18 +60,14 @@
 										<div style="text-align: left; margin-top:3rem;"><a href="${pageContext.request.contextPath}/member/FindIdPwOk.me">아이디 / 비밀번호 찾기</a></div>
 										<div style="width:94%; margin-top:2rem; text-align:center;">
 											<a style="width:10em;" href="javascript:primaryLogin();" class="button">로그인</a>
-											<a style="width:10em;" href="#" class="button alt">회원가입</a>
+											<a style="width:10em;" href="${pageContext.request.contextPath}/member/SignUp.me" class="button alt">회원가입</a>
 										</div>
 										<div class="image" style="width:94%;">
 											
 <%-- 									<a id="kakao-login-btn"><img style="margin-left: 50%;cursor: pointer;" alt="" src="${pageContext.request.contextPath}/images/kakao.png" onmouseover="this.src='https://kauth.kakao.com/public/widget/login/kr/kr_02_medium_press.png'"onmouseout="this.src='https://kauth.kakao.com/public/widget/login/kr/kr_02_medium.png'"></a>
  --%>									<a id="kakao-login-btn"></a>
 										<a href="http://developers.kakao.com/logout"></a>
-										 
-										 
-										
-										
-										
+
 										</div>
 									</form>
 								</fieldset>
@@ -108,22 +101,22 @@
 		          Kakao.API.request({
 		            url: '/v2/user/me',
 		            success: function(res) {
-		              console.log(JSON.stringify(res.kaccount_email));
-		              console.log(JSON.stringify(res.id));
-		              console.log(JSON.stringify(res.password));
-		              console.log(JSON.stringify(res.properties.profile_image));
-		              console.log(JSON.stringify(res.properties.nickname));
+		         
 		              $.ajax({
 							type:"get",
-							url:contextPath + "/member/MemberLoginOk.me?kakaoid="+JSON.stringify(res.properties.nickname),
+							url:contextPath + "/member/MemberLoginOk.me?kakaoId="+JSON.stringify(res.id)+"&kakaoName="+res.properties.nickname,
 							dataType: "text",
 						    success:function(result){
 						    	if(result.trim() == "success"){
 									console.log("세션저장 성공");
 						              loginForm.submit();
 								}else{
-									console.log(result.trim());
 									console.log("세션저장 실패");
+									var id = result.split(",")[0];
+									var name = result.split(",")[1];
+									console.log(id + " kid");
+									console.log(name + " kname");
+									window.location.href = contextPath+"/member/kakaoSignup.me?id="+id+"&name="+name;
 								}
 						    },
 						    error:function(data){
@@ -162,10 +155,18 @@
 						dataType:"text",
 						success : function(result){
 							if(result.trim() == "primaryLoginSuccess"){
-					              loginForm.submit();
+					              if("${to}" == ""){
+					            	loginForm.submit();
+					              }else if("${to}" == "board"){
+					            	location.replace("${pageContext.request.contextPath}/board/Board.bo");
+					              }else if("${to}" == "amaDetail"){
+					            	  location.replace("${pageContext.request.contextPath}/amaMovie/AmaMovieDetail.ama?amaNum=${amaNum}");
+					              }else if("${to}" == "amaWatch"){
+					            	  location.replace("${pageContext.request.contextPath}/amaMovie/AmaMovieWatch.ama?amaNum=${amaNum}");
+					              }
 
 							}else{
-								alert("로그인 실패");
+								alert("아이디 또는 비밀번호를 다시 확인해주세요.");
 								 $("input[name='memberId']").val("");
 								 $("input[name='memberPw']").val("");
 							}

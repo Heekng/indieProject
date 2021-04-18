@@ -57,7 +57,7 @@
 										영상물 등급 : <c:out value="${ama_vo.getRating()}"/>
 									</p>
 								<ul class="actions">
-									<li><a href="${pageContext.request.contextPath}/amaMovie/AmaMovieWatch.ama?amaNum=${ama_vo.getAmaNum()}" class="button alt">영화 보러 가기</a></li>
+									<li><a href="javascript:watchMovie();" class="button alt">영화 보러 가기</a></li>
 									<li id="popcorn" style="display:none;"><a id="popcornBtn" onclick="sendPopcorn()" class="button" >팝콘 보내기</a></li>
 									<c:choose>
 										<c:when test="${ama_vo.getPopcorn() eq 'popcornOn'}">
@@ -146,7 +146,7 @@
 										</c:when>
 										<c:otherwise>
 											<tr>
-												<td colspan="3" align="center">따뜻한 팝콘이 필요합니다...</td>
+												<td colspan="3" align="center"><strong>따뜻한 팝콘이 필요합니다...</strong></td>
 											</tr>
 										</c:otherwise>
 									</c:choose>
@@ -156,7 +156,7 @@
 						<hr>
 						<h2>영화 감상평</h2>
 						<ul class="actions">
-							<li><a href="${pageContext.request.contextPath}/amaMovie/AmaMovieWatch.ama?amaNum=${ama_vo.getAmaNum()}" class="button alt small fit">감상평 등록하러 가기</a></li>
+							<li><a href="javascript:watchMovie();" class="button alt small fit">감상평 등록하러 가기</a></li>
 						</ul>
 						<table style="margin-bottom: 0;">
 							<thead>
@@ -209,13 +209,20 @@
 			<script src="${pageContext.request.contextPath}/assets/js/breakpoints.min.js"></script>
 			<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
 			<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
-			<script>			
+			<script>	
+				function watchMovie(){
+					if ("${session_id}" == ""){
+						alert("로그인 후 이용해주세요");
+						location.replace("${pageContext.request.contextPath}/member/Login.me?to=amaWatch&amaNum=${ama_vo.getAmaNum()}");
+					}else{
+						location.replace("${pageContext.request.contextPath}/amaMovie/AmaMovieWatch.ama?amaNum=${ama_vo.getAmaNum()}");
+					}
+				}
 				function sendPopcorn(){
 					if ("${session_id}" == ""){
 						alert("로그인 후 이용해주세요");
-						location.replace("${pageContext.request.contextPath}/member/Login.me");
+						location.replace("${pageContext.request.contextPath}/member/Login.me?to=amaDetail&amaNum=${ama_vo.getAmaNum()}");
 					}else{
-/* 						$("#popcornBtn").attr("href", "${pageContext.request.contextPath}/amaMovie/PopcornSend.ama?amaNum=${ama_vo.getAmaNum()}"); */
 						var _width = 380;
 						var _height = 500;
 						
@@ -224,9 +231,7 @@
 					    
 						var sendPopcornFrame = window.open("${pageContext.request.contextPath}/amaMovie/PopcornSend.ama?amaNum=${ama_vo.getAmaNum()}&amaTitle=${ama_vo.getAmaTitleKor()}", 
 								"popup","width=380px, height=500px, left="+_left+", top="+_top+", resizable=no, scrollbars=no", true);
-						
 					}
-					
 				}
 			</script>
 

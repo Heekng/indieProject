@@ -18,6 +18,8 @@
 		<typeAlias type="com.indieProject.app.amamovie.vo.AmaMovieVO" alias="amaMovieVO"/>
 		<typeAlias type="com.indieProject.app.amamovie.vo.PopcornVO" alias="popcornVO"/>
 		<typeAlias type="com.indieProject.app.amamovie.vo.AmaMovieAndPosterVO" alias="amaMovieAndPosterVO"/>
+		<typeAlias type="com.indieProject.app.member.vo.MemberAccountVO" alias="MemberAccountVO"/>
+		<typeAlias type="com.indieProject.app.member.vo.PopcornExchangeVO" alias="PopcornExchangeVO"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -36,6 +38,7 @@
 		<mapper resource="com/indieProject/mybatis/sql/member.xml"/>
 		<mapper resource="com/indieProject/mybatis/sql/board.xml"/>
 		<mapper resource="com/indieProject/mybatis/sql/amamovie.xml"/>
+		<mapper resource="com/indieProject/mybatis/sql/manager.xml"/>
 	</mappers>
 	
 </configuration>

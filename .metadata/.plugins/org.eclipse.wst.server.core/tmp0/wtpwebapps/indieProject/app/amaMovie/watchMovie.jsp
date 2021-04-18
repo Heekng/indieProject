@@ -99,7 +99,7 @@
 						</div>
 						<div class="row">
 							<div style="text-align:left;">								
-								<h2 id="starAvg">⭐ 평균 평점 0</h2>
+								<h2 id="starAvg">⭐ 평균 평점 0.0</h2>
 							</div>
 							<div id="sendButton">
 								<ul class="actions special">

@@ -109,6 +109,12 @@
 		SELECT * FROM AMAPOSTERFILES_TABLE WHERE AMANUM = #{amaNum}
 	</select>
 	<update id="updateMyPopcorn" parameterType="map">
-		UPDATE MEMBER_TABLE SET MYPOPCORN = #{myPopcorn} WHERE MEMBERID = #{memberId}
+		UPDATE MEMBER_TABLE SET MYPOPCORN = MYPOPCORN - #{myPopcorn} WHERE MEMBERID = #{memberId}
 	</update>
+	<update id="updatePopcornNum" parameterType="map">
+		UPDATE MEMBER_TABLE SET POPCORNNUM = POPCORNNUM + #{popcornNum} WHERE MEMBERID = #{memberId}
+	</update>
+	<select id="checkAccount" parameterType="string" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER_ACCOUNT_TABLE WHERE MEMBERID = #{memberId}
+	</select>
 </mapper>

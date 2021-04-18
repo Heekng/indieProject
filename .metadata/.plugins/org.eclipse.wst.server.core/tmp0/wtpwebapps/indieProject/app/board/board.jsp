@@ -184,12 +184,12 @@
 						<div class="row gtr-uniform gtr-50">
 							<div class="row gtr-uniform gtr-50 searchZone">
 								<div class="col-6 col-12-small oneLine2">
-									<input type="text" name="name" id="name" value=""
+									<input type="text" name="name" id="keyword" value=""
 										placeholder="#" />
 								</div>
 								<div class="col-3 col-6-large col-12-medium searchBtn">
 									<ul class="actions stacked">
-										<li><a href="#" data-poptrox="ignore" class="button alt small fit">검색</a></li>
+										<li><a href="javascript:search('click');" data-poptrox="ignore" class="button alt small fit">검색</a></li>
 									</ul>
 								</div>
 								<div class="col-3 col-6-large col-12-medium searchBtn">
@@ -205,7 +205,7 @@
 						<c:choose>
 							<c:when test="${boards != null and fn:length(boards) > 0}">
 								<c:forEach var="b_vo" items="${boards}">
-									<div class="col-poster"
+									<div class="col-poster start"
 										style="width: 30%; height: 10%; margin: 10px;">
 										<div  class="image fit posterTag gallery"
 											style="margin-bottom: 0px;">

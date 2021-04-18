@@ -37,7 +37,8 @@ fieldset {
 </style>
 <body class="is-preload">
 	<c:set var="b_vo"  value="${b_vo}"/>
-	<c:set var="image" value="${image}"/>
+	<c:set var="boardImages" value="${boardImages}"/>
+	
 		<!-- Header -->
 	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
 
@@ -133,7 +134,7 @@ fieldset {
 									<div id="count">
 										<span id="current_count">0</span> <span id="maximum_count">/
 											50</span> 
-									<a href="javascript: boardForm.submit();" class="button" style="float: right;">수정완료</a>
+									<a href="javascript:boardForm.submit();" class="button" style="float: right;">수정완료</a>
 									</div>
 								</div>
 							</form>
@@ -162,6 +163,19 @@ fieldset {
 	<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 
 	<script>
+	
+	function showImage(boardImages){
+		if(boardImages!= null){
+			$.each(boardImages, function(index, reply){
+				//이미지 세개 추가
+				var text= "<img src="+contextPath+"/images/board/"+boardImages.lmageName>"			
+				
+			});
+				
+			}//if end
+			
+		}//showImage end 
+	
 	
 	$(document).ready(function(){
 		//파일을 ajax로 불러와서 출력해주기..??
