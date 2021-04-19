@@ -189,7 +189,7 @@ function writeFormSubmit(){
 		return false;
 	}
 	//영상 길이 확인
-	if(($("input[name='amaMovieLength']").val() == "") || $("input[name='amaMovieLength']").val().match(/:/g).length != 1){
+	if(($("input[name='amaMovieLength']").val() == "") || $("input[name='amaMovieLength']").val().match(/:/g).length != 1 || $("input[name='amaMovieLength']").val().match(/:/g).length == null){
 		alert("영상 길이를 xx:xx 형식으로 입력해주세요.");
 		return false;
 	}

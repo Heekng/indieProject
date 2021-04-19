@@ -45,15 +45,22 @@ function showplay() {
  		        var flagValue = flag.val();
  		        if (flag != null) {
  		            if (flagValue == "0") {
- 		                SynopsisDiv.css("height", "320px");
- 		                SynopsisDiv.css("display", "block");
- 		                $("#synopMore").text("닫기");
+ 		            	
+// 		                SynopsisDiv.css("height", "17px");
+// 		                SynopsisDiv.css("display", "-webkit-box");
+ 		            	document.getElementById("memberId").style.display = "none";
+ 		                $("#synopMore").text("게시글 열기");
+ 		                SynopsisDiv.slideUp();
+ 		                
  		                flag.val("1");
  		            }
  		            else {
- 		              	SynopsisDiv.css("height", "17px");
- 		                SynopsisDiv.css("display", "-webkit-box");
- 		                $("#synopMore").text("더보기");
+// 		              	SynopsisDiv.css("height", "320px");
+  		               SynopsisDiv.slideDown();
+  		             document.getElementById("memberId").style.display = "block";
+// 		                SynopsisDiv.css("display", "block");
+ 		                $("#synopMore").text("댓글 열기");
+
  		                flag.val("0");
  		            }
  		        }

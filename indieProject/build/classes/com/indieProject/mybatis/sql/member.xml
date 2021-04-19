@@ -122,7 +122,7 @@
 		SELECT COUNT(*) FROM MEMBER_ACCOUNT_TABLE WHERE MEMBERID = #{memberId}
 	</select>
 	<insert id="applyExchange" parameterType="popcornExchangeVO">
-		INSERT INTO POPCORN_EXCHANGE_TABLE VALUES (#{memberId}, #{money}, #{popcornNum}, SYSDATE, 'no', EXCHANGE_SEQ.NEXTVAL)
+		INSERT INTO POPCORN_EXCHANGE_TABLE VALUES (#{memberId}, #{money}, #{popcornNum}, SYSDATE, 'no', EXCHANGE_SEQ.NEXTVAL, TO_DATE('2001-01-01', 'YYYY-MM-DD'))
 	</insert>
 	<update id="subPopcorn" parameterType="hashmap">
 		UPDATE MEMBER_TABLE SET POPCORNNUM = POPCORNNUM - #{exchangePopcorn} WHERE MEMBERID = #{memberId}

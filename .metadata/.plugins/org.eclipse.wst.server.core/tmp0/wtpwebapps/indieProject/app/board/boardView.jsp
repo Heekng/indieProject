@@ -316,14 +316,14 @@ img {vertical-align: middle;}
 		<section id="layer_fixed" style=" margin-left:40%; top:0px; width:90%;">
 				<div style="width:100%;">							
 					<table style="all:revert; width:100%; margin-right:0;">				
-						<tr height="50px" class="rest" style=" width:100%; background:transparent; margin-left:10%; background-color:darkgrey; color:black;">
-							<td  style="padding-left:10px; width:10%;"><strong><c:out value="${board.getMemberId()}"/></strong></td>
-							<td id="title" style="padding-left:10px;">    
+						<tr height="0px" class="rest" style=" width:100%; background:transparent; margin-left:10%; background-color:#f7f7f7; color:black;">
+							<td  style="padding-left:10px; width:10%;"><strong id="memberId"><c:out value="${board.getMemberId()}"/></strong></td>
+							<td id="title" style="padding-left:10px; width:60%;">    
 							<article class="content_wrap" id="synopsis" style="width:60%;border-style:none;height:100%; margin:0;">       
-						       	<div id="SynopsisDiv" class="SynopsisText" style="width:100%;">
+						       	<div id="SynopsisDiv" class="SynopsisText" style="width:100%; height:330px;">
 						       		<c:out value="${board.getBoardContent()}"/> 	
 						        </div>
-						        <a href="javascript:showplay();" class="btn_more" id="synopMore" style="padding:0; margin:0; float:right;">더보기</a>
+						        <a href="javascript:showplay();" class="btn_more" id="synopMore" style="padding:0; margin:0; float:right;">댓글 열기</a>
 						        <input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis" value="0">
 						    </article></td>												
 						</tr>
@@ -337,7 +337,7 @@ img {vertical-align: middle;}
 						<tr style="background:transparent;">
 								<td style="padding:0; padding-left:10px; width:5%;"><c:out value="${session_id}"/></td>
 								<td valign="top" id="text" style="text-align:left;">
-									<textarea rows="" cols="" name="replyContent" id="text" style="resize:none; width:60%;"></textarea>
+									<textarea rows="" cols="" name="replyContent" id="text" style="resize:none; width:103%;"></textarea>
 									<a href="javascript: insertReply()" style="float:left;  text-decoration:none;">등록</a>
 								</td>
 							</tr>

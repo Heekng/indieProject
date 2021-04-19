@@ -5,7 +5,7 @@
 <html>
 
 <head>
-<title>Untitled</title>
+<title>인디프로젝트</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
