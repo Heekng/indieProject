@@ -3,7 +3,7 @@ package com.indieProject.app.manager.vo;
 //mat.MEMBERNAME, mat.MEMBERBANK, mat.ACCOUNTNUM FROM POPCORN_EXCHANGE_TABLE pet , 
 //MEMBER_ACCOUNT_TABLE mat WHERE pet.MEMBERID = mat.MEMBERID AND pet.EXCHANGECHECK = 'no');
 public class PopcornExchangeDataVO {
-	private int rowNum;
+	private int rowNumber;
 	private String memberId;
 	private int money;
 	private int popcornNum;
@@ -17,11 +17,11 @@ public class PopcornExchangeDataVO {
 	public PopcornExchangeDataVO() {;}
 
 	public int getRowNum() {
-		return rowNum;
+		return rowNumber;
 	}
 
 	public void setRowNum(int rowNum) {
-		this.rowNum = rowNum;
+		this.rowNumber = rowNum;
 	}
 
 	public String getMemberId() {

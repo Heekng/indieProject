@@ -1,6 +1,6 @@
 package com.indieProject.app.manager;
 
-import java.util.List;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,25 +8,25 @@ import javax.servlet.http.HttpServletResponse;
 import com.indieProject.action.Action;
 import com.indieProject.action.ActionForward;
 import com.indieProject.app.manager.dao.ManagerDAO;
-import com.indieProject.app.manager.vo.PopcornExchangeDataVO;
 
-public class managerNonRefundsAction implements Action{
+public class ManagerExchangeOkAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		
-		ActionForward forward = new ActionForward();
-		
 		ManagerDAO ma_dao = new ManagerDAO();
 		
+		PrintWriter out = resp.getWriter();
 		
-		List<PopcornExchangeDataVO> nonExchangeList = ma_dao.getNoneExchangeData();
-		req.setAttribute("noneExchangeList", nonExchangeList);
+		String exchangeNum = req.getParameter("exchangeNum");
 		
-		forward.setRedirect(false);
-		forward.setPath("/app/manager/managerNoneRefunds.jsp");
-		
-		return forward;
+		if(ma_dao.setExchangeYes(exchangeNum)) {
+			out.print("ok");
+		}else {
+			out.print("not-ok");
+		}
+		out.close();
+		return null;
 	}
 }

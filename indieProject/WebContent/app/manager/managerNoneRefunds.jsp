@@ -57,32 +57,26 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="data" items="${noneExchangeList}">
-										<tr>
-											<td>${data.getExchangeNum()}</td>
-											<td>${data.getExchangeDate()}</td>
-											<td>${data.getMemberId()}</td>
-											<td>${data.getPopcornNum()}개</td>
-											<td>${data.getMoney()}원</td>
-											<td>${data.getMemberName()}</td>
-											<td>${data.getMemberBank()}</td>
-											<td>${data.getAccountNum()}</td>
-											<td><a href="">입금완료</a></td>
-										</tr>
-									</c:forEach>
-									
-									<tr>
-										<td>1</td>
-										<td>202104190000</td>
-										<td>heekng</td>
-										<td>100개</td>
-										<td>8000원</td>
-										<td>고희광</td>
-										<td>농협</td>
-										<td>3560743715253</td>
-										<td><a href="">입금완료</a></td>
-									</tr>
-									
+									<c:choose>
+										<c:when test="${noneExchangeList !=null and fn:length(noneExchangeList) > 0 }">
+											<c:forEach var="data" items="${noneExchangeList}">
+												<tr>
+													<td>${data.getExchangeNum()}</td>
+													<td>${data.getExchangeDate()}</td>
+													<td>${data.getMemberId()}</td>
+													<td>${data.getPopcornNum()}개</td>
+													<td>${data.getMoney()}원</td>
+													<td>${data.getMemberName()}</td>
+													<td>${data.getMemberBank()}</td>
+													<td>${data.getAccountNum()}</td>
+													<td><a onclick="exchange(${data.getExchangeNum()}, this)">입금완료</a></td>
+												</tr>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											
+										</c:otherwise>
+									</c:choose>
 								</tbody>
 							</table>
 						</div>
@@ -103,6 +97,31 @@
 	<script src="${pageContext.request.contextPath}/assets/js/breakpoints.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
-	
+	<script>
+		var contextPath = "${pageContext.request.contextPath}";
+		
+		function exchange(exchangeNum, btn){
+			if(confirm(exchangeNum+"번 입금처리 하시겠습니까?")){
+				$.ajax({
+					url : contextPath + "/manager/managerExchangeOk.ma",
+					type : "post",
+					data : {"exchangeNum" : exchangeNum},
+					dataType : "text",
+					success : function(result){
+						if(result.trim() == "ok"){
+							$(btn).text("완료");
+							$(btn).attr("onclick", "");
+						}else{
+							alert("오류_잠시후 다시 시도해주세요.");
+						}
+					},
+					error:function(){//통신 오류 시
+						console.log("오류");
+					}
+				})
+				
+			}
+		}
+	</script>
 </body>
 </html>

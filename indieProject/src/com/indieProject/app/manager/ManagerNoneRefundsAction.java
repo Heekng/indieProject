@@ -10,7 +10,7 @@ import com.indieProject.action.ActionForward;
 import com.indieProject.app.manager.dao.ManagerDAO;
 import com.indieProject.app.manager.vo.PopcornExchangeDataVO;
 
-public class ManagerRefundsAction implements Action{
+public class ManagerNoneRefundsAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		req.setCharacterEncoding("UTF-8");
@@ -25,7 +25,7 @@ public class ManagerRefundsAction implements Action{
 		req.setAttribute("noneExchangeList", nonExchangeList);
 		
 		forward.setRedirect(false);
-		forward.setPath("/app/manager/managerRefunds.jsp");
+		forward.setPath("/app/manager/managerNoneRefunds.jsp");
 		
 		return forward;
 	}

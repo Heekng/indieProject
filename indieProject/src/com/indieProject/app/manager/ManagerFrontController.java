@@ -36,11 +36,15 @@ public class ManagerFrontController extends HttpServlet{
 		ActionForward forward = null;
 		if(command.equals("/manager/managerRefunds.ma")) {
 			try {
-				forward = null;
+				forward = new ManagerRefundsAction().execute(req, resp);
 			} catch (Exception e) {e.printStackTrace();}
 		}else if(command.equals("/manager/managerNoneRefunds.ma")) {
 			try {
-				forward = new managerNonRefundsAction().execute(req, resp);
+				forward = new ManagerNoneRefundsAction().execute(req, resp);
+			} catch (Exception e) {e.printStackTrace();}
+		}else if(command.equals("/manager/managerExchangeOk.ma")) {
+			try {
+				forward = new ManagerExchangeOkAction().execute(req, resp);
 			} catch (Exception e) {e.printStackTrace();}
 		}
 		
