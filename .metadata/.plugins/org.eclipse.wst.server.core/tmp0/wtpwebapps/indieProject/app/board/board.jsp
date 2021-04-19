@@ -194,7 +194,7 @@
 								</div>
 								<div class="col-3 col-6-large col-12-medium searchBtn">
 									<ul class="actions stacked">
-										<li><a href="${pageContext.request.contextPath}/board/BoardWrite.bo" data-poptrox="ignore" style="padding:0 0;" class="button small fit">게시글 작성</a></li>
+										<li><a id="bWrite" href="javascript: boardWrite();" data-poptrox="ignore" style="padding:0 0;" class="button small fit">게시글 작성</a></li>
 									</ul>
 								</div>
 							</div>
@@ -214,7 +214,7 @@
 												alt="" style="" /> 
 											<a	class="LinkBoardView"
 												href="${pageContext.request.contextPath}/board/BoardView.bo?boardNum=${b_vo.getBoardNum()}"
-												onclick="link(${b_vo.getBoardNum()})"
+												onclick="link(${b_vo.getBoardNum()})" 
 												data-poptrox="iframe,800x500"
 												style="width: 80%; height: 100%; background: transparent;">
 												<span id="detailText"

@@ -16,7 +16,14 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/proMovie.css" />
 <link rel="stylesheet" href="https://unpkg.com/swiper@6.5.0/swiper-bundle.min.css">
-
+<style>
+.swiper-wrapper.disabled {
+    transform: translate3d(0px, 0, 0) !important;
+}
+.swiper-pagination.disabled {
+    display: none;
+}
+</style>
 
 </head>
 <!-- 슬라이드 css -->

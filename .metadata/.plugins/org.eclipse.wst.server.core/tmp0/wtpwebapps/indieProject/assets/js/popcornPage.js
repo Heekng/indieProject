@@ -391,22 +391,10 @@ function accountRegister(){
     
 	var accountRegisterFrame = window.open(contextPath+"/member/accountRegister.me", 
 			"popup","width=380px, height=500px, left="+_left+", top="+_top+", resizable=no, scrollbars=no", true);
-		
-	/*$.ajax({
-		url: contextPath+"/member/MemberAccoun.me",
-		type:"get",
-		dataType:"text",
-		success:function(result){
-			if(result.trim() == "ok"){
-				
-			}else{
-				
-			}
-		},
-		error : function(){
-			console.log("에러");
-		}
-	});*/
+	
+	accountRegisterFrame.onbeforeunload = function(){
+		window.location.reload();
+	}
 }
 
 function exchange(){
@@ -424,7 +412,7 @@ function exchange(){
 		alert("숫자만 입력해주세요.");
 		return false;
 	}
-	if(myReceivedPopcornNum > changePopcorn){
+	if(myReceivedPopcornNum < changePopcorn){
 		alert("내가 받은 팝콘개수보다 많은 양을 환전할 수 없습니다.");
 		return false;
 	}
@@ -433,11 +421,11 @@ function exchange(){
 		return false;
 	}
 	
-	/*
+	
 	$.ajax({
-		url: contextPath+"/member/MemberReceivedPopcornAction.me",
+		url: contextPath+"/member/MemberExchangePopcornOk.me",
 		type:"post",
-		data:{"changePopcorn":changePopcorn},
+		data:{"changePopcorn":changePopcorn, "memberId":memberId},
 		dataType:"text",
 		success:function(result){
 			if(result.trim() == "ok"){
@@ -446,13 +434,13 @@ function exchange(){
 			}else{
 				alert("환전신청에 실패했습니다. 잠시 후 다시 신청해주세요.");
 				window.location.reload();
-			}					
+			}
 		},
 		error : function(){
 			console.log("에러");
 		}
 	});
-	*/
+	
 }
 
 			

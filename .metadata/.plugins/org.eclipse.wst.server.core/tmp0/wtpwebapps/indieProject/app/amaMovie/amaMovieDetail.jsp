@@ -212,7 +212,7 @@
 			<script>	
 				function watchMovie(){
 					if ("${session_id}" == ""){
-						alert("로그인 후 이용해주세요");
+						alert("로그인 후 이용해 주십시오.");
 						location.replace("${pageContext.request.contextPath}/member/Login.me?to=amaWatch&amaNum=${ama_vo.getAmaNum()}");
 					}else{
 						location.replace("${pageContext.request.contextPath}/amaMovie/AmaMovieWatch.ama?amaNum=${ama_vo.getAmaNum()}");
@@ -220,7 +220,7 @@
 				}
 				function sendPopcorn(){
 					if ("${session_id}" == ""){
-						alert("로그인 후 이용해주세요");
+						alert("로그인 후 이용해 주십시오.");
 						location.replace("${pageContext.request.contextPath}/member/Login.me?to=amaDetail&amaNum=${ama_vo.getAmaNum()}");
 					}else{
 						var _width = 380;

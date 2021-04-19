@@ -8,7 +8,37 @@ function search(){
 	var wrapper = document.getElementById("wrapper");
 	
 	var i = 1;
-	
+	var swiper = new Swiper('#wrapper', {
+		spaceBetween : 10,
+		loop : false,
+		loopFillGroupWithBlank : false,
+		allowTouchMove: false,
+		initialSlide:0,
+		watchOverflow : true,
+		pagination : {
+			el : '.swiper-pagination',
+			clickable : false
+		},
+		navigation : {
+			nextEl : '.swiper-button-next',
+			prevEl : '.swiper-button-prev',
+		},
+		breakpoints : { // 반응형 설정이 가능 width값으로 조정
+			737: {
+				slidesPerView : 5,
+				slidesPerGroup : 5
+			},
+			981: {
+				slidesPerView : 6,
+				slidesPerGroup : 6
+			},
+			1: {
+				slidesPerView : 3,
+				slidesPerGroup : 3
+			}
+		}
+	});
+
 
 	for(let j = 0; j < i; j++){
 		var titles=$("input#"+i).val();
@@ -19,14 +49,16 @@ function search(){
 		}
 		
 		if(!titles.includes(input)){
-			console.log("포함");
 			wrapper.removeChild(slide);
+			
 			i++;
 		}
 		else{
+			console.log("포함");
 			i++;
 		}
 	}
+
 	
 }//end search
 

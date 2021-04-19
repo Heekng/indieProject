@@ -64,6 +64,9 @@
         opacity: 1;
     }
 }
+	.carousel .image img{
+		width: 14em;
+	}
 @media screen and (max-width: 1680px){
 	.carousel .image img{
 		width: 14em;

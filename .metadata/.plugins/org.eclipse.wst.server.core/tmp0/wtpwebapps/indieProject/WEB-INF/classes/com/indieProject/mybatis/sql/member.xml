@@ -30,6 +30,10 @@
 		SELECT COUNT(*) FROM MEMBER_TABLE WHERE MEMBERNAME = #{memberName} AND MEMBERID = #{memberId} AND MEMBEREMAIL = #{memberEmail}
 	</select>
 	
+	<update id="newPw" parameterType="map" >
+		UPDATE MEMBER_TABLE SET MEMBERPW = #{memberPw} WHERE MEMBERID =#{memberId}
+	</update>
+	
 	<select id="myMovieNum" parameterType="string" resultType="_int">
 		SELECT COUNT(*) FROM AMAMOVIE_TABLE WHERE MEMBERID = #{memberId}
 	</select>
@@ -51,7 +55,7 @@
 	</select>
 	
 	<select id="myReceivedPopcornNum" parameterType="string" resultType="_int">
-		SELECT MYPOPCORN FROM MEMBER_TABLE WHERE MEMBERID = #{memberId}
+		SELECT POPCORNNUM FROM MEMBER_TABLE WHERE MEMBERID = #{memberId}
 	</select>
 	
 	<select id="myMovieList" parameterType="string" resultType="amaMovieVO">
@@ -80,7 +84,7 @@
 		SELECT MEMBERNAME FROM MEMBER_TABLE WHERE MEMBERID = #{memberId}
 	</select>
 	<select id="myPopcornList" parameterType="hashMap" resultType="myPagePopcornVO">
-		SELECT PU.RECEIVEID, A.AMATITLEKOR, PU.POPCORNNUM, PU.SENDDATE FROM POPCORN_USE_TABLE PU JOIN AMAMOVIE_TABLE A ON PU.AMANUM = A.AMANUM WHERE PU.SENDID = #{memberId} AND PU.SENDDATE BETWEEN TO_DATE(#{date1}, 'YYYY-MM-DD') AND TO_DATE(#{date2}, 'YYYY-MM-DD') ORDER BY PU.SENDDATE DESC
+		SELECT PU.RECEIVEID, A.AMATITLEKOR, PU.POPCORNNUM, PU.SENDDATE FROM POPCORN_USE_TABLE PU JOIN AMAMOVIE_TABLE A ON PU.AMANUM = A.AMANUM WHERE PU.SENDID = #{memberId} AND PU.SENDDATE BETWEEN TO_DATE(#{date1}, 'YYYY-MM-DD') AND TO_DATE(#{date2}, 'YYYY-MM-DD') +0.99999 ORDER BY PU.SENDDATE DESC
 	</select>
 	<select id="myReviewListAll" parameterType="hashMap" resultType="amaMovieReviewVO">
       SELECT * FROM
@@ -117,4 +121,20 @@
 	<select id="checkAccount" parameterType="string" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER_ACCOUNT_TABLE WHERE MEMBERID = #{memberId}
 	</select>
+	<insert id="applyExchange" parameterType="popcornExchangeVO">
+		INSERT INTO POPCORN_EXCHANGE_TABLE VALUES (#{memberId}, #{money}, #{popcornNum}, SYSDATE, 'no', EXCHANGE_SEQ.NEXTVAL)
+	</insert>
+	<update id="subPopcorn" parameterType="hashmap">
+		UPDATE MEMBER_TABLE SET POPCORNNUM = POPCORNNUM - #{exchangePopcorn} WHERE MEMBERID = #{memberId}
+	</update>
+	<insert id="addAccount" parameterType="memberAccountVO">
+		INSERT INTO MEMBER_ACCOUNT_TABLE VALUES (#{memberId}, #{memberName}, #{memberBank}, #{accountNum})
+	</insert>
+	<update id="changeEmail" parameterType="hashMap">
+		UPDATE MEMBER_TABLE SET MEMBEREMAIL = #{memberEmail} WHERE MEMBERID = #{memberId}
+	</update>
+	<update id="changePwEmail" parameterType="hashMap">
+		UPDATE MEMBER_TABLE SET MEMBERPW = #{memberPw}, MEMBEREMAIL = #{memberEmail} WHERE MEMBERID = #{memberId}
+	</update>
+
 </mapper>

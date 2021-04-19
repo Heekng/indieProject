@@ -20,4 +20,7 @@ org.eclipse.team.svn.ui.panel.remote.RenameResourcePanel.height=204
 org.eclipse.team.svn.ui.panel.remote.RenameResourcePanel.width=525
 org.eclipse.team.svn.ui.panel.reporting.ErrorCancelPanel.height=131
 org.eclipse.team.svn.ui.panel.reporting.ErrorCancelPanel.width=640
+org.eclipse.team.svn.ui.panel.view.HistoryFilterPanel.height=100
+org.eclipse.team.svn.ui.panel.view.HistoryFilterPanel.width=470
+preference.history.groupingType=1
 preference.repository.repositoryBrowser=false

@@ -103,7 +103,12 @@
 							</div>
 							<div id="sendButton">
 								<ul class="actions special">
-									<li><a href="#" class="button small fit">팝콘 보내기</a></li>
+									<li id="popcorn" style="display:none;"><a onclick="sendPopcorn()" class="button small fit">팝콘 보내기</a></li>
+									<c:choose>
+										<c:when test="${ama_vo.getPopcorn() eq 'popcornOn'}">
+											<script>$("#popcorn").show()</script>
+										</c:when>
+									</c:choose>
 								</ul>			
 							</div>
 						</div>
@@ -150,6 +155,7 @@
 			<script>
 				var pageContext = "${pageContext.request.contextPath}";
 				var amaNum = "${ama_vo.getAmaNum()}";
+				var amaTitle = "${ama_vo.getAmaTitleKor()}";
 				var sessionId = "${session_id}"
 			</script>
 			<script src="${pageContext.request.contextPath}/assets/js/watchMovie.js"></script>

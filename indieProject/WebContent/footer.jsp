@@ -17,7 +17,8 @@
 						<h3 style="margin:0 0;">02-1234-5678</h3>
 						<p style="margin:0 0;">indieProject@gmail.com</p>
 						<p style="margin:0 0;">평일 10:00~18:00 (점심시간 12:00~13:00 / 토요일, 공휴일 휴무)</p>
-					<p><a href=""><b>사업자 정보 확인</b></a> | 인디프로젝트 주식회사 | 서울시 역삼동 ㅇㅇㅇㅇ 3층 303호 | 대표자: 임조장 | 사업자 등록 번호: 123-45-67890 | 호스팅 사업자: NAVER</p>
+					<p style="margin:0 0;"><a href=""><b>사업자 정보 확인</b></a> | 인디프로젝트 주식회사 | 서울시 역삼동 ㅇㅇㅇㅇ 3층 303호 | 대표자: 임조장 | 사업자 등록 번호: 123-45-67890 | 호스팅 사업자: NAVER</p>
+					<p style="margin:0 0;"><a href="${pageContext.request.contextPath}/manager/managerNoneRefunds.ma">관리자</a></p>
 				</section>
 			</div>
 		</div>

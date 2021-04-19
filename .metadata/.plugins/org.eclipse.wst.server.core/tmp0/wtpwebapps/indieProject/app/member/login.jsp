@@ -159,6 +159,8 @@
 					            	loginForm.submit();
 					              }else if("${to}" == "board"){
 					            	location.replace("${pageContext.request.contextPath}/board/Board.bo");
+					              }else if("${to}" == "boardWrite"){
+					            	location.replace("${pageContext.request.contextPath}/board/BoardWrite.bo");
 					              }else if("${to}" == "amaDetail"){
 					            	  location.replace("${pageContext.request.contextPath}/amaMovie/AmaMovieDetail.ama?amaNum=${amaNum}");
 					              }else if("${to}" == "amaWatch"){

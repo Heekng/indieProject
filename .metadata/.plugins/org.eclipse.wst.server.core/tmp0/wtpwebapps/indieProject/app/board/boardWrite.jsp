@@ -31,6 +31,20 @@ fieldset {
 		padding: 0 32px !important;
 	}
 }
+
+#bImgHelp {
+	display: none;
+	position: absolute;
+	width: 200px;
+	margin: 0;
+	padding: 0.5rem;
+	background: #FFFFFF;
+	border-radius: 5px;
+	list-style: none;
+	box-shadow: 0 15px 35px rgba(50, 50, 90, 0.1), 0 5px 15px
+		rgba(0, 0, 0, 0.07);
+	z-index: 999999;
+}
 </style>
 <body class="is-preload">
 
@@ -50,6 +64,11 @@ fieldset {
 					<fieldset
 						style="border: solid; border-style: outset; padding-left: 4%; padding-top: 4%; padding-bottom: 4%; padding-right: 4%;">
 						<br>
+						<h3 style="display:inline-block;">사진 업로드</h3>
+						<span><img id="bImg" style="width: 17px; cursor: help;" 
+						src="${pageContext.request.contextPath}/images/question.png"></span>
+						<div id="bImgHelp" style="display: none; resize: none;">첫번째로
+							첨부된 이미지가 대표 이미지로 사용됩니다.</div>
 						<section style="margin-right: auto; margin-left: auto;">
 							<form action="${pageContext.request.contextPath}/board/BoardWriteOk.bo" method="post" name="boardForm" enctype="multipart/form-data">
 								<div class="photos" style="display: flex;">
@@ -72,15 +91,16 @@ fieldset {
 											</span>
 		
 										</div>
-										<a href="#" onclick="delete1()">삭제</a>
+										<a id="d1" onclick="delete1()" style="cursor: pointer;">삭제</a>
 									</div>
 		
-									<div class="col-4 col-3-small photo"
-										style="text-align: center; margin-right: auto; margin-left: auto; width: 40%;">
+									<div id="img2" class="col-4 col-3-small photo"
+										style="text-align: center; margin-right: auto; margin-left: auto; width: 40%; visibility:hidden;">
 										<div class="poster image fit"
 											style="padding-left: 0;">
 											<img id="secondImg" alt="" src="" class="img"
-												style="display: none; width: 100%; height: 100%;"> <span
+												style="display: none; width: 100%; height: 100%;"> 
+											<span
 												id="span2" class="image fit" style="padding-bottom: 30%;">
 												<label for="second-file-input"> <img id="secondImg2"
 													class="camera"
@@ -89,18 +109,19 @@ fieldset {
 													style="width: 50px; margin: 47% auto auto auto; cursor: pointer;" />
 												</label> 
 												<input name="boardImage2" id="second-file-input" type="file"
-												onchange="preview2()" style="display: none;" />
+													onchange="preview2()" style="display: none;" />
 											</span>
 		
 										</div>
-										<a href="#" onclick="delete2()">삭제</a>
+										<a id="d2" onclick="delete2()" style="cursor: pointer;">삭제</a>
 									</div>
-									<div class="col-4 col-3-small photo"
-										style="text-align: center; margin-right: auto; margin-left: auto; width: 40%;">
+									<div id="img3" class="col-4 col-3-small photo"
+										style="text-align: center; margin-right: auto; margin-left: auto; width: 40%; visibility:hidden;">
 										<div class="poster image fit"
 											style="padding-left: 0;">
 											<img id="thirdImg" alt="" src="" class="img"
-												style="display: none; width: 100%; height: 100%;"> <span
+												style="display: none; width: 100%; height: 100%;"> 
+											<span
 												id="span3" class="image fit" style="padding-bottom: 30%;">
 												<label for="third-file-input"> <img id="thirdImg2"
 													class="camera"
@@ -109,22 +130,23 @@ fieldset {
 													style="width: 50px; margin: 47% auto auto auto; cursor: pointer;" />
 												</label> 
 												<input name="boardImage3" id="third-file-input" type="file"
-												onchange="preview3()" style="display: none;" />
+													onchange="preview3()" style="display: none;" />
 											</span>
 		
 										</div>
-										<a href="#" onclick="delete3()">삭제</a>
+										<a id="d3" onclick="delete3()" style="cursor: pointer;">삭제</a>
 									</div>
 		
 								</div>
 								<div>
-									<h3>문구입력</h3>
+									<br>
+									<h3>게시글 내용 작성</h3>
 									<textarea name="boardContent" maxlength="50"
 										style="width: 100%; resize: none; margin-left: auto; margin-right: auto; margin-bottom: 1%;"></textarea>
 									<div id="count">
 										<span id="current_count">0</span> <span id="maximum_count">/
 											50</span> 
-									<a href="javascript: boardForm.submit();" class="button" style="float: right;">업로드</a>
+									<a href="javascript: submit();" class="button" style="float: right;">업로드</a>
 									</div>
 								</div>
 							</form>
@@ -151,61 +173,6 @@ fieldset {
 	<script src="${pageContext.request.contextPath}/assets/js/breakpoints.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
-
-	<script>
-		function preview1() {
-
-			firstImg.src = URL.createObjectURL(event.target.files[0]);
-			firstImg.style.display = "block";
-			firstImg.style.objectFit = "cover";
-			span1.style.display = "none";
-
-		}
-		function preview2() {
-			if (window.getComputedStyle(firstImg).display == "block") {
-				secondImg.src = URL.createObjectURL(event.target.files[0]);
-				secondImg.style.display = "block";
-				secondImg.style.objectFit = "cover";
-
-				span2.style.display = "none";
-			} else {
-				alert("첫번째 앨범을 채워주세요.");
-			}
-
-		}
-		function preview3() {
-			if (window.getComputedStyle(secondImg).display == "block") {
-				thirdImg.src = URL.createObjectURL(event.target.files[0]);
-				thirdImg.style.display = "block";
-				thirdImg.style.objectFit = "cover";
-
-				span3.style.display = "none";
-			} else {
-				alert("두번째 앨범을 채워주세요.");
-			}
-		}
-
-		function delete1() {
-			firstImg.style.display = "none";
-			span1.style.display = "block";
-		}
-		function delete2() {
-			secondImg.style.display = "none";
-			span2.style.display = "block";
-		}
-		function delete3() {
-			thirdImg.style.display = "none";
-			span3.style.display = "block";
-		}
-
-		$('textarea')
-				.keyup(
-						function() {
-							var characterCount = $(this).val().length, current_count = $('#current_count'), maximum_count = $('#maximum_count'), count = $('#count');
-
-							current_count.text(characterCount);
-
-						});
-	</script>
+	<script src="${pageContext.request.contextPath}/assets/js/boardWrite.js"></script>
 </body>
 </html>

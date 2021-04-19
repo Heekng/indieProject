@@ -64,8 +64,9 @@ function showPage(boards){
 					"data-poptrox='iframe,800x500' style='width: 80%; height: 100%; background: transparent;'>"+
 					"<span id='detailText' style='padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;'>"+
 					board.boardContent+"</span></a></div>"+
-					"<a href='#' style='text-decoration: none; float: right;'>[삭제]</a>"+
-					"<a href='#' style='text-decoration: none; float: right;'>[수정]</a>"+
+					"<a href='#' style='text-decoration: none; float: right;' onclick='deleteBoard("+board.boardNum+")'>[삭제]</a>"+
+					"<a href='"+contextPath+"/board/BoardModify.bo?boardNum="+board.boardNum+"' style='text-decoration: none; float: right;'>[수정]</a>"+
+//					"<input id="+(index + 1)+" type='hidden' name='boardNum' value='"+board.boardNum+"'>"+
 					"</div>";
 			$("#posterRow").append(text);
 			$(function() {
@@ -82,9 +83,9 @@ function showPage(boards){
 
 
 //삭제 버튼
-function deleteBoard(num){
-	var boardNum=$("input#"+num).val();
-	var con=confirm("정말로 삭제 하시겠습니까?");
+function deleteBoard(boardNum){
+//	var boardNum=$("input#"+num).val();
+	var con=confirm("정말로 삭제 하시겠습니까?boardNum:"+boardNum);
 	if(con==true){
 		console.log( boardNum);
 		$.ajax({

@@ -18,15 +18,23 @@ $(function() {
 });
 
 function link(boardNum){
-	console.log(sessionId);
 	if (sessionId == ""){
-		alert("로그인 후 이용해주세요");
+		alert("로그인 후 이용해 주십시오.");
 		location.replace(contextPath+"/member/Login.me?to=board");
 	}else{
 		$(".LinkBoardView").attr("href", contextPath + "/board/BoardView.bo?boardNum="+boardNum);
 	}
 }
 
+function boardWrite(){
+	if (sessionId == ""){
+		alert("로그인 후 이용해 주십시오.");
+		location.replace(contextPath+"/member/Login.me?to=boardWrite");
+	}else{
+		//$("#bWrite").attr("href", contextPath + "/board/BoardWrite.bo");
+		location.replace(contextPath+"/board/BoardWrite.bo");
+	}
+}
 
 var nowPage = 1;
 var searchPage = 0;

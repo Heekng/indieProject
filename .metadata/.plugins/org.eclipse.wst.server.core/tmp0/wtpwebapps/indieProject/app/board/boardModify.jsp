@@ -38,15 +38,23 @@ fieldset {
 <body class="is-preload">
 	<c:set var="b_vo"  value="${b_vo}"/>
 	<c:set var="boardImages" value="${boardImages}"/>
-	
-		<!-- Header -->
+
+	<c:if test="${session_id eq null}">
+		<script>
+			alert("로그인 후 이용해주세요");
+			location
+					.replace("${pageContext.request.contextPath}/member/Login.me");
+		</script>
+	</c:if>
+
+	<!-- Header -->
 	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
 
 	<!-- Main -->
 	<section id="main">
 		<div class="container">
 			<header class="major">
-				<h2>게시글 작성</h2>
+				<h2>게시글 수정</h2>
 				<p>작성된 게시글은 자유 게시판에 등록됩니다.</p>
 			</header>
 			<div class="row">
@@ -58,80 +66,74 @@ fieldset {
 						<section style="margin-right: auto; margin-left: auto;">
 							<form action="${pageContext.request.contextPath}/board/BoardModifyOk.bo" method="post" name="boardForm" enctype="multipart/form-data">
 								<input type="hidden" name="boardNum" value="${b_vo.getBoardNum()}">
-								<input type="hidden" name="page" value="${page}">
-								
-								<div class="photos" style="display: flex;">
-									<div class="col-4 col-3-small photo"
-										style="text-align: center; margin-right: auto; margin-left: auto; width: 40%;">
-										<div class="poster image fit"
-											style="padding-left: 0;">
-											<img id="firstImg" class="img" alt="" src=""
-												style="display: none; width: 100%; height: 100%;"> 
-											<span
-												id="span1" class="image fit" style="padding-bottom: 30%;">
-												<label for="first-file-input"> <img id="firstImg2"
-													class="camera"
-													src="${pageContext.request.contextPath}/images/add.png"
-													alt="영화 포스터"
-													style="width: 50px; margin: 47% auto auto auto; cursor: pointer;" />
-												</label> 
-												<input name="boardImage1" id="first-file-input" type="file"
-												onchange="preview1()" style="display: none;" />
-											</span>
-		
-										</div>
-										<a href="#" onclick="delete1()">삭제</a>
-									</div>
-		
-									<div class="col-4 col-3-small photo"
-										style="text-align: center; margin-right: auto; margin-left: auto; width: 40%;">
-										<div class="poster image fit"
-											style="padding-left: 0;">
-											<img id="secondImg" alt="" src="" class="img"
-												style="display: none; width: 100%; height: 100%;"> <span
-												id="span2" class="image fit" style="padding-bottom: 30%;">
-												<label for="second-file-input"> <img id="secondImg2"
-													class="camera"
-													src="${pageContext.request.contextPath}/images/add.png"
-													alt="영화 포스터"
-													style="width: 50px; margin: 47% auto auto auto; cursor: pointer;" />
-												</label> 
-												<input name="boardImage2" id="second-file-input" type="file"
-												onchange="preview2()" style="display: none;" />
-											</span>
-		
-										</div>
-										<a href="#" onclick="delete2()">삭제</a>
-									</div>
-									<div class="col-4 col-3-small photo"
-										style="text-align: center; margin-right: auto; margin-left: auto; width: 40%;">
-										<div class="poster image fit"
-											style="padding-left: 0;">
-											<img id="thirdImg" alt="" src="" class="img"
-												style="display: none; width: 100%; height: 100%;"> <span
-												id="span3" class="image fit" style="padding-bottom: 30%;">
-												<label for="third-file-input"> <img id="thirdImg2"
-													class="camera"
-													src="${pageContext.request.contextPath}/images/add.png"
-													alt="영화 포스터"
-													style="width: 50px; margin: 47% auto auto auto; cursor: pointer;" />
-												</label> 
-												<input name="boardImage3" id="third-file-input" type="file"
-												onchange="preview3()" style="display: none;" />
-											</span>
-		
-										</div>
-										<a href="#" onclick="delete3()">삭제</a>
-									</div>
-		
+
+											<div class="photos" style="display: flex;">
+								<%-- 	 <div class="col-4 col-3-small photo"
+													style="text-align: center; margin-right: auto; margin-left: auto; width: 40%;">
+													<div class="poster image fit" style="padding-left: 0;">
+														<img id="firstImg" class="img" alt="" src=""
+															style="display: none; width: 100%; height: 100%;">
+														<span id="span1" class="image fit"
+															style="padding-bottom: 30%;"> <label
+															for="first-file-input"> <img id="firstImg2"
+																class="camera"
+																src="${pageContext.request.contextPath}/images/board/${images.getImageName()}"
+																alt="영화 포스터"
+																style="width: 50px; margin: 47% auto auto auto; cursor: pointer;" />
+														</label> <input name="boardImage1" id="first-file-input"
+															type="file" onchange="preview1()" style="display: none;" />
+														</span>
+
+													</div>
+													<a href="#" onclick="delete1()">삭제</a>
+												</div> 
+												<div class="col-4 col-3-small photo"
+													style="text-align: center; margin-right: auto; margin-left: auto; width: 40%;">
+													<div class="poster image fit" style="padding-left: 0;">
+														<img id="secondImg" alt="" src="${pageContext.request.contextPath}/images/board/${images.getImageName()}" class="img"
+															style="display: none; width: 100%; height: 100%;">
+														<span id="span2" class="image fit"
+															style="padding-bottom: 30%;"> <label
+															for="second-file-input"> <img id="secondImg2"
+																class="camera"
+																src="${pageContext.request.contextPath}/images/add.png"
+																alt="영화 포스터"
+																style="width: 50px; margin: 47% auto auto auto; cursor: pointer;" />
+														</label> <input name="boardImage2" id="second-file-input"
+															type="file" onchange="preview2()" style="display: none;" />
+														</span>
+
+													</div>
+													<a href="#" onclick="delete2()">삭제</a>
+												</div>
+												<div class="col-4 col-3-small photo"
+													style="text-align: center; margin-right: auto; margin-left: auto; width: 40%;">
+													<div class="poster image fit" style="padding-left: 0;">
+														<img id="thirdImg" alt="" src="${pageContext.request.contextPath}/images/board/${images.getImageName()}" class="img"
+															style="display: none; width: 100%; height: 100%;">
+														<span id="span3" class="image fit"
+															style="padding-bottom: 30%;"> <label
+															for="third-file-input"> <img id="thirdImg2"
+																class="camera"
+																src="${pageContext.request.contextPath}/images/add.png"
+																alt="영화 포스터"
+																style="width: 50px; margin: 47% auto auto auto; cursor: pointer;" />
+														</label> <input name="boardImage3" id="third-file-input"
+															type="file" onchange="preview3()" style="display: none;" />
+														</span>
+
+													</div>
+													<a href="#" onclick="delete3()">삭제</a>
+												</div> --%>
 								</div>
+
 								<div>
 									<h3>문구입력</h3>
-									<textarea name="boardContent" maxlength="50"
-										style="width: 100%; resize: none; margin-left: auto; margin-right: auto; margin-bottom: 1%;">
-										${b_vo.getBoardContent()}
-										</textarea>
+									<textarea name="boardContent" maxlength="50" id="boardContent"
+										style="width: 100%; resize: none; margin-left: auto; margin-right: auto; margin-bottom: 1%;">${b_vo.getBoardContent()}</textarea>
 									<div id="count">
+									<%-- 내가 작성한 텍스트 길이 값  --%>
+									<input type="hidden" id="contentCnt" value="${fn:length(b_vo.getBoardContent())}">
 										<span id="current_count">0</span> <span id="maximum_count">/
 											50</span> 
 									<a href="javascript:boardForm.submit();" class="button" style="float: right;">수정완료</a>
@@ -144,7 +146,9 @@ fieldset {
 			</div>
 		</div>
 
-
+			<form name="deleteBoard" method="post" action="${pageContext.request.contextPath}/board/BoardDeleteOk.bo">
+				<input type="hidden" name="boardNum" value="${b_vo.getBoardNum()}">
+			</form>
 
 	</section>
 
@@ -154,6 +158,9 @@ fieldset {
 	<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
 
 	<!-- Scripts -->
+	<script>var photos=$(".photos");</script>
+	<script>var boardNum = "${b_vo.getBoardNum()}";</script>
+	<script>var contextPath = "${pageContext.request.contextPath}"; </script>
 	<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/jquery.dropotron.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/jquery.poptrox.min.js"></script>
@@ -161,47 +168,29 @@ fieldset {
 	<script src="${pageContext.request.contextPath}/assets/js/breakpoints.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
-
+	<script src="${pageContext.request.contextPath}/assets/js/boardModify.js"></script>
 	<script>
 	
-	function showImage(boardImages){
-		if(boardImages!= null){
-			$.each(boardImages, function(index, reply){
-				//이미지 세개 추가
-				var text= "<img src="+contextPath+"/images/board/"+boardImages.lmageName>"			
-				
-			});
-				
-			}//if end
-			
-		}//showImage end 
-	
-	
-	$(document).ready(function(){
-		//파일을 ajax로 불러와서 출력해주기..??
-		$.ajax({
-			url:pageContext+"/board/BoardModifyAction=" +boardNum,
-			type:"get",
-			dataType:"json",
-			
-		})
-	
+		var contentCnt=$('#contentCnt').val();
 		
-	});
-	
+		
 		function preview1() {
-
-			firstImg.src = URL.createObjectURL(event.target.files[0]);
-			firstImg.style.display = "block";
-			firstImg.style.objectFit = "cover";
+			var firstImg1 = document.getElementById("firstImg1");
+			var span1 = document.getElementById("span1");
+			firstImg1.src = URL.createObjectURL(event.target.files[0]);
+			firstImg1.style.display = "block";
+			firstImg1.style.objectFit = "cover";
 			span1.style.display = "none";
 
 		}
 		function preview2() {
-			if (window.getComputedStyle(firstImg).display == "block") {
-				secondImg.src = URL.createObjectURL(event.target.files[0]);
-				secondImg.style.display = "block";
-				secondImg.style.objectFit = "cover";
+			var firstImg2 = document.getElementById("firstImg2");
+			var span2 = document.getElementById("span2");
+			if (window.getComputedStyle(document.getElementById("firstImg1")).display == "block") {
+
+				firstImg2.src = URL.createObjectURL(event.target.files[0]);
+				firstImg2.style.display = "block";
+				firstImg2.style.objectFit = "cover";
 
 				span2.style.display = "none";
 			} else {
@@ -210,10 +199,14 @@ fieldset {
 
 		}
 		function preview3() {
-			if (window.getComputedStyle(secondImg).display == "block") {
-				thirdImg.src = URL.createObjectURL(event.target.files[0]);
-				thirdImg.style.display = "block";
-				thirdImg.style.objectFit = "cover";
+			var firstImg3 = document.getElementById("firstImg3");
+			var span3 = document.getElementById("span3");
+			if (window.getComputedStyle(document.getElementById("firstImg2")).display == "block") {
+
+				firstImg3.src = URL.createObjectURL(event.target.files[0]);
+				
+				firstImg3.style.display = "block";
+				firstImg3.style.objectFit = "cover";
 
 				span3.style.display = "none";
 			} else {
@@ -222,26 +215,40 @@ fieldset {
 		}
 
 		function delete1() {
-			firstImg.style.display = "none";
+			var firstImg1 = document.getElementById("firstImg1");
+			var span1 = document.getElementById("span1");
+			console.log("1")
+			firstImg1.style.display = "none";
 			span1.style.display = "block";
 		}
 		function delete2() {
-			secondImg.style.display = "none";
+			var firstImg2 = document.getElementById("firstImg2");
+			var span2 = document.getElementById("span2");
+			console.log("2")
+			firstImg2.style.display = "none";
 			span2.style.display = "block";
 		}
 		function delete3() {
-			thirdImg.style.display = "none";
+			var firstImg3 = document.getElementById("firstImg3");
+			var span3 = document.getElementById("span3");
+			console.log("3");
+			firstImg3.style.display = "none";
 			span3.style.display = "block";
 		}
+		
+		$(document).ready(function(){
+			var cnt = document.getElementById("current_count");
+			cnt.innerHTML= document.getElementById("boardContent").value.length;	
+		});
+		
 
 		$('textarea')
 				.keyup(
 						function() {
-							var characterCount = $(this).val().length, current_count = $('#current_count'), maximum_count = $('#maximum_count'), count = $('#count');
+							var characterCount = document.getElementById("boardContent").value.length, current_count =document.getElementById("current_count"), maximum_count = $('#maximum_count'), count =$('#count');
 
-							current_count.text(characterCount);
-
+							current_count.innerHTML = document.getElementById("boardContent").value.length;
 						});
-	</script>
+	</script> 
 </body>
 </html>

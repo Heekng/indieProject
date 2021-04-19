@@ -83,7 +83,7 @@
 			               									<c:forEach var="movieTitle"  items="${movieTitle}" >
 			               										<c:if test="${not loop_flag }">
 				               								 		<c:if test="${myReviewVO.getAmaNum() eq movieTitle.getAmaNum()}"> 
-				               											<c:out value="${movieTitle.getAmaTitleKor()}"/>
+				               											<a href="${pageContext.request.contextPath}/amaMovie/AmaMovieDetail.ama?amaNum=${myReviewVO.getAmaNum()}&page=${nowPage}"><c:out value="${movieTitle.getAmaTitleKor()}"/></a>
 				               											<c:set var="loop_flag" value="true"/>
 				               							 			</c:if>
 				               							 		</c:if>
@@ -101,9 +101,7 @@
 														</td>	
 														
 														<td>
-														<a href="${pageContext.request.contextPath}/amaMovie/AmaMovieDetail.ama?amaNum=${myReviewVO.getAmaNum()}&page=${nowPage}">
-															${myReviewVO.getReplyContent()}
-														</a>
+															<c:out value="${myReviewVO.getReplyContent()}"/>
 														</td>
 														
 														<td>

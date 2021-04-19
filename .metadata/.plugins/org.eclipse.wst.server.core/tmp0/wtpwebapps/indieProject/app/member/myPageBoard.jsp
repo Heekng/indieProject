@@ -133,11 +133,11 @@ li {
 							<fieldset
 								style="padding-left: 5%; margin-bottom: 0; border-width: 3px; background: white;">
 								<div class="row" style="width: 100%;" id="posterRow">
-									<c:set var="i" value="${0}"/>
+									<%-- <c:set var="i" value="${0}"/> --%>
 									<c:choose>
 										<c:when test="${boards != null and fn:length(boards) > 0}">
 											<c:forEach var="b_vo" items="${boards}">
-												<c:set var="i" value="${i+1}"/>
+												<%-- <c:set var="i" value="${i+1}"/> --%>
 												<div class="col-poster"
 													style="width: 30%; height: 10%; margin: 10px;">
 													<div  class="image fit posterTag gallery"
@@ -156,7 +156,7 @@ li {
 														</a>
 													
 													</div>
-													<a  style="text-decoration: none; float: right;" onclick="deleteBoard(${i})">[삭제]</a> 
+													<a  style="text-decoration: none; float: right;" onclick="deleteBoard(${b_vo.getBoardNum()})">[삭제]</a> 
 													<a href="${pageContext.request.contextPath}/board/BoardModify.bo?boardNum=${b_vo.getBoardNum()}" style="text-decoration: none; float: right;">[수정]</a>
 													<input id="${i}" type="hidden" name="boardNum" value="${b_vo.getBoardNum()}">
 												</div>

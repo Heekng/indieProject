@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
 </head>
 <body class="is-preload">
-	
+	<c:set var="noneExchangeList" value="${noneExchangeList}"/>
 	<!-- Header -->
 	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
 
@@ -30,10 +30,10 @@
 			<div class="row" style="margin-bottom: 1em;">
 				<ul class="actions" style="margin: 0 auto;">
 					<li>
-						<a href="#" class="button primary">미처리 환급</a>
+						<a href="${pageContext.request.contextPath}/manager/managerNoneRefunds.ma" class="button primary">미처리 환급</a>
 					</li>
 					<li>
-						<a href="#" class="button alt">처리된 환급</a>
+						<a href="${pageContext.request.contextPath}/manager/managerRefunds.ma" class="button alt">처리된 환급</a>
 					</li>
 				</ul>
 			</div>
@@ -45,25 +45,44 @@
 							<table class="alt">
 								<thead>
 									<tr>
-										<th>번호</th>
+										<th>신청번호</th>
+										<th>신청일자</th>
 										<th>신청자 ID</th>
 										<th>환전 신청 개수</th>
 										<th>실 환전 금액</th>
 										<th>예금주</th>
 										<th>은행</th>
 										<th>계좌번호</th>
+										<th>완료</th>
 									</tr>
 								</thead>
 								<tbody>
+									<c:forEach var="data" items="${noneExchangeList}">
+										<tr>
+											<td>${data.getExchangeNum()}</td>
+											<td>${data.getExchangeDate()}</td>
+											<td>${data.getMemberId()}</td>
+											<td>${data.getPopcornNum()}개</td>
+											<td>${data.getMoney()}원</td>
+											<td>${data.getMemberName()}</td>
+											<td>${data.getMemberBank()}</td>
+											<td>${data.getAccountNum()}</td>
+											<td><a href="">입금완료</a></td>
+										</tr>
+									</c:forEach>
+									
 									<tr>
 										<td>1</td>
+										<td>202104190000</td>
 										<td>heekng</td>
 										<td>100개</td>
 										<td>8000원</td>
 										<td>고희광</td>
 										<td>농협</td>
-										<td>356-0743-7152-53</td>
+										<td>3560743715253</td>
+										<td><a href="">입금완료</a></td>
 									</tr>
+									
 								</tbody>
 							</table>
 						</div>

@@ -37,6 +37,25 @@ li {
 		width: 40% !important;
 	}
 }
+.poptrox-popup .closer:before {
+	right: 0px !important;
+	top: 0px !important;
+	z-index:9999 !important;
+}
+.poptrox-popup .closer {
+	z-index: 9999;
+	border-radius: 20px;
+	right: 0px !important;
+}
+.poptrox-popup {
+	top:25px;
+	padding-bottom:0 !important;
+	
+}
+.caption {
+	display:none !important;
+}
+
 </style>
 
 <body class="is-preload">
@@ -85,15 +104,19 @@ li {
 												test="${replyList !=null and fn:length(replyList) > 0}">
 												<c:forEach var="replay" items="${replyList}">
 													<tr onmouseover="this.style.backgroudColor='F8F8F8'"
-														onmouseout="this.style.backgroundColor='FFFFFF'">
+														onmouseout="this.style.backgroundColor='FFFFFF'"
+														class="reply"
+														>
 
 														<%-- 글번호  --%>
 														<td>${replay.getBoardNum()}</td>
 
 														<%-- 내용 --%>
-														<td><a
-															href="${pageContext.request.contextPath}/board/BoardView.bo?boardNum=${replay.getBoardNum()}&page=${nowPage}">
-																${replay.getReplyContent()} </a></td>
+														<td>
+														<a href="${pageContext.request.contextPath}/board/BoardView.bo?boardNum=${replay.getBoardNum()}&page=${nowPage}"
+															data-poptrox="iframe,800x500">
+																${replay.getReplyContent()}</a>
+														</td>
 														<%-- 작성시간 --%>
 														<td>${replay.getReplyDate()}</td>
 												</c:forEach>
@@ -157,9 +180,14 @@ li {
 	<script>$("#mrp").css("background", "rgba(144, 144, 144, 0.075)");</script>
 
 	<script>
-			if(window.matchMedia('(max-width: 9999px)').matches){
-			}
-		</script>
+	$(function() {
+		$('.reply').poptrox({
+			usePopupCaption : true,
+			usePopupNav : true,
+			popupPadding : 0
+		});
+	});
+	</script>
 
 </body>
 </html>

@@ -51,4 +51,14 @@
 		<url-pattern>*.bo</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>ManagerFrontController</servlet-name>
+		<servlet-class>com.indieProject.app.manager.ManagerFrontController</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ManagerFrontController</servlet-name>
+		<url-pattern>*.ma</url-pattern>
+	</servlet-mapping>
+
 </web-app>

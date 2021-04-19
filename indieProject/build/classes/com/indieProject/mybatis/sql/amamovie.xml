@@ -100,4 +100,10 @@
 	<update id="updatePopcornContent" parameterType="map">
 		UPDATE POPCORN_USE_TABLE SET POPCORNCONTENT = #{content} WHERE SENDNUM = #{sendNum}
 	</update>
+	<select id="amaTitleKorSearch" parameterType="string" resultType="amaMovieVO">
+	 SELECT * FROM AMAMOVIE_TABLE WHERE AMATITLEKOR =#{amaMovieTitleKor}
+	</select>
+	<select id="amaTitleEngSearch" parameterType="string" resultType="amaMovieVO">
+	 SELECT * FROM AMAMOVIE_TABLE WHERE AMATITLEENG =#{amaMovieTitleEng}
+	</select>
 </mapper>

@@ -247,7 +247,7 @@ li {
 
 							<div class="popcorn_money"
 								style="background-color: white; position: absolute; top: 67%; left: 50%; width: 45%; height: 30%; padding: 3%; border-radius: 3%;">
-								<h1>환전가능한 팝콘 : 1000개</h1>
+								<h1>환전가능한 팝콘 : <c:out value="${myReceivedPopcornNum}" /></h1>
 								<ul style="margin: 3%;">
 									<li>100개 이상부터 환전 가능</li>
 								</ul>

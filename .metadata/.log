@@ -6761,3 +6761,107 @@ java.lang.NullPointerException: Cannot invoke "org.eclipse.emf.ecore.xmi.impl.XM
 	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
 	at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:89)
 	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2021-04-19 09:45:10.056
+!MESSAGE SVN: '0x00000114: Commit' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2021-04-19 09:45:10.056
+!MESSAGE Some of selected resources were not committed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200009: Cannot commit '/Users/heekng/coding/unityTeam/indieProject/src/com/indieProject/app/member/MemberExchangePopcornOkAction.java' because it was moved from '/Users/heekng/coding/unityTeam/indieProject/src/com/indieProject/app/member/MemberReceivedPopcornAction.java' which is not part of the commit; both sides of the move must be committed together
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.commit(SVNKitConnector.java:503)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.commit(ThreadNameModifier.java:114)
+	at org.eclipse.team.svn.core.operation.local.CommitOperation$2.run(CommitOperation.java:130)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doSubTask(ProgressMonitorUtility.java:118)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.protectStep(AbstractActionOperation.java:156)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.protectStep(AbstractActionOperation.java:151)
+	at org.eclipse.team.svn.core.operation.local.CommitOperation.performCommit(CommitOperation.java:127)
+	at org.eclipse.team.svn.core.operation.local.CommitOperation.runImpl(CommitOperation.java:98)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.operation.CompositeOperation.runImpl(CompositeOperation.java:99)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.WorkspaceModifyCancellableOperationWrapper.execute(WorkspaceModifyCancellableOperationWrapper.java:58)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.lambda$0(WorkspaceModifyOperation.java:110)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(WorkspaceModifyOperation.java:131)
+	at org.eclipse.team.svn.ui.utility.SVNTeamOperationWrapper.run(SVNTeamOperationWrapper.java:35)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:155)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:83)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:42)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200009: Cannot commit '/Users/heekng/coding/unityTeam/indieProject/src/com/indieProject/app/member/MemberExchangePopcornOkAction.java' because it was moved from '/Users/heekng/coding/unityTeam/indieProject/src/com/indieProject/app/member/MemberReceivedPopcornAction.java' which is not part of the commit; both sides of the move must be committed together
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:117)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1539)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.commit(SVNClientImpl.java:504)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.commit(SVNKitConnector.java:494)
+	... 24 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200009: Cannot commit '/Users/heekng/coding/unityTeam/indieProject/src/com/indieProject/app/member/MemberExchangePopcornOkAction.java' because it was moved from '/Users/heekng/coding/unityTeam/indieProject/src/com/indieProject/app/member/MemberReceivedPopcornAction.java' which is not part of the commit; both sides of the move must be committed together
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:70)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:57)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgCommit.doRun(SvnNgCommit.java:185)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgCommit.run(SvnNgCommit.java:145)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgCommit.run(SvnNgCommit.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.wc2.SvnCommit.run(SvnCommit.java:198)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.commit(SVNClientImpl.java:502)
+	... 25 more
+
+!ENTRY org.eclipse.team.svn.core.svnnature 4 0 2021-04-19 09:45:39.798
+!MESSAGE SVN: '0x00000114: Commit' operation finished with error
+!SUBENTRY 1 org.eclipse.team.svn.core.svnnature 4 0 2021-04-19 09:45:39.798
+!MESSAGE Some of selected resources were not committed.
+!STACK 0
+org.eclipse.team.svn.core.connector.SVNConnectorException: svn: E200009: Cannot commit '/Users/heekng/coding/unityTeam/indieProject/src/com/indieProject/app/member/MemberExchangePopcornOkAction.java' because it was moved from '/Users/heekng/coding/unityTeam/indieProject/src/com/indieProject/app/member/MemberReceivedPopcornAction.java' which is not part of the commit; both sides of the move must be committed together
+	at org.polarion.team.svn.connector.svnkit.SVNKitService.handleClientException(SVNKitService.java:59)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.commit(SVNKitConnector.java:503)
+	at org.eclipse.team.svn.core.extension.factory.ThreadNameModifier.commit(ThreadNameModifier.java:114)
+	at org.eclipse.team.svn.core.operation.local.CommitOperation$2.run(CommitOperation.java:130)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doSubTask(ProgressMonitorUtility.java:118)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.protectStep(AbstractActionOperation.java:156)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.protectStep(AbstractActionOperation.java:151)
+	at org.eclipse.team.svn.core.operation.local.CommitOperation.performCommit(CommitOperation.java:127)
+	at org.eclipse.team.svn.core.operation.local.CommitOperation.runImpl(CommitOperation.java:98)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.operation.CompositeOperation.runImpl(CompositeOperation.java:99)
+	at org.eclipse.team.svn.core.operation.AbstractActionOperation.run(AbstractActionOperation.java:82)
+	at org.eclipse.team.svn.core.operation.LoggedOperation.run(LoggedOperation.java:40)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTask(ProgressMonitorUtility.java:104)
+	at org.eclipse.team.svn.core.utility.ProgressMonitorUtility.doTaskExternal(ProgressMonitorUtility.java:90)
+	at org.eclipse.team.svn.ui.utility.WorkspaceModifyCancellableOperationWrapper.execute(WorkspaceModifyCancellableOperationWrapper.java:58)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.lambda$0(WorkspaceModifyOperation.java:110)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(WorkspaceModifyOperation.java:131)
+	at org.eclipse.team.svn.ui.utility.SVNTeamOperationWrapper.run(SVNTeamOperationWrapper.java:35)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:155)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:83)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:42)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.apache.subversion.javahl.ClientException: svn: E200009: Cannot commit '/Users/heekng/coding/unityTeam/indieProject/src/com/indieProject/app/member/MemberExchangePopcornOkAction.java' because it was moved from '/Users/heekng/coding/unityTeam/indieProject/src/com/indieProject/app/member/MemberReceivedPopcornAction.java' which is not part of the commit; both sides of the move must be committed together
+	at org.apache.subversion.javahl.ClientException.fromException(ClientException.java:117)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.getClientException(SVNClientImpl.java:1539)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.commit(SVNClientImpl.java:504)
+	at org.polarion.team.svn.connector.svnkit.SVNKitConnector.commit(SVNKitConnector.java:494)
+	... 24 more
+Caused by: org.tmatesoft.svn.core.SVNException: svn: E200009: Cannot commit '/Users/heekng/coding/unityTeam/indieProject/src/com/indieProject/app/member/MemberExchangePopcornOkAction.java' because it was moved from '/Users/heekng/coding/unityTeam/indieProject/src/com/indieProject/app/member/MemberReceivedPopcornAction.java' which is not part of the commit; both sides of the move must be committed together
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:70)
+	at org.tmatesoft.svn.core.internal.wc.SVNErrorManager.error(SVNErrorManager.java:57)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgCommit.doRun(SvnNgCommit.java:185)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgCommit.run(SvnNgCommit.java:145)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgCommit.run(SvnNgCommit.java:1)
+	at org.tmatesoft.svn.core.internal.wc2.ng.SvnNgOperationRunner.run(SvnNgOperationRunner.java:20)
+	at org.tmatesoft.svn.core.internal.wc2.SvnOperationRunner.run(SvnOperationRunner.java:21)
+	at org.tmatesoft.svn.core.wc2.SvnOperationFactory.run(SvnOperationFactory.java:1235)
+	at org.tmatesoft.svn.core.wc2.SvnOperation.run(SvnOperation.java:294)
+	at org.tmatesoft.svn.core.wc2.SvnCommit.run(SvnCommit.java:198)
+	at org.tmatesoft.svn.core.javahl17.SVNClientImpl.commit(SVNClientImpl.java:502)
+	... 25 more

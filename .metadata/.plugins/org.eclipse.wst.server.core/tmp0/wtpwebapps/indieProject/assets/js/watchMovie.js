@@ -117,3 +117,15 @@ function deleteReview(amaNum){
 		alert("감상평 삭제를 취소했습니다.");
 	}
 }
+
+//팝콘 보내기
+function sendPopcorn(){
+		var _width = 380;
+		var _height = 500;
+		
+		var _left = Math.ceil(( window.screen.width - _width )/2);
+	    var _top = Math.ceil(( window.screen.height - _height )/2);
+	    
+		var sendPopcornFrame = window.open(pageContext+"/amaMovie/PopcornSend.ama?amaNum="+amaNum+"&amaTitle="+amaTitle, 
+				"popup","width=380px, height=500px, left="+_left+", top="+_top+", resizable=no, scrollbars=no", true);
+}
