@@ -28,4 +28,10 @@
 	<select id="getMemberEmail" parameterType="string" resultType="string">
 		SELECT MEMBEREMAIL FROM MEMBER_TABLE WHERE MEMBERID = #{memberId}
 	</select>
+	<update id="setDeleteMovieYes" parameterType="_int">
+		UPDATE AMAMOVIE_DELETE_TABLE SET DELETECHECK = 'YES' WHERE AMANUM = #{amaNum}
+	</update>
+	<delete id="deleteMovieNo" parameterType="_int">
+		DELETE AMAMOVIE_DELETE_TABLE WHERE AMANUM = #{amaNum}
+	</delete>
 </mapper>
