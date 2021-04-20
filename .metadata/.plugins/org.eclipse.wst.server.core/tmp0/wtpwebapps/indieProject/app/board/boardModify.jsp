@@ -34,6 +34,19 @@ fieldset {
 		padding: 0 32px !important;
 	}
 }
+#bImgHelp {
+	display: none;
+	position: absolute;
+	width: 200px;
+	margin: 0;
+	padding: 0.5rem;
+	background: #FFFFFF;
+	border-radius: 5px;
+	list-style: none;
+	box-shadow: 0 15px 35px rgba(50, 50, 90, 0.1), 0 5px 15px
+		rgba(0, 0, 0, 0.07);
+	z-index: 999999;
+}
 </style>
 <body class="is-preload">
 	<c:set var="b_vo"  value="${b_vo}"/>
@@ -63,6 +76,11 @@ fieldset {
 					<fieldset
 						style="border: solid; border-style: outset; padding-left: 4%; padding-top: 4%; padding-bottom: 4%; padding-right: 4%;">
 						<br>
+						<h3 style="display:inline-block;">사진 업로드</h3>
+						<span><img id="bImg" style="width: 17px; cursor: help;" 
+						src="${pageContext.request.contextPath}/images/question.png"></span>
+						<div id="bImgHelp" style="display: none; resize: none;">첫번째로
+							첨부된 이미지가 대표 이미지로 사용됩니다.</div>
 						<section style="margin-right: auto; margin-left: auto;">
 							<form action="${pageContext.request.contextPath}/board/BoardModifyOk.bo" method="post" name="boardForm" enctype="multipart/form-data">
 								<input type="hidden" name="boardNum" value="${b_vo.getBoardNum()}">
@@ -128,7 +146,8 @@ fieldset {
 								</div>
 
 								<div>
-									<h3>문구입력</h3>
+									<br>
+									<h3>게시글 내용 작성</h3>
 									<textarea name="boardContent" maxlength="50" id="boardContent"
 										style="width: 100%; resize: none; margin-left: auto; margin-right: auto; margin-bottom: 1%;">${b_vo.getBoardContent()}</textarea>
 									<div id="count">
@@ -136,7 +155,7 @@ fieldset {
 									<input type="hidden" id="contentCnt" value="${fn:length(b_vo.getBoardContent())}">
 										<span id="current_count">0</span> <span id="maximum_count">/
 											50</span> 
-									<a href="javascript:boardForm.submit();" class="button" style="float: right;">수정완료</a>
+									<a href="javascript: submit();" class="button" style="float: right;">수정완료</a>
 									</div>
 								</div>
 							</form>
@@ -173,82 +192,11 @@ fieldset {
 	
 		var contentCnt=$('#contentCnt').val();
 		
-		
-		function preview1() {
-			var firstImg1 = document.getElementById("firstImg1");
-			var span1 = document.getElementById("span1");
-			firstImg1.src = URL.createObjectURL(event.target.files[0]);
-			firstImg1.style.display = "block";
-			firstImg1.style.objectFit = "cover";
-			span1.style.display = "none";
-
-		}
-		function preview2() {
-			var firstImg2 = document.getElementById("firstImg2");
-			var span2 = document.getElementById("span2");
-			if (window.getComputedStyle(document.getElementById("firstImg1")).display == "block") {
-
-				firstImg2.src = URL.createObjectURL(event.target.files[0]);
-				firstImg2.style.display = "block";
-				firstImg2.style.objectFit = "cover";
-
-				span2.style.display = "none";
-			} else {
-				alert("첫번째 앨범을 채워주세요.");
-			}
-
-		}
-		function preview3() {
-			var firstImg3 = document.getElementById("firstImg3");
-			var span3 = document.getElementById("span3");
-			if (window.getComputedStyle(document.getElementById("firstImg2")).display == "block") {
-
-				firstImg3.src = URL.createObjectURL(event.target.files[0]);
-				
-				firstImg3.style.display = "block";
-				firstImg3.style.objectFit = "cover";
-
-				span3.style.display = "none";
-			} else {
-				alert("두번째 앨범을 채워주세요.");
-			}
-		}
-
-		function delete1() {
-			var firstImg1 = document.getElementById("firstImg1");
-			var span1 = document.getElementById("span1");
-			console.log("1")
-			firstImg1.style.display = "none";
-			span1.style.display = "block";
-		}
-		function delete2() {
-			var firstImg2 = document.getElementById("firstImg2");
-			var span2 = document.getElementById("span2");
-			console.log("2")
-			firstImg2.style.display = "none";
-			span2.style.display = "block";
-		}
-		function delete3() {
-			var firstImg3 = document.getElementById("firstImg3");
-			var span3 = document.getElementById("span3");
-			console.log("3");
-			firstImg3.style.display = "none";
-			span3.style.display = "block";
-		}
-		
 		$(document).ready(function(){
 			var cnt = document.getElementById("current_count");
 			cnt.innerHTML= document.getElementById("boardContent").value.length;	
 		});
 		
-
-		$('textarea')
-				.keyup(
-						function() {
-							var characterCount = document.getElementById("boardContent").value.length, current_count =document.getElementById("current_count"), maximum_count = $('#maximum_count'), count =$('#count');
-
-							current_count.innerHTML = document.getElementById("boardContent").value.length;
-						});
 	</script> 
 </body>
 </html>

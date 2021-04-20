@@ -30,7 +30,7 @@
 	</delete>
 	<update id="updateBoard" parameterType="boardVO">
 		UPDATE BOARD_TABLE
-		SET BOARDCOUNT = #{boardCount} 
+		SET BOARDCONTENT = #{boardContent}, BOARDIMAGE = #{boardImage} 
 		WHERE BOARDNUM = #{boardNum}
 	</update>
 	<delete id="deleteBoard" parameterType="_int">

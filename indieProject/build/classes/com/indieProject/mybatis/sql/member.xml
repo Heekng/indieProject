@@ -140,9 +140,12 @@
 		DELETE MEMBER_TABLE WHERE MEMBERID = #{memberId}
 	</delete>
 	<insert id="requestDeleteMovie" parameterType="deleteMovieVO">
-		INSERT INTO AMAMOVIE_DELETE_TABLE VALUES (#{memberId}, #{amaNum}, #{amaTitleKor}, SYSDATE, TO_DATE('2001-01-01', 'YYYY-MM-DD'), 'no')
+		INSERT INTO AMAMOVIE_DELETE_TABLE VALUES (#{memberId}, #{amaNum}, #{amaTitleKor}, SYSDATE, TO_DATE('2001-01-01', 'YYYY-MM-DD'), 'no', #{reason})
 	</insert>
 	<select id="getMovie" parameterType="hashmap" resultType="amaMovieVO">
 		SELECT * FROM AMAMOVIE_TABLE WHERE AMANUM = #{amaNum} AND MEMBERID = #{memberId}
+	</select>
+	<select id="checkDeleteRequest" parameterType="_int">
+		SELECT COUNT(*) FROM AMAMOVIE_DELETE_TABLE WHERE AMANUM = #{amaNum}
 	</select>
 </mapper>

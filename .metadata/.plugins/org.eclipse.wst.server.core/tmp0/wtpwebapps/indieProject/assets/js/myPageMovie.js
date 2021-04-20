@@ -57,20 +57,26 @@ function moveDetail(amaNum){
 }
 
 function deleteMovie(amaNum){
-	$.ajax({
-		url : contextPath + "/member/MemberDeleteReqOk.me",
-		type : "post",
-		data : {"session_id" : session_id, "amaNum" : amaNum},
-		dataType : "text",
-		success : function(result){
-			if(result.trim() == "ok"){
-				alert("삭제신청 완료되었습니다.");
-			}else{
-				alert("오류 발생 잠시후 다시 시도해주세요.");
-			}
-		},
-		error:function(){//통신 오류 시
-			console.log("오류");
+	var reason;
+	if(confirm("영화 삭제시 해당 영화와 관련된 모든 내용이 삭제됩니다. 동의합니까?")){
+		if((reason = prompt("영화 삭제 사유를 입력해주세요.", "")) != null){
+			$.ajax({
+				url : contextPath + "/member/memberDeleteMovieOk.me",
+				type : "post",
+				data : {"amaNum" : amaNum, "reason" : reason},
+				dataType : "text",
+				success : function(result){
+					if(result.trim() == "ok"){
+						alert("삭제신청 완료되었습니다.");
+					}else{
+						alert("오류 발생 잠시후 다시 시도해주세요.");
+					}
+				},
+				error:function(){//통신 오류 시
+					console.log("오류");
+				}
+			})
 		}
-	})
+	}
+	
 }
