@@ -46,6 +46,18 @@ public class ManagerFrontController extends HttpServlet{
 			try {
 				forward = new ManagerExchangeOkAction().execute(req, resp);
 			} catch (Exception e) {e.printStackTrace();}
+		}else if(command.equals("/manager/managerDeleteMovie.ma")) {
+			try {
+				forward = new ManagerDeleteMovieAction().execute(req, resp);
+			} catch (Exception e) {e.printStackTrace();}
+		}else if(command.equals("/manager/deleteMovieOk.ma")) {
+			try {
+				forward = new DeleteMovieOkAction().execute(req, resp);
+			} catch (Exception e) {e.printStackTrace();}
+		}else if(command.equals("/manager/deleteMovieCancleOk.ma")) {
+			try {
+				forward = new DeleteMovieCancleOkAction().execute(req, resp);
+			} catch (Exception e) {e.printStackTrace();}
 		}
 		
 		

@@ -46,4 +46,9 @@ public class ManagerDAO {
 	public boolean deleteMovie(int amaNum) {
 		return session.delete("Manager.deleteMovie", amaNum) == 1;
 	}
+	
+	//이메일 받아오기
+	public String getMemberEmail(String memberId) {
+		return session.selectOne("Manager.getMemberEmail", memberId);
+	}
 }

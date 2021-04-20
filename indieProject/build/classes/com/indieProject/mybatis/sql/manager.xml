@@ -25,4 +25,7 @@
 	<delete id="deleteMovie" parameterType="_int">
 		DELETE AMAMOVIE_TABLE WHERE AMANUM = #{amaNum} 
 	</delete>
+	<select id="getMemberEmail" parameterType="string" resultType="string">
+		SELECT MEMBEREMAIL FROM MEMBER_TABLE WHERE MEMBERID = #{memberId}
+	</select>
 </mapper>

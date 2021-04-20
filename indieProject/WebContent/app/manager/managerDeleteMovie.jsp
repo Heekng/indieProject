@@ -17,11 +17,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
 </head>
 <body class="is-preload">
-	<c:set var="exchangeList" value="${exchangeList}"/>
-	<c:set var="startPage" value="${startPage}"/>
-	<c:set var="endPage" value="${endPage}"/>
-	<c:set var="page" value="${page}"/>
-	<c:set var="realEndPage" value="${realEndPage}"/>
+	<c:set var="noneDeleteMovieList" value="${noneDeleteMovieList}"/>
 	
 	<!-- Header -->
 	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
@@ -53,63 +49,46 @@
 							<table class="alt">
 								<thead>
 									<tr>
-										<th>신청번호</th>
 										<th>신청일자</th>
-										<th>완료일자</th>
 										<th>신청자 ID</th>
-										<th>환전 신청 개수</th>
-										<th>실 환전 금액</th>
-										<th>예금주</th>
-										<th>은행</th>
-										<th>계좌번호</th>
+										<th>영화 번호</th>
+										<th>영화 제목</th>
+										<th>삭제 사유</th>
+										<th>삭제 승인</th>
+										<th>삭제 미승인</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:choose>
-										<c:when test="${exchangeList !=null and fn:length(exchangeList) > 0 }">
-											<c:forEach var="data" items="${exchangeList}">
+										<c:when test="${noneDeleteMovieList !=null and fn:length(noneDeleteMovieList) > 0 }">
+											<c:forEach var="data" items="${noneDeleteMovieList}">
 												<tr>
-													<td>${data.getExchangeNum()}</td>
-													<td>${data.getExchangeDate()}</td>
-													<td>${data.getSuccessDate()}</td>
+													<td>${data.getRequestDate()}</td>
 													<td>${data.getMemberId()}</td>
-													<td>${data.getPopcornNum()}개</td>
-													<td>${data.getMoney()}원</td>
-													<td>${data.getMemberName()}</td>
-													<td>${data.getMemberBank()}</td>
-													<td>${data.getAccountNum()}</td>
+													<td>${data.getAmaNum()}</td>
+													<td>${data.getAmaTitleKor()}</td>
+													<c:choose>
+														<c:when test="${fn:length(data.getReason()) > 15}">
+															<td onclick="alert('${data.getReason()}')" width = "250">${fn:substring(data.getReason(), 0, 15)}...</td>
+														</c:when>
+														<c:otherwise>
+															<td width = "250">${data.getReason()}</td>
+														</c:otherwise>
+													</c:choose>
+													<td><a style="cursor:pointer; text-decoration: none;" onclick="deleteOk('${data.getMemberId()}', '${data.getAmaNum()}', this)">[승인]</a></td>
+													<td><a style="cursor:pointer; text-decoration: none;" onclick="deleteNotOk('${data.getMemberId()}', '${data.getAmaNum()}', this)">[미승인]</a></td>
 												</tr>
 											</c:forEach>
 										</c:when>
 										<c:otherwise>
-											
+											<tr>
+												<td colspan="7" style="text-align: center;">삭제 신청된 영화가 존재하지 않습니다.</td>
+											</tr>
 										</c:otherwise>
 									</c:choose>
 								
 								</tbody>
 							</table>
-							
-							<div style="text-align: center;">
-								<c:if test="${page>1}">
-									<a style="text-decoration:none" href="${pageContext.request.contextPath}/manager/managerRefunds.ma?page=${page-1}">[이전]&nbsp;</a>
-								</c:if>
-								<c:forEach var="i" begin="${startPage}" end="${endPage}">
-									<c:choose>
-										<c:when test="${i eq page}">
-											${i}&nbsp;
-										</c:when>
-										
-										<c:otherwise>
-											<a style="text-decoration:none" href="${pageContext.request.contextPath}/manager/managerRefunds.ma?page=${i}">${i}&nbsp;</a>
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
-								
-								<c:if test="${realEndPage != page}">
-         							<a style="text-decoration:none" href="${pageContext.request.contextPath}/manager/managerRefunds.ma?page=${page + 1}">&nbsp;[다음]</a>
-         						</c:if>
-							</div>
-							
 						</div>
 					</div>
 				</div>
@@ -128,6 +107,35 @@
 	<script src="${pageContext.request.contextPath}/assets/js/breakpoints.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/util.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
-	
+	<script>
+		function deleteOk(memberId, amaNum, tag){
+			//prev()
+			if(confirm(exchangeNum+"번 영화 삭제처리 하시겠습니까?")){
+				$.ajax({
+					url : contextPath + "/manager/deleteMovieOk.ma",
+					type : "post",
+					data : {"memberId" : memberId, "amaNum" : amaNum},
+					dataType : "text",
+					success : function(result){
+						if(result.trim() == "ok"){
+							$(tag).text("완료");
+							$(tag).attr("onclick", "");
+							$(tag).parent().next().children().text("완료");
+							$(tag).parent().next().children().attr("onclick", "");
+						}else{
+							alert("삭제 실패_잠시후 다시 시도해주세요.");
+						}
+					},
+					error:function(){//통신 오류 시
+						console.log("오류");
+					}
+				})
+			}
+		}
+		
+		function deleteNotOk(memberId, amaNum, tag){
+			
+		}
+	</script>
 </body>
 </html>
