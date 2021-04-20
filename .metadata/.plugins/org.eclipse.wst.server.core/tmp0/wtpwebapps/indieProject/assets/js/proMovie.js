@@ -8,16 +8,16 @@ function search(){
 	var wrapper = document.getElementById("wrapper");
 	
 	var i = 1;
-	var swiper = new Swiper('#wrapper', {
+	
+
+	var swiper = new Swiper('.swiper-container', {
 		spaceBetween : 10,
 		loop : false,
-		loopFillGroupWithBlank : false,
+		loopFillGroupWithBlank : true,
 		allowTouchMove: false,
-		initialSlide:0,
-		watchOverflow : true,
 		pagination : {
 			el : '.swiper-pagination',
-			clickable : false
+			clickable : false,
 		},
 		navigation : {
 			nextEl : '.swiper-button-next',
@@ -38,8 +38,6 @@ function search(){
 			}
 		}
 	});
-
-
 	for(let j = 0; j < i; j++){
 		var titles=$("input#"+i).val();
 		console.log(titles);

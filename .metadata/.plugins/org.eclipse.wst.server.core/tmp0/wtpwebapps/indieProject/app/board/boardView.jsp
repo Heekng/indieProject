@@ -337,7 +337,7 @@ img {vertical-align: middle;}
 						<tr style="background:transparent;">
 								<td style="padding:0; padding-left:10px; width:5%;"><c:out value="${session_id}"/></td>
 								<td valign="top" id="text" style="text-align:left;">
-									<textarea rows="" cols="" name="replyContent" id="text" style="resize:none; width:103%;"></textarea>
+									<textarea rows="" cols="" name="replyContent" id="text" style="resize:none; width:60%;"></textarea>
 									<a href="javascript: insertReply()" style="float:left;  text-decoration:none;">등록</a>
 								</td>
 							</tr>

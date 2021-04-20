@@ -21,6 +21,7 @@
 		<typeAlias type="com.indieProject.app.member.vo.MemberAccountVO" alias="memberAccountVO"/>
 		<typeAlias type="com.indieProject.app.member.vo.PopcornExchangeVO" alias="popcornExchangeVO"/>
 		<typeAlias type="com.indieProject.app.manager.vo.PopcornExchangeDataVO" alias="popcornExchangeDataVO"/>
+		<typeAlias type="com.indieProject.app.member.vo.DeleteMovieVO" alias="deleteMovieVO"/>
 	</typeAliases>
 	
 	<environments default="development">

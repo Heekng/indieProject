@@ -52,7 +52,8 @@
 				<a href="javascript: sendPopcorn();" style="width:27%; margin-right:auto;" class="button primary fit small">보내기</a>
 			</div>
 			<div>
-				<a style="width:45%" href="#" class="button fit small">충전하기</a>
+				<a style="width:45%" 
+				href="javascript:window.open('${pageContext.request.contextPath}/member/memberMyPopcorn.me', '', '_blank');" class="button fit small">충전하기</a>
 				<a style="width:45%" href="javascript:window.close();" class="button fit small">나가기</a>
 			</div>
 		</div>

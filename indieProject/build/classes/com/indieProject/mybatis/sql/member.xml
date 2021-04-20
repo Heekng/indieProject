@@ -136,5 +136,13 @@
 	<update id="changePwEmail" parameterType="hashMap">
 		UPDATE MEMBER_TABLE SET MEMBERPW = #{memberPw}, MEMBEREMAIL = #{memberEmail} WHERE MEMBERID = #{memberId}
 	</update>
-
+	<delete id="drop" parameterType="string">
+		DELETE MEMBER_TABLE WHERE MEMBERID = #{memberId}
+	</delete>
+	<insert id="requestDeleteMovie" parameterType="deleteMovieVO">
+		INSERT INTO AMAMOVIE_DELETE_TABLE VALUES (#{memberId}, #{amaNum}, #{amaTitleKor}, SYSDATE, TO_DATE('2001-01-01', 'YYYY-MM-DD'), 'no')
+	</insert>
+	<select id="getMovie" parameterType="hashmap" resultType="amaMovieVO">
+		SELECT * FROM AMAMOVIE_TABLE WHERE AMANUM = #{amaNum} AND MEMBERID = #{memberId}
+	</select>
 </mapper>

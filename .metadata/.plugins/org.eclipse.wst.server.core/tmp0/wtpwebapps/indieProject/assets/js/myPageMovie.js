@@ -38,8 +38,9 @@ function showPage(movies){
 		$.each(movies, function(index, movie){
 			var text = "<div class='col-poster' style='width: 30%; height: 10%; margin: 10px;'>"+
 					"<div class='image fit posterTag' style='margin-bottom: 0px;'>"+
-					"<img src='"+contextPath+"/images/amaMovie/"+movie.fileName+"' alt='"+movie.fileName+"' onclick='moveDetail("+movie.amaNum+")'/>"+
-					"<p>"+movie.amaTitleKor+"<a style='position: absolute; right:0;' href='javascript:modifyMovie("+movie.amaNum+")'>수정</a></p>"+
+					"<img  style='cursor: pointer;' src='"+contextPath+"/images/amaMovie/"+movie.fileName+"' alt='"+movie.fileName+"' onclick='moveDetail("+movie.amaNum+")'/>"+
+					"<p>"+movie.amaTitleKor+"<span style='position: absolute; right:0;'><a style='text-decoration:none' href='javascript:modifyMovie("+movie.amaNum+")'>[수정]</a>"+
+					"<a style='text-decoration:none' href='javascript:deleteMovie("+movie.amaNum+")'>[삭제]</a></span></p>"+
 					"</div>"+
 					"</div>";
 			$("#posterRow").append(text);
@@ -53,4 +54,23 @@ function modifyMovie(amaNum){
 }
 function moveDetail(amaNum){
 	location.href = contextPath+"/amaMovie/AmaMovieDetail.ama?amaNum="+amaNum;
+}
+
+function deleteMovie(amaNum){
+	$.ajax({
+		url : contextPath + "/member/MemberDeleteReqOk.me",
+		type : "post",
+		data : {"session_id" : session_id, "amaNum" : amaNum},
+		dataType : "text",
+		success : function(result){
+			if(result.trim() == "ok"){
+				alert("삭제신청 완료되었습니다.");
+			}else{
+				alert("오류 발생 잠시후 다시 시도해주세요.");
+			}
+		},
+		error:function(){//통신 오류 시
+			console.log("오류");
+		}
+	})
 }

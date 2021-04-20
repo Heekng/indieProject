@@ -144,7 +144,7 @@ li {
 																<c:choose>
 																	<c:when test="${!empty poster.getFileName()}">
 																		<c:set var="textSize" value="${fn:length(poster.getFileName())}"/>
-																		<img src="${pageContext.request.contextPath}/images/amaMovie/${fn:substring(poster.getFileName(),5,textSize)}" alt="${poster.getFileName()}" onclick="moveDetail(${movie.getAmaNum()})"/>
+																		<img style="cursor: pointer;" src="${pageContext.request.contextPath}/images/amaMovie/${fn:substring(poster.getFileName(),5,textSize)}" alt="${poster.getFileName()}" onclick="moveDetail(${movie.getAmaNum()})"/>
 																	</c:when>
 																	<c:otherwise>
 																		<img src="${pageContext.request.contextPath}/images/amaMovie/poster/testPoster1.jpg" alt=""/>
@@ -152,7 +152,8 @@ li {
 																</c:choose>
 															</c:if>
 														</c:forEach>
-														<p>${movie.getAmaTitleKor()}<a style="position: absolute; right:0;" href="javascript:modifyMovie(${movie.getAmaNum()})">수정</a></p>
+														<p>${movie.getAmaTitleKor()}<span style="position: absolute; right:0;"><a style="text-decoration:none" href="javascript:modifyMovie(${movie.getAmaNum()})">[수정]</a>
+														<a style="text-decoration:none" href="javascript:deleteMovie(${movie.getAmaNum()})">[삭제]</a></span></p>
 													</div>
 												</div>
 											</c:forEach>

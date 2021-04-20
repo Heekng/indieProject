@@ -156,7 +156,7 @@ li {
 														</a>
 													
 													</div>
-													<a  style="text-decoration: none; float: right;" onclick="deleteBoard(${b_vo.getBoardNum()})">[삭제]</a> 
+													<a  style="text-decoration: none; float: right; cursor:pointer;" onclick="deleteBoard(${b_vo.getBoardNum()})">[삭제]</a> 
 													<a href="${pageContext.request.contextPath}/board/BoardModify.bo?boardNum=${b_vo.getBoardNum()}" style="text-decoration: none; float: right;">[수정]</a>
 													<input id="${i}" type="hidden" name="boardNum" value="${b_vo.getBoardNum()}">
 												</div>

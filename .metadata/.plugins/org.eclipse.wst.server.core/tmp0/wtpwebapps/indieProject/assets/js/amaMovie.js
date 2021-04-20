@@ -111,3 +111,44 @@ function loadData(){
 		$("#content").append(text);
 	});
 }
+
+//영화검색
+function searchTitle(){
+	var movieTitle=$("input[name='title']");
+	var text="";
+	
+	$.each(movieJson, function(index, movie){
+		console.log(movie.fileName);
+		if(movie.amaTitleKor != movieTitle){
+			var nonText = "<div class='row'>"+
+			"<div style='height:400px; margin:0 auto;'><p>검색한 영화가 없습니다.</p></div>"+
+			"</div>";
+			$("#content").html(nonText);
+		}
+		else{
+		text += "<div class='swiper-slide'>"+
+						"<div class='col-poster'>"+
+							"<div class='image fit posterTag' style='margin-bottom: 4px;'>"+
+								"<img src='"+contextPath+"/images/amaMovie/"+movie.fileName+"' style='border-radius: 10px;' />"+
+								"<div id='detailText'"+
+									"style='padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;'>"+
+									"<div style='height: 65%; text-overflow: ellipsis; line-height: initial; overflow: hidden; font-size: 0.8em; margin: 10px;'>"+
+										movie.synopsis+
+									"</div>"+
+									"<a class='button primary small' href='"+contextPath+"/amaMovie/AmaMovieDetail.ama?amaNum="+movie.amaNum+"'"+ 
+										"style='position: absolute; left: 16px; right: 16px; bottom: 16px; height: 38px; line-height: 38px; padding: 0 0;'>"+
+										"상세보기 <img alt='' src='' title='영화제목'>"+
+									"</a>"+
+								"</div>"+
+							"</div>"+
+							"<span><strong style='font-size:0.8em;'>"+movie.amaTitleKor+"</strong></span>"+
+						"</div>"+
+					"</div>";
+	text += "</div>"+
+				"<div class='swiper-button-prev leftBtn moveBtn'></div>"+
+				"<div class='swiper-button-next rightBtn moveBtn'></div>"+
+			"</div>";
+	$("#content").append(text);
+	}
+	})
+}

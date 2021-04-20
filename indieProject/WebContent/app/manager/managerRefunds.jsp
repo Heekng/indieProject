@@ -40,6 +40,9 @@
 					<li>
 						<a href="${pageContext.request.contextPath}/manager/managerRefunds.ma" class="button primary">처리된 환급</a>
 					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/manager/managerDeleteMovie.ma" class="button alt">영화 삭제</a>
+					</li>
 				</ul>
 			</div>
 			<!-- Content -->
