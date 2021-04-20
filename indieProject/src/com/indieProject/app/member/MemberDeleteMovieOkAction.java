@@ -43,7 +43,9 @@ public class MemberDeleteMovieOkAction implements Action{
 		d_vo.setMemberId(memberId);
 		d_vo.setReason(reason);
 		
-		if(m_dao.requestDeleteMovie(d_vo)) {
+		if(m_dao.checkDeleteRequest(amaNum)) {
+			out.print("complete");
+		}else if(m_dao.requestDeleteMovie(d_vo)) {
 			out.print("ok");
 		}else {
 			out.print("not-ok");

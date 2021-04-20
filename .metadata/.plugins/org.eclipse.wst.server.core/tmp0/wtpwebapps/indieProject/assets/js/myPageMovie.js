@@ -68,6 +68,8 @@ function deleteMovie(amaNum){
 				success : function(result){
 					if(result.trim() == "ok"){
 						alert("삭제신청 완료되었습니다.");
+					}else if(result.trim() == "complete"){
+						alert("이미 삭제 신청 완료된 영화입니다.");
 					}else{
 						alert("오류 발생 잠시후 다시 시도해주세요.");
 					}

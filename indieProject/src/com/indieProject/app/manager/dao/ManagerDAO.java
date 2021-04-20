@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.indieProject.app.manager.vo.PopcornExchangeDataVO;
+import com.indieProject.app.member.vo.DeleteMovieVO;
 import com.indieProject.mybatis.config.SqlMapConfig;
 
 public class ManagerDAO {
@@ -36,5 +37,13 @@ public class ManagerDAO {
 	//전체 입금완료 데이터 개수 가져오기
 	public int getExchangeCnt(){
 		return session.selectOne("Manager.getExchangeCnt");
+	}
+	//미처리 영화삭제 리스트 받아오기
+	public List<DeleteMovieVO> getNoneDeleteMovie(){
+		return session.selectList("Manager.getNoneDeleteMovie");
+	}
+	//영화 삭제
+	public boolean deleteMovie(int amaNum) {
+		return session.delete("Manager.deleteMovie", amaNum) == 1;
 	}
 }

@@ -19,4 +19,10 @@
 	<select id="getExchangeCnt" resultType="_int">
 		SELECT COUNT(*) FROM POPCORN_EXCHANGE_TABLE WHERE EXCHANGECHECK = 'yes' ORDER BY EXCHANGENUM DESC
 	</select>
+	<select id="getNoneDeleteMovie" resultType="deleteMovieVO">
+		SELECT * FROM AMAMOVIE_DELETE_TABLE WHERE DELETECHECK = 'no' ORDER BY REQUESTDATE DESC
+	</select>
+	<delete id="deleteMovie" parameterType="_int">
+		DELETE AMAMOVIE_TABLE WHERE AMANUM = #{amaNum} 
+	</delete>
 </mapper>

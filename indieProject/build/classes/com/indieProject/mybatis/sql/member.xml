@@ -145,7 +145,7 @@
 	<select id="getMovie" parameterType="hashmap" resultType="amaMovieVO">
 		SELECT * FROM AMAMOVIE_TABLE WHERE AMANUM = #{amaNum} AND MEMBERID = #{memberId}
 	</select>
-	<select id="checkDeleteRequest" parameterType="_int">
+	<select id="checkDeleteRequest" parameterType="_int" resultType="_int">
 		SELECT COUNT(*) FROM AMAMOVIE_DELETE_TABLE WHERE AMANUM = #{amaNum}
 	</select>
 </mapper>
