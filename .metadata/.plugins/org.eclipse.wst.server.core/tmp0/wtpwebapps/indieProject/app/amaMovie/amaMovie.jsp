@@ -41,12 +41,12 @@
 				<div class="row gtr-uniform gtr-50">
 					<div class="row gtr-uniform gtr-50 searchZone">
 						<div class="col-6 col-12-small oneLine2">
-							<input type="text" name="name" id="name" value=""
-								placeholder="검색어" />
+							<input type="text" id="searchMovie" value=""
+								placeholder="영화제목" />
 						</div>
 						<div class="col-3 col-6-large col-12-medium searchBtn">
 							<ul class="actions stacked">
-								<li><a href="#" class="button alt small fit">검색</a></li>
+								<li><a onclick="searchTitle()" class="button alt small fit">검색</a></li>
 							</ul>
 						</div>
 						<div class="col-3 col-6-large col-12-medium searchBtn">

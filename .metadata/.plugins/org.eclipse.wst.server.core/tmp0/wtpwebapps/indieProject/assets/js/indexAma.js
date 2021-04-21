@@ -17,12 +17,6 @@ $.ajax({
 			
 			slide.append(str);
 		}
-		for(let i = 0; i < poster.length; i++){
-			
-			str = "<article><a href='"+contextPath+"/images/amaMovie/"+poster[i].fileName+"' class='image'><img src='"+contextPath+"/images/amaMovie/"+poster[i].fileName+"' alt='' title='"+poster[i].amaTitleKor+"' /></a></article>";
-			
-			slide.append(str);
-		}
 		
 		$(function() {
 			$(slide).poptrox({

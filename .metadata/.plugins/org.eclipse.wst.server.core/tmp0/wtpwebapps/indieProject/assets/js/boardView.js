@@ -3,19 +3,7 @@
  */
 
 // 우경씨 코드
-$('.posterTag').on('mouseover', function(){
-					$(this).children('#detailText').css('display', 'block');
-					$(this).children('#detailText').toggleClass("on");
-				})
-				
-				$('.posterTag').on('mouseout', function(){
-					$(this).children('#detailText').css('display', 'none');
-					$(this).children('#detailText').toggleClass("on");
-				})
-				
-				
-				
-				var slideIndex = 1;
+var slideIndex = 1;
 showSlides(slideIndex);
 
 function plusSlides(n) {
@@ -48,8 +36,8 @@ function showplay() {
  		            	
 // 		                SynopsisDiv.css("height", "17px");
 // 		                SynopsisDiv.css("display", "-webkit-box");
- 		            	document.getElementById("memberId").style.display = "none";
- 		                $("#synopMore").text("게시글 열기");
+// 		            	document.getElementById("memberId").style.display = "none";
+ 		                $("#synopMore").text("게시글 보기");
  		                SynopsisDiv.slideUp();
  		                
  		                flag.val("1");
@@ -57,9 +45,9 @@ function showplay() {
  		            else {
 // 		              	SynopsisDiv.css("height", "320px");
   		               SynopsisDiv.slideDown();
-  		             document.getElementById("memberId").style.display = "block";
+//  		             document.getElementById("memberId").style.display = "block";
 // 		                SynopsisDiv.css("display", "block");
- 		                $("#synopMore").text("댓글 열기");
+ 		                $("#synopMore").text("댓글 보기");
 
  		                flag.val("0");
  		            }

@@ -155,12 +155,7 @@
 				</div>
 				
 				<section class="carousel" id="amaMovieSlide" style="margin-bottom:3%;">
-					
-					<article>
-						<a href="images/fulls/01.jpg" class="image"><img src="images/poster.jpeg" alt="" title="Lorem ipsum dolor sit amet" /></a>
-					</article>
-					<script src="assets/js/indexAma.js"></script>
-					
+					<script src="assets/js/indexAma.js"></script>	
 				</section>
 				
 				<div class="container">

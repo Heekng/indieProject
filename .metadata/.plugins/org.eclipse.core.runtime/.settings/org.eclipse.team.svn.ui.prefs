@@ -1,6 +1,6 @@
 eclipse.preferences.version=1
 firstStartup=false
-history.comment=VCAsIFTjhYHjhLTjhYc\=;VCAsIFQ\=;YW1hTW92aWU\=;44WU44WB44S044WHYXNkZg\=\=;cHJvTW92aWUgZW5k;cmVhbCBwcm8gbW92aWUgdXBsb2Fk;bGluaw\=\=;aGVhZGVyIGxvZ28gdXBkYXRl;aGVhZGVyIGxvZ28gdXBsb2Fk;dGVzdCBpbWFnZSB1cGRhdGU\=
+history.comment=bWFuYWdlciBoYXJm;VCAsIFTjhYHjhLTjhYc\=;VCAsIFQ\=;YW1hTW92aWU\=;44WU44WB44S044WHYXNkZg\=\=;cHJvTW92aWUgZW5k;cmVhbCBwcm8gbW92aWUgdXBsb2Fk;bGluaw\=\=;aGVhZGVyIGxvZ28gdXBkYXRl;aGVhZGVyIGxvZ28gdXBsb2Fk
 history.repositoryURL=aHR0cHM6Ly9zdm4ucmlvdXhzdm4uY29tL3RlYW0yX2toaw\=\=
 org.eclipse.team.svn.ui.compare.ComparePanel.height=500
 org.eclipse.team.svn.ui.compare.ComparePanel.width=650
@@ -22,5 +22,7 @@ org.eclipse.team.svn.ui.panel.reporting.ErrorCancelPanel.height=131
 org.eclipse.team.svn.ui.panel.reporting.ErrorCancelPanel.width=640
 org.eclipse.team.svn.ui.panel.view.HistoryFilterPanel.height=100
 org.eclipse.team.svn.ui.panel.view.HistoryFilterPanel.width=470
+org.eclipse.team.svn.ui.panel.view.HistoryRangePanel.height=132
+org.eclipse.team.svn.ui.panel.view.HistoryRangePanel.width=715
 preference.history.groupingType=1
 preference.repository.repositoryBrowser=false

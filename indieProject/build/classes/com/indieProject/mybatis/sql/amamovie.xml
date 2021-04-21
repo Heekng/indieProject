@@ -87,7 +87,7 @@
 		DELETE AMAMOVIEACTOR_TABLE WHERE AMANUM = #{amaNum}
 	</delete>
 	<select id="getMainAmaMovieAndPosterList" resultType="amaMovieAndPosterVO">
-		SELECT * FROM (SELECT * FROM AMAMOVIE_TABLE ORDER BY AMAMAKEDATE DESC) a, AMAPOSTERFILES_TABLE b WHERE ROWNUM <![CDATA[<=]]> 20 AND a.AMANUM = b.AMANUM AND b.FILENAME LIKE 'main_%'
+		SELECT * FROM (SELECT * FROM AMAMOVIE_TABLE ORDER BY AMADATE DESC) a, AMAPOSTERFILES_TABLE b WHERE ROWNUM <![CDATA[<=]]> 20 AND a.AMANUM = b.AMANUM AND b.FILENAME LIKE 'main_%'
 	</select>
 	
 	<insert id="sendPopcorn" parameterType="popcornVO">

@@ -154,7 +154,7 @@ fieldset {
 									<%-- 내가 작성한 텍스트 길이 값  --%>
 									<input type="hidden" id="contentCnt" value="${fn:length(b_vo.getBoardContent())}">
 										<span id="current_count">0</span> <span id="maximum_count">/
-											50</span> 
+											200</span> 
 									<a href="javascript: submit();" class="button" style="float: right;">수정완료</a>
 									</div>
 								</div>

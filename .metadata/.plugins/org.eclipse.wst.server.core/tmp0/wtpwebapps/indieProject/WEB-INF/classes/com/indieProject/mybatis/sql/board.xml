@@ -8,7 +8,7 @@
 		SELECT * FROM BOARDIMAGES_TABLE WHERE BOARDNUM = #{boardNum} ORDER BY ROWNUM DESC
 	</select>
 	<select id="getBoardReplies" parameterType="_int" resultType="boardReplyVO">
-		SELECT * FROM BOARDREPLY_TABLE WHERE BOARDNUM = #{boardNum}
+		SELECT * FROM BOARDREPLY_TABLE WHERE BOARDNUM = #{boardNum} ORDER BY REPLYDATE DESC
 	</select>
 	<insert id="insertBoard" parameterType="boardVO">
 		INSERT INTO BOARD_TABLE VALUES(FREEBOARD_SEQ.NEXTVAL, #{memberId}, #{boardContent}, 0, SYSDATE, #{boardImage})

@@ -31,6 +31,13 @@
 			padding: 10px;
 			vertical-align: text-bottom;
 		}
+		#popcornDetailBtn{
+			margin-bottom:30px;
+		}
+		
+		#popcornBtnDiv {
+			width:25%;
+		}
 		@media screen and (max-width: 980px) {
 			#sidebarDiv {
 				display: none;
@@ -43,6 +50,9 @@
 			#popcornBtnDiv {
 				width:70%;
 				margin-left: 0 !important;
+			}
+			#popcornDetailBtn{
+			margin-bottom:0px;
 			}
 		}
 		@media screen and (max-width: 480px) {
@@ -150,8 +160,8 @@
 											<span style="font-size:2em;"><c:out value="${myReceivedPopcornNum}"/></span>
 										</div>
 										<div id="popcornBtnDiv" style="display:inline-block;  margin-left:30px; text-align: center; vertical-align: text-bottom;">
-											<a href="#" class="button primary small">충전하기</a>
-											<a href="${pageContext.request.contextPath}/member/memberMyPopcorn.me" class="button primary small">자세히 보기</a>
+											<!-- <a href="#" class="button primary small">충전하기</a> -->
+											<a id="popcornDetailBtn" href="${pageContext.request.contextPath}/member/memberMyPopcorn.me" class="button primary small">자세히 보기</a>
 										</div>
 									</div>
 								</fieldset>

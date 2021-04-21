@@ -145,7 +145,7 @@ fieldset {
 										style="width: 100%; resize: none; margin-left: auto; margin-right: auto; margin-bottom: 1%;"></textarea>
 									<div id="count">
 										<span id="current_count">0</span> <span id="maximum_count">/
-											50</span> 
+											200</span> 
 									<a href="javascript: submit();" class="button" style="float: right;">업로드</a>
 									</div>
 								</div>
