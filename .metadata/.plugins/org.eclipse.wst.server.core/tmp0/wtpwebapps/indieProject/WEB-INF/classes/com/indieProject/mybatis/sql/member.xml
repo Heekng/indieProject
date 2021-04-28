@@ -104,7 +104,7 @@
       WHERE B.R BETWEEN #{startRow} AND #{endRow}
    </select>
    <select id="popcornCharge" parameterType="hashMap">
-   		UPDATE MEMBER_TABLE SET POPCORNNUM = #{popCorn} WHERE MEMBERID = #{memberId}
+   		UPDATE MEMBER_TABLE SET MYPOPCORN = #{popCorn} WHERE MEMBERID = #{memberId}
    </select>
    <select id="myMovieListAll" parameterType="hashMap" resultType="amaMovieVO">
 		SELECT AMANUM, AMATITLEENG, AMATITLEKOR, AMAMAKEDATE, AMAMOVIELENGTH, AMADIRECTOR, GENRE, RATING, LINK, POPCORN, SYNOPSIS, THEME, MEMBERID, AMACOUNT, AMADATE FROM (SELECT am.*, ROWNUM rn FROM (SELECT * FROM AMAMOVIE_TABLE WHERE MEMBERID = #{memberId} ORDER BY AMADATE DESC) am) WHERE rn BETWEEN #{startRow} AND #{endRow}

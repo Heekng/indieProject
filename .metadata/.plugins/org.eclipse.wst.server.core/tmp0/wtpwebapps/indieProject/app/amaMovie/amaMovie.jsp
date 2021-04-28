@@ -10,7 +10,7 @@
 -->
 <html>
 <head>
-<title>indieProject</title>
+<title>인디프로젝트</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -27,7 +27,7 @@
 		var contextPath = "${pageContext.request.contextPath}";
 	</script>
 	<!-- Header -->
-	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
 	
 	<!-- Main -->
 	<section id="main">
@@ -100,7 +100,7 @@
 	</section>
 
 	<!-- Footer -->
-	<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
 
 	<!-- Scripts -->
 	<script src="//code.jquery.com/jquery-3.5.1.min.js"></script>

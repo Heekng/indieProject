@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <!--
 	Gravity by Pixelarity
@@ -49,7 +50,7 @@
 		</c:if>
 	
 		<!-- Header -->
-		<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
+		<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
 
 		<!-- Main -->
 			<section id="main">
@@ -60,17 +61,17 @@
 							<!-- Content -->
 							<section id="content">
 								<header class="major">
-									<h2>마이페이지</h2>
+									<h2 onclick="javascript: location.href='${pageContext.request.contextPath}/member/memberMyPage.me';" style="cursor:pointer;" >마이페이지</h2>
 									<p>내가 작성한 감상평</p>
 								</header>
 								<fieldset id="movie" style="padding: 15px; border-radius: 10px; margin-bottom: 15px;">
 									<table style="margin-bottom: 0;">
 										<thead>
 											<tr>
-												<th>영화제목</th>
+												<th>영화 제목</th>
 												<th>별점</th>
 												<th>내용</th>
-												<th>작성시간</th>
+												<th>작성 날짜</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -100,13 +101,79 @@
 															</c:choose>
 														</td>	
 														
-														<td>
-															<c:out value="${myReviewVO.getReplyContent()}"/>
-														</td>
+														<td><c:out value="${myReviewVO.getReplyContent()}"/></td>
+														<fmt:parseDate var="reviewDate" value="${myReviewVO.getReplyDate()}" pattern="yyyy-MM-dd HH:mm"/>
+														<td><fmt:formatDate value="${reviewDate}" pattern="yyyy-MM-dd HH:mm"/></td>
+													</tr>
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
+												<td colspan="5" style=" height:300px; text-align:center;">
+													<h1 style="margin-top:15%;">작성한 감상평이 없습니다.</h1>
+												</td>
+											</c:otherwise>
+											</c:choose>		
+										</tbody>
+									</table>
+									<div style="text-align: center;">
+									<c:if test="${nowPage>1}">
+										<a href="${pageContext.request.contextPath}/member/memberMyReview.me?page=${nowPage-1}">[이전]&nbsp;&nbsp;</a>
+									</c:if>
+			
+									<c:forEach var="i" begin="${startPage}" end="${endPage}">
+									<c:choose>
+									<c:when test="${i eq nowPage}">
+										${i}&nbsp;&nbsp;
+										</c:when>
+										<c:otherwise>
+										<a href="${pageContext.request.contextPath}/member/memberMyReview.me?page=${i}">${i}&nbsp;</a>
+									</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								<c:if test="${realEndPage != nowPage}">
+         							<a href="${pageContext.request.contextPath}/member/memberMyReview.me?page=${nowPage + 1}">&nbsp;&nbsp;[다음]</a>
+         						</c:if>
+									</div>
+								</fieldset>
+								<fieldset id="movieMobile" style="padding: 15px; border-radius: 10px; margin-bottom: 15px; display:none;">
+									<table style="margin-bottom: 0;">
+										<thead>
+											<tr>
+												<th>영화 제목</th>
+												<th>별점 / 내용</th>
+												<th>작성 날짜</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:choose>
+												<c:when test="${myReviewListAll !=null and fn:length(myReviewListAll) > 0 }">
+													<c:forEach var="myReviewVO"  items="${myReviewListAll}" >
+											 			<tr onmouseover="this.style.backgroudColor='F8F8F8'" onmouseout="this.style.backgroundColor='FFFFFF'">
+			               								<td>
+			               									<c:set var="loop_flag" value="false"/>
+			               									<c:forEach var="movieTitle"  items="${movieTitle}" >
+			               										<c:if test="${not loop_flag }">
+				               								 		<c:if test="${myReviewVO.getAmaNum() eq movieTitle.getAmaNum()}"> 
+				               											<a href="${pageContext.request.contextPath}/amaMovie/AmaMovieDetail.ama?amaNum=${myReviewVO.getAmaNum()}&page=${nowPage}"><c:out value="${movieTitle.getAmaTitleKor()}"/></a>
+				               											<c:set var="loop_flag" value="true"/>
+				               							 			</c:if>
+				               							 		</c:if>
+			               								</c:forEach>
+			               								</td>
 														
 														<td>
-															${myReviewVO.getReplyDate()}
-														</td>
+															<c:choose>
+																<c:when test="${myReviewVO.getStars() eq 1}">⭐</c:when>
+																<c:when test="${myReviewVO.getStars() eq 2}">⭐⭐</c:when>
+																<c:when test="${myReviewVO.getStars() eq 3}">⭐⭐⭐</c:when>
+																<c:when test="${myReviewVO.getStars() eq 4}">⭐⭐⭐⭐</c:when>
+																<c:when test="${myReviewVO.getStars() eq 5}">⭐⭐⭐⭐⭐</c:when>
+															</c:choose>
+															<br>
+															<c:out value="${myReviewVO.getReplyContent()}"/>
+														</td>	
+														<fmt:parseDate var="reviewDate" value="${myReviewVO.getReplyDate()}" pattern="yyyy-MM-dd HH:mm"/>
+														<td><fmt:formatDate value="${reviewDate}" pattern="yyyy-MM-dd HH:mm"/></td>
 													</tr>
 												</c:forEach>
 											</c:when>
@@ -145,7 +212,7 @@
 			</section>
 
 		<!-- Footer -->
-		<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
+		<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
 
 		<!-- Scripts -->
 		<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
@@ -159,7 +226,9 @@
 		<script>$("#mr").css("background", "rgba(144, 144, 144, 0.075)");</script>
 		
 		<script>
-			if(window.matchMedia('(max-width: 9999px)').matches){
+			if(window.matchMedia('(max-width: 480px)').matches){
+				$("#movie").hide();
+				$("#movieMobile").show();
 			}
 		</script>
 		<script>

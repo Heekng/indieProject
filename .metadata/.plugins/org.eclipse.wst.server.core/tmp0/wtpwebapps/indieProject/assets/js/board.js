@@ -1,12 +1,12 @@
 $(document).on("mouseover", ".posterTag", function(){
 	$(this).children().children('#detailText').css('display', 'block');
 	$(this).children().children('#detailText').toggleClass("on");
-})
+});
 
 $(document).on("mouseout", ".posterTag", function(){
 	$(this).children().children('#detailText').css('display', 'none');
 	$(this).children().children('#detailText').toggleClass("on");
-})
+});
 
 //poptrox
 $(function() {
@@ -39,22 +39,43 @@ function boardWrite(){
 var nowPage = 1;
 var searchPage = 0;
 var flag = false;
+var sFlag = true;
 
-$(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
-	if($(window).scrollTop() >= $(document).height() - $(window).height()){
+if(window.matchMedia('(max-width: 480px)').matches){
+	$("#scrollDone").css("cursor", "pointer");
+	$("#scrollDone").children().text("더 보기");
+	
+	$(document).on("click", "#scrollDone", function(){
 		if($("#keyword").val() == ""){
 			loadPage();	
 		}else{
 			search('load');
 		}
-	}
-});
+	});
+}else{
+	$(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
+		if($(window).scrollTop() >= $(document).height() - $(window).height()){
+			if($("#keyword").val() == ""){
+				loadPage();	
+			}else{
+				search('load');
+			}
+		}
+	});	
+}
+
 
 function loadPage(){
+	if(!sFlag){
+		return false;
+	}
 	console.log("로드");
 	var startRow = (nowPage * boardSize) + 1;
+	console.log("startRow"+startRow);
 	var endRow;
 	if(totalPageCnt <= nowPage){
+		sFlag = false;
+		$("#scrollDone").hide();
 		return false;
 	}
 	if(totalPageCnt == (nowPage+1)){
@@ -76,7 +97,6 @@ function loadPage(){
 }
 
 function showPage(boards, flag){
-	console.log("flag:"+flag);
 	if(boards != null && boards.length != 0){
 		$.each(boards, function(index, board){
 			var text = "<div class='col-poster' style='width: 30%; height: 10%; margin: 10px;'>"+
@@ -89,6 +109,7 @@ function showPage(boards, flag){
 					board.boardContent+"</span></a></div></div>";
 			if(flag == true){
 				$("#posterRow").children().remove();
+				$("#scrollDone").show();
 			}
 			flag = false;
 			$("#posterRow").append(text);
@@ -104,6 +125,8 @@ function showPage(boards, flag){
 		nowPage++;
 		searchPage++;
 	}else{
+		sFlag = false;
+		$("#scrollDone").hide();
 		if(flag == true){
 			$("#posterRow").children().remove();
 			var noResult = "<div style='margin: 5rem auto;'><h4><strong>검색 결과가 없습니다.</strong></h4></div>";
@@ -127,21 +150,21 @@ function search(ox){
 	}
 	var startRow = (searchPage * boardSize) + 1;
 	var endRow;
-	if(totalPageCnt <= searchPage){
-		return false;
-	}
-	if(totalPageCnt == (searchPage+1)){
-		endRow = totalCnt;
-	}else{
+//	if(totalPageCnt <= searchPage){
+//		return false;
+//	}
+//	if(totalPageCnt == (searchPage+1)){
+//		endRow = totalCnt;
+//	}else{
 		endRow = (startRow + boardSize) - 1;
-	}
+	//}
 	
 	$.ajax({
 		url : contextPath + "/board/LoadBoardList.bo",
 		type : "post",
 		data : {"startRow" : startRow, "endRow" : endRow, "keyword" : keyword},
 		dataType : "json",
-		success : function(result, ox){
+		success : function(result){
 			showPage(result, flag);
 		},
 		error:function(){//통신 오류 시

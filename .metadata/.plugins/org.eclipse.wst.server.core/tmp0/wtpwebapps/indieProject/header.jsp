@@ -20,7 +20,7 @@
 		}
 	}
 </style>
-<body>
+<body><%-- 
 <c:if test="${session_id ne null}">
 		   <script>
 		         window.onload = function(){
@@ -60,7 +60,7 @@
 		       	
 		        }
 			</script>
-		</c:if>
+		</c:if> --%>
 	<div id="header">
 		<!-- <h1 id="logo"><a href="index.html">Gravity</a></h1> -->
 		<div id="logo"><a href="${pageContext.request.contextPath}/index.jsp"><img id="logoImage" style="margin:0 auto;" src="${pageContext.request.contextPath}/images/logo_header.png" /></a></div>
@@ -79,8 +79,15 @@
 				</li>
 				<li><a href="${pageContext.request.contextPath}/board/Board.bo">Board</a></li>
 				<li><a href="${pageContext.request.contextPath}/member/MemberCustomerOk.me">Customer</a></li>
+				<c:if test="${session_id ne null}">
+				<li><a href="${pageContext.request.contextPath} /member/memberMyPage.me" id="signUp"><b>MyPage</b></a></li>
+				<li style="margin-left:0.5rem;"><a href="${pageContext.request.contextPath}/member/MemberLogOutAction.me" id="logIn"><b>LogOut</b></a></li>			
+				</c:if>		
+				<c:if test="${session_id eq null}">
 				<li><a href="${pageContext.request.contextPath}/member/SignUp.me" id="signUp"><b>SignUp</b></a></li>
-				<li style="margin-left:0.5rem;"><a href="${pageContext.request.contextPath}/member/Login.me" id="logIn"><b>Login</b></a></li>					
+				<li style="margin-left:0.5rem;"><a href="${pageContext.request.contextPath}/member/Login.me" id="logIn"><b>Login</b></a>
+				</c:if>
+				
 			</ul>
 		</nav>
 	</div>

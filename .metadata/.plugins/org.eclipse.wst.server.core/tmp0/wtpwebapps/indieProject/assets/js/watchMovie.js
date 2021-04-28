@@ -32,22 +32,31 @@ function showAmaReviews(reviews){
 			// 감상평 목록
 			textReview += "<tr><td>"+review.memberId+"</td>";
 			if(review.stars == 1){
-				textReview += "<td>⭐</td>";
+				textReview += "<td>⭐";
 			}else if (review.stars == 2){
-				textReview += "<td>⭐⭐</td>";
+				textReview += "<td>⭐⭐";
 			}else if (review.stars == 3){
-				textReview += "<td>⭐⭐⭐</td>";
+				textReview += "<td>⭐⭐⭐";
 			}else if (review.stars == 4){
-				textReview += "<td>⭐⭐⭐⭐</td>";
+				textReview += "<td>⭐⭐⭐⭐";
 			}else if (review.stars == 5){
-				textReview += "<td>⭐⭐⭐⭐⭐</td>";
+				textReview += "<td>⭐⭐⭐⭐⭐";
 			}
-			textReview += "<td>"+review.replyContent+"</td>";
-			textReview += "<td class='date'>"+review.replyDate+"</td>";
+			if(window.matchMedia('(max-width: 480px)').matches){
+				textReview += "<br>"+review.replyContent;
+				if(review.memberId == sessionId){
+					textReview += "<br><a href='javascript:deleteReview("+amaNum+")' style='text-decoration:none;'>[삭제]</a></td>";
+				}
+				textReview += "<td>"+review.replyDate+"</td>";
+			}else{
+				textReview += "</td>";
+				textReview += "<td>"+review.replyContent+"</td>";		
+				textReview += "<td>"+review.replyDate+"</td>";	
+				if(review.memberId == sessionId){
+					textReview += "<td><a href='javascript:deleteReview("+amaNum+")' style='text-decoration:none;'>[삭제]</a></td>";
+				}
+			}
 			
-			if(review.memberId == sessionId){
-				textReview += "<td><a href='javascript:deleteReview("+amaNum+")' style='text-decoration:none;'>[삭제]</a></td>";
-			}
 			textReview += "</tr>";
 			$("#starAvg").text("⭐ 평균 평점 "+starAvg);
 		});
@@ -66,6 +75,7 @@ function showAmaReviews(reviews){
 			textPaging += "<a href='javascript:getAmaReviews("+(nowPage+1)+")'>[다음]</a>";
 		}
 	}else{
+		$("#starAvg").text("⭐ 평균 평점 0.0");
 		textReview += "<td colspan='4' align='center'><strong>아직 등록된 감상평이 없습니다.</strong></td>";
 	}
 	

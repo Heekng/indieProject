@@ -13,7 +13,7 @@
 <body class="is-preload">
 
 	<!-- Header -->
-	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
 
 
 	<!-- Main -->
@@ -26,7 +26,7 @@
 			<!-- Content -->
 			<form>
 				<section>
-					<div class="row">
+					<div class="row" style="display: contents;">
 						<div class="col-6 col-9-medium col-12-small" style="border:solid; border-style: outset; border-radius: 15px; margin:0 auto; padding:15px;">
 							<h3 style="text-align: center;">회원가입 완료</h3>
 							<p style="text-align: center;">환영합니다! 로그인하여 IndieProject를 즐기세요!</p>
@@ -45,7 +45,7 @@
 	</section>
 
 	<!-- Footer -->
-	<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
 
 	<!-- Scripts -->
 

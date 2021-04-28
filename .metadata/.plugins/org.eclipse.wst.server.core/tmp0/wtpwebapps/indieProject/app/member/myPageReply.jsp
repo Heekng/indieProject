@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <!--
 	Gravity by Pixelarity
@@ -73,7 +74,7 @@ li {
 	<c:set var="nowPage" value="${nowPage}" />
 	<c:set var="realEndPage" value="${realEndPage}" />
 	<!-- Header -->
-	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
 
 	<!-- Main -->
 	<section id="main">
@@ -84,7 +85,7 @@ li {
 					<!-- Content -->
 					<section id="content">
 						<header class="major">
-							<h2>마이페이지</h2>
+							<h2 onclick="javascript: location.href='${pageContext.request.contextPath}/member/memberMyPage.me';" style="cursor:pointer;" >마이페이지</h2>
 							<p>내가 작성한 댓글</p>
 						</header>
 						<fieldset id="movie"
@@ -94,7 +95,7 @@ li {
 									<tr>
 										<th>글 번호</th>
 										<th>내용</th>
-										<th>작성시간</th>
+										<th>작성 날짜</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -118,7 +119,8 @@ li {
 																${replay.getReplyContent()}</a>
 														</td>
 														<%-- 작성시간 --%>
-														<td>${replay.getReplyDate()}</td>
+														<fmt:parseDate var="replyDate" value="${replay.getReplyDate()}" pattern="yyyy-MM-dd HH:mm"/>
+														<td><fmt:formatDate value="${replyDate}" pattern="yyyy-MM-dd HH:mm"/></td>
 												</c:forEach>
 											</c:when>
 											<c:otherwise>
@@ -161,7 +163,7 @@ li {
 	</section>
 
 	<!-- Footer -->
-	<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
 
 	<!-- Scripts -->
 	<script

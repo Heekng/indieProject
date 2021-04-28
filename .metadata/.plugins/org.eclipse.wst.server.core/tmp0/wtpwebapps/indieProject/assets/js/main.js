@@ -4,6 +4,7 @@
 	License: pixelarity.com/license
 */
 
+
 (function($) {
 
 	var	$window = $(window),
@@ -149,5 +150,6 @@
 		});
 
 })(jQuery);
+
 
 

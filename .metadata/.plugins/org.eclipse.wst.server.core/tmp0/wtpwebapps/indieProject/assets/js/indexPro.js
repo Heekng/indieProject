@@ -1,13 +1,13 @@
-/**
- * 
- */
-
-
 $.ajax({
 	url:contextPath+"/proMovie/MainProMovieLoadAction.pro",
 	type:"get",
 	dataType:"text",
 	success: function(result){
+
+		
+
+			
+	
 		var poster = JSON.parse(result);
 		var slide = document.getElementById("proMovieSlide");
 		
@@ -30,10 +30,15 @@ $.ajax({
 				usePopupCaption: true
 			});
 		});
+		
 
+
+		
+		
 		slide.innerHTML = str;
-		
-		
+		$(document).ready(function() {
+		    $(window).trigger('resize');
+		});
 	},
 	error:function(){//통신 오류 시
 		console.log("오류");

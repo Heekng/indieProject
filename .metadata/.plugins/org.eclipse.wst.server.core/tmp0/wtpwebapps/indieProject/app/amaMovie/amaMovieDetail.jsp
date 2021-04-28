@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -27,7 +28,7 @@
 		<c:set var="popcornSenders" value="${popcornSenders}" />
 		<c:set var="reviews" value="${reviews}" />
 		<!-- Header -->
-			<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
+			<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
 
 		<!-- Main -->
 			<section id="banner" class="wrapper style1 special">
@@ -72,20 +73,27 @@
 						<br>
 						<h2>포스터 / 스틸컷</h2>
 						<section class="carousel">
-							<c:if test="${posters != null and fn:length(posters) > 0}">
+							<c:choose>
+							<c:when test="${posters != null and fn:length(posters) > 0}">
 								<c:forEach var="p" items="${posters}">
 									<article>
 										<a href="${pageContext.request.contextPath}/images/amaMovie/${p}" class="image"><img src="${pageContext.request.contextPath}/images/amaMovie/${p}" alt="" title="${ama_vo.getAmaTitleKor()}" /></a>
 									</article>
 								</c:forEach>
-							</c:if>
-							<c:if test="${stillcuts != null and fn:length(stillcuts) > 0}">
+							</c:when>
+							<c:when test="${stillcuts != null and fn:length(stillcuts) > 0}">
 								<c:forEach var="s_vo" items="${stillcuts}">
 									<article>
 										<a href="${pageContext.request.contextPath}/images/amaMovie/${s_vo.getFileName()}" class="image"><img src="${pageContext.request.contextPath}/images/amaMovie/${s_vo.getFileName()}" alt="" title="${ama_vo.getAmaTitleKor()}" /></a>
 									</article>
 								</c:forEach>
-							</c:if>
+							</c:when>
+							<c:otherwise>
+								
+									<h4>등록된 사진이 없습니다.</h4>
+								
+							</c:otherwise>
+							</c:choose>
 						</section>
 						<hr>
 						<h2>시놉시스</h2>
@@ -158,7 +166,7 @@
 						<ul class="actions">
 							<li><a href="javascript:watchMovie();" class="button alt small fit">감상평 등록하러 가기</a></li>
 						</ul>
-						<table style="margin-bottom: 0;">
+						<table style="margin-bottom: 0;" id="review">
 							<thead>
 								<tr>
 									<th>아이디</th>
@@ -193,13 +201,49 @@
 								</c:choose>		
 							</tbody>
 						</table>
+						<table style="margin-bottom: 0; display:none;" id="reviewMobile">
+							<thead>
+								<tr>
+									<th>아이디</th>
+									<th>별점 / 내용</th>
+									<th>작성시간</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:choose>
+									<c:when test="${reviews !=null and fn:length(reviews) > 0 }">
+										<c:forEach var="mr_vo"  items="${reviews}" >
+								 			<tr>
+               								<td>${mr_vo.getMemberId()}</td>
+											<td>
+												<c:choose>
+													<c:when test="${mr_vo.getStars() eq 1}">⭐</c:when>
+													<c:when test="${mr_vo.getStars() eq 2}">⭐⭐</c:when>
+													<c:when test="${mr_vo.getStars() eq 3}">⭐⭐⭐</c:when>
+													<c:when test="${mr_vo.getStars() eq 4}">⭐⭐⭐⭐</c:when>
+													<c:when test="${mr_vo.getStars() eq 5}">⭐⭐⭐⭐⭐</c:when>
+												</c:choose>
+												<br>
+												${mr_vo.getReplyContent()}
+											</td>
+											<fmt:parseDate var="replyDate" value="${mr_vo.getReplyDate()}" pattern="yyyy-MM-dd HH:mm"/>
+											<td><fmt:formatDate value="${replyDate}" pattern="yyyy-MM-dd HH:mm"/></td>
+											</tr>
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<td colspan="4" align="center"><strong>아직 등록된 감상평이 없습니다.</strong></td>
+									</c:otherwise>
+								</c:choose>		
+							</tbody>
+						</table>
 					</section>
 				</div>
 			</section>
 
 
 		<!-- Footer -->
-			<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
+			<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
 
 		<!-- Scripts -->
 			<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
@@ -230,8 +274,13 @@
 					    var _top = Math.ceil(( window.screen.height - _height )/2);
 					    
 						var sendPopcornFrame = window.open("${pageContext.request.contextPath}/amaMovie/PopcornSend.ama?amaNum=${ama_vo.getAmaNum()}&amaTitle=${ama_vo.getAmaTitleKor()}", 
-								"popup","width=380px, height=500px, left="+_left+", top="+_top+", resizable=no, scrollbars=no", true);
+								"popup","width=380px, height=500px, left="+_left+", top="+_top+", resizable=no, scrollbars=no");
 					}
+				}
+				
+				if(window.matchMedia('(max-width: 480px)').matches){
+					$("#review").hide();
+					$("#reviewMobile").show();
 				}
 			</script>
 

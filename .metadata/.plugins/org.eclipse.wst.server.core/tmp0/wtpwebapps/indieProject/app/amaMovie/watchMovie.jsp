@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <style>
@@ -18,11 +19,11 @@
 		height: 100%; }
 		
 	@media screen and (max-width: 480px) {
-		.date{
-			display:none;
-		}
 		#sendButton{
 			width:100%;
+		}
+		#ch {
+			display:none;
 		}
 	}
 	@media screen and (max-width: 659px) {
@@ -52,7 +53,7 @@
 		<c:set var="movieLink" value="${movieLink}" />
 
 		<!-- Header -->
-			<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
+			<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
 
 		<!-- Movie -->
 			<section id="banner" class="wrapper style1 special">
@@ -123,9 +124,9 @@
 								<thead>
 									<tr>
 										<th>아이디</th>
-										<th>별점</th>
-										<th>내용</th>
-										<th class="date">작성시간</th>
+										<th id="sh">별점</th>
+										<th id="ch">내용</th>
+										<th>작성시간</th>
 									</tr>
 								</thead>
 								<tbody id="reviewTable">
@@ -142,7 +143,7 @@
 
 
 		<!-- Footer -->
-			<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
+			<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
 
 		<!-- Scripts -->
 			<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>

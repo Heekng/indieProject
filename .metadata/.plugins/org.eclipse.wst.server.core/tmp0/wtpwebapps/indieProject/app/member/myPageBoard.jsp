@@ -114,7 +114,7 @@ li {
 			</script>
 	</c:if>
 	<!-- Header -->
-	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
 
 	<!-- Main -->
 	<section id="main">
@@ -126,8 +126,8 @@ li {
 					<!-- Content -->
 					<section id="content">
 						<header class="major">
-							<h2>내가 올린 게시글</h2>
-							<p>자유게시판에 올린 내 게시글들을 모아 볼 수 있습니다.</p>
+							<h2 onclick="javascript: location.href='${pageContext.request.contextPath}/member/memberMyPage.me';" style="cursor:pointer;" >마이페이지</h2>
+							<p>내가 올린 게시글</p>
 						</header>
 						<div id="" style="text-align: center;">
 							<fieldset
@@ -154,11 +154,11 @@ li {
 																<c:out value="${b_vo.getBoardContent()}" />
 														</span>
 														</a>
-													
 													</div>
-													<a  style="text-decoration: none; float: right; cursor:pointer;" onclick="deleteBoard(${b_vo.getBoardNum()})">[삭제]</a> 
-													<a href="${pageContext.request.contextPath}/board/BoardModify.bo?boardNum=${b_vo.getBoardNum()}" style="text-decoration: none; float: right;">[수정]</a>
-													<input id="${i}" type="hidden" name="boardNum" value="${b_vo.getBoardNum()}">
+													<p>
+														<a style="text-decoration: none; cursor:pointer;" href="${pageContext.request.contextPath}/board/BoardModify.bo?boardNum=${b_vo.getBoardNum()}">[수정]</a>
+														<a  style="text-decoration: none; cursor:pointer;" onclick="deleteBoard(${b_vo.getBoardNum()})">[삭제]</a> 
+													</p>
 												</div>
 											</c:forEach>
 										</c:when>
@@ -169,6 +169,14 @@ li {
 										</c:otherwise>
 									</c:choose>
 								</div>
+								<c:choose>
+									<c:when test="${boards != null and fn:length(boards) > 0}">
+										<div id="scrollDone">
+											<p style="margin-top: 2rem; margin-bottom: 0.5rem;color: black;">스크롤 해서 더 보기</p>
+											<img src="${pageContext.request.contextPath}/images/down-arrow.png" style="height:2rem;">
+										</div>
+									</c:when>
+								</c:choose>
 							</fieldset>
 
 
@@ -181,7 +189,7 @@ li {
 	</section>
 
 	<!-- Footer -->
-	<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
 
 	<!-- Scripts -->
 	<script

@@ -109,7 +109,7 @@ li {
 	<c:set var="moviePosterList" value="${moviePosterList}"/>
 
 	<!-- Header -->
-	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
 
 	<!-- Main -->
 	<section id="main">
@@ -121,7 +121,7 @@ li {
 					<!-- Content -->
 					<section id="content">
 						<header class="major">
-							<h2>마이페이지</h2>
+							<h2 onclick="javascript: location.href='${pageContext.request.contextPath}/member/memberMyPage.me';" style="cursor:pointer;" >마이페이지</h2>
 							<p>내가 올린 영화</p>
 						</header>
 						<div style="text-align: center;">
@@ -152,15 +152,27 @@ li {
 																</c:choose>
 															</c:if>
 														</c:forEach>
-														<p>${movie.getAmaTitleKor()}<span style="position: absolute; right:0;"><a style="text-decoration:none" href="javascript:modifyMovie(${movie.getAmaNum()})">[수정]</a>
-														<a style="text-decoration:none" href="javascript:deleteMovie(${movie.getAmaNum()})">[삭제]</a></span></p>
+														<p>
+															<span style="display:block;">${movie.getAmaTitleKor()}</span>
+															<span>
+																<a style="text-decoration:none" href="javascript:modifyMovie(${movie.getAmaNum()})">[수정]</a>
+																<a style="text-decoration:none" href="javascript:deleteMovie(${movie.getAmaNum()})">[삭제]</a>
+															</span>
+														</p>
 													</div>
 												</div>
 											</c:forEach>
 										</c:otherwise>											
-									</c:choose>
-									
+									</c:choose>	
 								</div>
+								<c:choose>
+									<c:when test="${movieList != null and fn:length(movieList) > 0}">
+										<div id="scrollDone">
+											<p style="margin-top: 2rem; margin-bottom: 0.5rem;color: black;">스크롤 해서 더 보기</p>
+											<img src="${pageContext.request.contextPath}/images/down-arrow.png" style="height:2rem;">
+										</div>
+									</c:when>
+								</c:choose>
 							</fieldset>
 						</div>
 					</section>
@@ -170,7 +182,7 @@ li {
 	</section>
 
 	<!-- Footer -->
-	<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
 
 	<!-- Scripts -->
 	<script

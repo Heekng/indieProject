@@ -49,7 +49,7 @@ fieldset {
 <body class="is-preload">
 
 	<!-- Header -->
-	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
 
 	<!-- Main -->
 	<section id="main">
@@ -87,7 +87,7 @@ fieldset {
 													style="width: 50px; margin: 47% auto auto auto; cursor: pointer;" />
 												</label> 
 												<input name="boardImage1" id="first-file-input" type="file"
-												onchange="preview1()" style="display: none;" />
+												onchange="preview1(this)" accept="image/*" style="display: none;" />
 											</span>
 		
 										</div>
@@ -109,7 +109,7 @@ fieldset {
 													style="width: 50px; margin: 47% auto auto auto; cursor: pointer;" />
 												</label> 
 												<input name="boardImage2" id="second-file-input" type="file"
-													onchange="preview2()" style="display: none;" />
+													onchange="preview2(this)" accept="image/*" style="display: none;" />
 											</span>
 		
 										</div>
@@ -130,7 +130,7 @@ fieldset {
 													style="width: 50px; margin: 47% auto auto auto; cursor: pointer;" />
 												</label> 
 												<input name="boardImage3" id="third-file-input" type="file"
-													onchange="preview3()" style="display: none;" />
+													onchange="preview3(this)" accept="image/*" style="display: none;" />
 											</span>
 		
 										</div>
@@ -141,7 +141,7 @@ fieldset {
 								<div>
 									<br>
 									<h3>게시글 내용 작성</h3>
-									<textarea name="boardContent" maxlength="50"
+									<textarea name="boardContent" maxlength="200"
 										style="width: 100%; resize: none; margin-left: auto; margin-right: auto; margin-bottom: 1%;"></textarea>
 									<div id="count">
 										<span id="current_count">0</span> <span id="maximum_count">/
@@ -163,7 +163,7 @@ fieldset {
 
 
 	<!-- Footer -->
-	<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
 
 	<!-- Scripts -->
 	<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>

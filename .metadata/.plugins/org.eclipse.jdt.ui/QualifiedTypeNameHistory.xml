@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.indieProject.app.board.vo.BoardVO"/>
-    <fullyQualifiedTypeName name="com.indieProject.app.board.vo.BoardReplyVO"/>
-    <fullyQualifiedTypeName name="com.indieProject.app.member.MemberMyPageAction"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="com.indieProject.app.promovie.ProMovieAction"/>
     <fullyQualifiedTypeName name="com.indieProject.app.board.BoardAction"/>
@@ -51,13 +48,16 @@
     <fullyQualifiedTypeName name="com.indieProject.app.member.MemberDeleteMovieOkAction"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.indieProject.app.member.vo.DeleteMovieVO"/>
-    <fullyQualifiedTypeName name="com.indieProject.action.ActionForward"/>
     <fullyQualifiedTypeName name="com.indieProject.app.manager.ManagerDeleteMovieAction"/>
     <fullyQualifiedTypeName name="com.indieProject.app.manager.DeleteMovieOkAction"/>
     <fullyQualifiedTypeName name="com.indieProject.app.manager.DeleteMovieCancleOkAction"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
-    <fullyQualifiedTypeName name="com.indieProject.app.manager.dao.ManagerDAO"/>
     <fullyQualifiedTypeName name="com.indieProject.app.member.vo.NaverMailVO"/>
     <fullyQualifiedTypeName name="com.indieProject.action.Action"/>
     <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="org.eclipse.jdt.internal.compiler.codegen.IntegerCache"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="com.indieProject.app.manager.dao.ManagerDAO"/>
+    <fullyQualifiedTypeName name="com.indieProject.action.ActionForward"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.chrome.ChromeDriver"/>
+    <fullyQualifiedTypeName name="com.indieProject.app.promovie.vo.ChromeDriverVO"/>
 </qualifiedTypeNameHistroy>

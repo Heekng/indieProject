@@ -10,7 +10,7 @@
 -->
 <html>
 <head>
-<title>indieProject</title>
+<title>인디프로젝트</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
@@ -34,7 +34,7 @@
 	<c:set var="jsonPoster" value="${jsonPoster}"/>
 
 	<!-- Header -->
-	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
 
 	<!-- Main -->
 	<section id="main">
@@ -116,7 +116,7 @@
 	</section>
 
 	<!-- Footer -->
-	<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
 
 	<!-- Scripts -->
 	<script>var contextPath = "${pageContext.request.contextPath}";</script>

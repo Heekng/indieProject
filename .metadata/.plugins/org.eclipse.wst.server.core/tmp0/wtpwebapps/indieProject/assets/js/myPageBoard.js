@@ -24,16 +24,26 @@ $(function() {
 
 var nowPage = 1;
 
-$(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
-	if($(window).scrollTop() >= $(document).height() - $(window).height()){
+if(window.matchMedia('(max-width: 480px)').matches){
+	$("#scrollDone").css("cursor", "pointer");
+	$("#scrollDone").children().text("더 보기");
+	
+	$(document).on("click", "#scrollDone", function(){
 		loadPage();
-	}
-});
+	});
+}else{
+	$(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
+		if($(window).scrollTop() >= $(document).height() - $(window).height()){
+			loadPage();
+		}
+	});	
+}
 
 function loadPage(){
 	var startRow = (nowPage * boardSize) + 1;
 	var endRow;
 	if(totalPageCnt <= nowPage){
+		$("#scrollDone").hide();
 		return false;
 	}
 	if(totalPageCnt == (nowPage+1)){
@@ -64,10 +74,9 @@ function showPage(boards){
 					"data-poptrox='iframe,800x500' style='width: 80%; height: 100%; background: transparent;'>"+
 					"<span id='detailText' style='padding: 5px; display: none; position: absolute; top: 0; left: 0; bottom: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.69); border-radius: 10px;'>"+
 					board.boardContent+"</span></a></div>"+
-					"<a href='#' style='text-decoration: none; float: right;' onclick='deleteBoard("+board.boardNum+")'>[삭제]</a>"+
-					"<a href='"+contextPath+"/board/BoardModify.bo?boardNum="+board.boardNum+"' style='text-decoration: none; float: right;'>[수정]</a>"+
-//					"<input id="+(index + 1)+" type='hidden' name='boardNum' value='"+board.boardNum+"'>"+
-					"</div>";
+					"<p><a href='"+contextPath+"/board/BoardModify.bo?boardNum="+board.boardNum+"' style='text-decoration: none;'>[수정]</a>"+
+					"<a href='#' style='text-decoration: none;' onclick='deleteBoard("+board.boardNum+")'>[삭제]</a>"+
+					"</p></div>";
 			$("#posterRow").append(text);
 			$(function() {
 				$('.gallery').poptrox({

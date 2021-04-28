@@ -3,11 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
-<!--
-	Gravity by Pixelarity
-	pixelarity.com | hello@pixelarity.com
-	License: pixelarity.com/license
--->
+
 <html>
 	<head>
 		<title>인디프로젝트</title>
@@ -216,44 +212,87 @@ img {vertical-align: middle;}
 			#titleBar{
 				display:none;
 			}
-			.mySlides{
-				margin-top:30%;
-			}
-		}
-		
-		@media screen and (max-width: 480px) {
-			#is, #bs {
-				width:100% !important;
-			}
 			
-			#iss{
-				position: unset !important;
-				width: 100% !important;
-			}
+		    .img{
+		    	position:static !important;
+		    
+		    	width:100% !important;
+  		    	height:50% !important;
+		    	margin:0;
+		    	margin-top:2% !important;
+		    	padding:0 !important;
+		 
+		    	
+		    }
+		    #changeToMargin0{
+		    	margin:0% !important;
+		    	width:40% !important;
+		    }
+		    
+		    #layer_fixed{
+		    	margin-left:0% !important;
+		    	width:100% !important;
+		    	
+		    }
+		    
+		    #text{
+		    	width:100% !important;
+		    }
+		    
+		    #table{
+		   	    width: 15% !important;
+			    margin-right: 0 !important;
+			    margin-top:1% !important;
+				margin-bottom:4% !important;
+		    }
+		    .rest{
+		    	position:static !important;
+		    	bottom:0px !important;
+		    	width:400% !important;
+			    height:0% !important;
+		    	padding:0 !important;
+		    	margin:0 !important;
+		    	margin-left:0% !important;
+		    	
+		    }
+		    
+		    .container{
+		    	margin:0% !important;
+		    }
+		    
+		    #title{
+		    	height:0% !important;
+		    	width: 100% !important;
+		    }
+		    #synopsis{
+		    	height:0% !important;
+		    }
+		    
+		    #SynopsisDiv{
+		    	height:310px !important;
+		    }
+		    
+		    #replyTable{
+		    	width:30% !important;
+		    	padding-bottom:7% !important;
+		    	padding-right: 12% !important;
+		    }
 			
-			#SynopsisDiv{
-				height:19rem !important;
-			}
-			
-			#changeToMargin0{
-				margin-bottom: 40% !important;
-			}
 		}
 		
 
 	</style>
-	<body class="is-preload" style="padding:0;">
+	<body class="is-preload">
 	<c:set var="board" value="${board}"/>
 	<c:set var="boardImages" value="${boardImages}"/>
 
 		<!-- Header -->
 
 		<!-- Main -->
-	<div class="row">
-		<div style="width:40%;" id="is" >
-		<section class="img" id="iss" style="position: fixed;width: 40%; margin:0.2rem;">
-			
-					<div class=" slideshow-container img">
+		<div class="img">
+		<section class="img" style="position:absolute; top:0px; left:0px;">
+			<div class=" image fit posterTag floating img" style="width:40%;  height:100%; margin-bottom:0; display:flex;" onmouseover="" onmouseout="">
+					<div class=" slideshow-container img" style="margin-top:0; margin-bottom:0; object-fit:cover;">
 					<c:choose>
 						<c:when test="${boardImages != null and fn:length(boardImages) > 0}">
 							<c:forEach var="bi_vo" items="${boardImages}">
@@ -271,60 +310,66 @@ img {vertical-align: middle;}
 								</div>
 						</c:otherwise>
 					</c:choose>
-						<a class=" prev" style="text-decoration:none;" onclick="plusSlides(-1)">&#10094;</a>
-						<a class=" next" style="text-decoration:none;" onclick="plusSlides(1)">&#10095;</a>
+						
+						<a class=" prev" onclick="plusSlides(-1)">&#10094;</a>
+						<a class=" next" onclick="plusSlides(1)">&#10095;</a>
 					</div>
-			
+			</div>
 		</section>
 		</div>
 			
-		<div style="width:60%;" id="bs">
-			<!-- 게시글 내용 -->
-			<section id="layer_fixed" style="top:0px;">
-												
-						<table style="all:revert;">				
-							<tr height="0px" class="rest" style="background:transparent; margin-left:10%; background-color:#f7f7f7; color:black;">
-								<td  style="width:10%;"><strong id="memberId"><c:out value="${board.getMemberId()}"/></strong></td>
-								<td id="title" style="width:60%;">    
-								<article class="content_wrap" id="synopsis" style="border-style:none;height:100%; margin:0;">       
-							       	<div id="SynopsisDiv" class="SynopsisText" style="height:20rem;">
-							       		<c:out value="${board.getBoardContent()}"/> 	
-							        </div>
-							        <a href="javascript:showplay();" class="btn_more" id="synopMore" style="padding:0; margin:0; float:right;">댓글 보기</a>
-							        <input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis" value="0">
-							    </article></td>												
+	<div class="rest">
+		<!-- 게시글 내용 -->
+		<section id="layer_fixed" style=" margin-left:40%; top:0px; width:90%;">
+				<div style="width:100%;">							
+					<table style="all:revert; width:100%; margin-right:0;">				
+						<tr height="0px" class="rest" style=" width:100%; background:transparent; margin-left:10%; background-color:#f7f7f7; color:black;">
+							<td  style="padding-left:10px; width:10%;"><strong id="memberId"><c:out value="${board.getMemberId()}"/></strong></td>
+							<td id="title" style="padding-left:10px; width:60%;">    
+							<article class="content_wrap" id="synopsis" style="width:60%;border-style:none;height:100%; margin:0;">       
+						       	<div id="SynopsisDiv" class="SynopsisText" style="width:100%; height:330px;">
+						       		<c:out value="${board.getBoardContent()}"/> 	
+						        </div>
+						        <a href="javascript:showplay();" class="btn_more" id="synopMore" style="padding:0; margin:0; float:right;">댓글 열기</a>
+						        <input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis" value="0">
+						    </article></td>												
+						</tr>
+					</table>
+				</div>
+		</section>
+		<!-- 댓글 등록 -->
+		<section  id="layer_fixed" style=" margin-left:40%; bottom:0px; width:90%;">
+				<div style="width:100%;">		
+					<table style="all:revert;">
+						<tr style="background:transparent;">
+								<td style="padding:0; padding-left:10px; width:5%;"><c:out value="${session_id}"/></td>
+								<td valign="top" id="text" style="text-align:left;">
+									<textarea rows="" cols="" name="replyContent" id="text" style="resize:none; width:60%;"></textarea>
+									<a href="javascript: insertReply()" style="float:left;  text-decoration:none;">등록</a>
+								</td>
 							</tr>
-						</table>
-					
-			</section>
-			<!-- 댓글 등록 -->
-			<section  id="layer_fixed" style="bottom:0px;">
-					
-						<table style="all:revert;">
-							<tr style="background:transparent;">
-									<td style="width:10%;"><c:out value="${session_id}"/></td>
-									<td valign="top" id="text" style="width:60%;">
-										<textarea rows="" cols="" name="replyContent" id="text" style="resize:none;"></textarea>
-										<a href="javascript: insertReply()" style="float:right;  text-decoration:none;">등록</a>
-									</td>
-								</tr>
-						</table>
-				
-			</section>
-			<!-- 댓글 목록 -->
-			<section  id="main" style="padding-top:0;">
-				
-					<!-- Content -->
-				
-						<div id="changeToMargin0" class="" style="margin-bottom:20%;">
-							<table id="replyTable" class=""  style="all:revert; width:100%; margin-top:5rem;">
-								<!-- 여기가 댓글 내용 -->
-							</table>
+					</table>
+				</div>
+		</section>
+		<!-- 댓글 목록 -->
+		<section  id="main" style="padding:0;">
+			<div class="container" style="margin-right:0;">
+				<!-- Content -->
+				<section id="content">
+					<div style="text-align: center;" class="main ">
+						<div class=" rest" onclick="" style="width:100%; display:flex;">
+							<div id="changeToMargin0" class="" style="margin-left:33%; width:100%; margin-bottom:20%;">
+								<div>
+								<table id="replyTable" class=""  style="all:revert; width:100%;">
+									<!-- 여기가 댓글 내용 -->
+								</table>
+								</div>
+							</div>
 						</div>
-					
-								
-			</section>	
-		</div>
+					</div>
+				</section>
+			</div>					
+		</section>	
 	</div>
 
 		<!-- Scripts -->

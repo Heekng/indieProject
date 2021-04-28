@@ -34,4 +34,7 @@
 	<delete id="deleteMovieNo" parameterType="_int">
 		DELETE AMAMOVIE_DELETE_TABLE WHERE AMANUM = #{amaNum}
 	</delete>
+	<select id="managerCheck" parameterType="string" resultType="_int">
+		SELECT COUNT(*) FROM MANAGER_TABLE WHERE MEMBERID = #{memberId}
+	</select>
 </mapper>

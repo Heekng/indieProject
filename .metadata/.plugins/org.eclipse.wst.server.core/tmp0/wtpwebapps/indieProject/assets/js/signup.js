@@ -40,7 +40,7 @@ function step1(){
 }
 
 function step2(){
-
+	
 	var id = $("input[name='memberId']").val();
 	var pw = $("input[name='memberPw']").val();
 	var pw_check = $("input[name='memberPw2']").val();
@@ -101,14 +101,22 @@ $("input[name='memberId']").keyup(function(event){
 });
 
 function checkId(id){
+	var check = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+	
 	if(id == ""){
 		$("#pwCheck_text").text("아이디를 입력해주세요.");
+		$("#pwCheck_text").css("color", "black");
+	}else if(check.test(id)){
+		$("#pwCheck_text").text("아이디는 영문으로 입력해주세요.");
+		$("#pwCheck_text").css("color", "red");
+		idCheck = false;
 	}else{
 		$.ajax({
 			url : contextPath + "/member/MemberCheckIdOk.me?id="+id,
 			type : "get",
 			dataType : "text",
 			success : function(result){
+				console.log("result: "+result);
 				if(result.trim() == "ok"){
 					idCheck = true;
 					$("#pwCheck_text").text("사용 가능한 아이디입니다.");
@@ -130,7 +138,7 @@ function checkId(id){
 //ajax로 받은 코드 저장할 전역변수
 var code;
 
-function emailCheck(){
+function goEmailCheck(){
 	var email=$("input[name='memberEmail']").val();
 	
 	if(email==""){

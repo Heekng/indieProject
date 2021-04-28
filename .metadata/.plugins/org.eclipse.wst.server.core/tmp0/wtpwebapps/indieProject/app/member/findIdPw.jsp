@@ -37,7 +37,7 @@
 	<body class="is-preload">
 
 		<!-- Header -->
-			<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
+			<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
 
 		<!-- Main -->
 			<section id="main">
@@ -97,7 +97,7 @@
 			</section>
 
 		<!-- Footer -->
-			<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
+			<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
 
 		<!-- Scripts -->
 			<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>

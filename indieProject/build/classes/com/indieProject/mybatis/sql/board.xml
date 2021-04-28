@@ -33,6 +33,11 @@
 		SET BOARDCONTENT = #{boardContent}, BOARDIMAGE = #{boardImage} 
 		WHERE BOARDNUM = #{boardNum}
 	</update>
+	<update id="updateBoardContent" parameterType="boardVO">
+		UPDATE BOARD_TABLE
+		SET BOARDCONTENT = #{boardContent} 
+		WHERE BOARDNUM = #{boardNum}
+	</update>
 	<delete id="deleteBoard" parameterType="_int">
 		DELETE FROM BOARD_TABLE
 		WHERE BOARDNUM = #{boardNum}

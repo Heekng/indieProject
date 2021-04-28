@@ -31,18 +31,16 @@
 <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
 <script>
 var contextPath = "${pageContext.request.contextPath}";
-
-$.ajax({
-	url:contextPath+"/manager/checkManagerOk.ma",
-	type:"post",
-	data:{},
-	dataType:"text",
-	success: function(result){
-		if(result.trim() == "ok"){
-			var text = "<p style='margin:0 0;'><a href='"+contextPath+"/manager/managerNoneRefunds.ma'>관리자</a></p>"
-			$("#mainSection").append(text);
+	$.ajax({
+		url:"/indieManager/checkManagerOk.ma",
+		type:"get",
+		dataType:"text",
+		success: function(result){
+			if(result.trim() == "ok"){
+				var text = "<p style='margin:0 0;'><a href='"+contextPath+"/indieManager/managerNoneRefunds.ma'>관리자</a></p>"
+				$("#mainSection").append(text);
+			}
 		}
-	}//success end
-});
+	});
 </script>
 </html>

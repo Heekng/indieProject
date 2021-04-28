@@ -13,7 +13,7 @@
 <body class="is-preload">
 
 	<!-- Header -->
-	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
 
 
 	<!-- Main -->
@@ -26,7 +26,7 @@
 			<!-- Content -->
 			<form  name="signupForm"  action="${pageContext.request.contextPath}/member/MemberJoinOkAction.me"  method="post">
 				<section id="step1">
-					<div class="row">
+					<div class="row" style="display: contents;">
 						<div class="col-6 col-9-medium col-12-small" style="border:solid; border-style: outset; border-radius: 15px; margin:0 auto; padding:15px;">
 							<h3>기본 정보 입력</h3>
 							<label for="memberName" style="margin-bottom: 0px;">이름</label>
@@ -50,12 +50,12 @@
 				</section>
 				
 				<section id="step2" style="display:none;">
-					<div class="row">
+					<div class="row" style="display: contents;">
 						<div class="col-6 col-9-medium col-12-small" style="border:solid; border-style: outset; border-radius: 15px; margin:0 auto; padding:15px;">
 							<h3>이메일 인증</h3>
 							<p id="text_1">더 많은 IndieProject를 즐기기위해 본인인증을 진행해주세요.</p>
 							<input type="email" name="memberEmail" id="memberEmail" value="" placeholder="이메일 입력" style="display: inline; width: 78%;"/>
-							<a  class="button alt small" id="button" style="display:inline-grid; width:20%; margin-bottom:1em;" onclick="emailCheck()">전송</a>
+							<a  class="button alt small" id="button" style="display:inline-grid; width:20%; margin-bottom:1em;" onclick="goEmailCheck()">전송</a>
 							<input type="text" name="emailCheck" id="emailCheck" value="" placeholder="인증번호 입력" style="display: inline; width: 78%;" />
 							<a  class="button alt small" id="button" style="display:inline-grid; width:20%; margin-bottom:1em;" onclick="checkCode()">확인</a>
 							<ul class="actions stacked" style="margin:0 0;">
@@ -69,7 +69,7 @@
 				</section>
 				
 				<section id="step3" style="display:none;">
-					<div class="row">
+					<div class="row" style="display: contents;">
 						<div class="col-6 col-9-medium col-12-small" style="border:solid; border-style: outset; border-radius: 15px; margin:0 auto; padding:15px;">
 							<h3>이용약관</h3>
 							<textarea name="message" placeholder="Enter your message" rows="6" readonly style="margin-bottom:1em;">
@@ -400,7 +400,7 @@
 	</section>
 
 	<!-- Footer -->
-	<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
 
 	<!-- Scripts -->
 

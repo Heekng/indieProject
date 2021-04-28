@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>아이디/비밀번호 찾기</title>
+		<title>인디프로젝트</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
@@ -18,7 +18,7 @@
 	<body class="is-preload">
 
 		<!-- Header -->
-			<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
+			<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
 
 
 		<!-- Main -->
@@ -37,7 +37,7 @@
 			</section>
 
 		<!-- Footer -->
-			<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
+			<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
 
 		<!-- Scripts -->
 			<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>

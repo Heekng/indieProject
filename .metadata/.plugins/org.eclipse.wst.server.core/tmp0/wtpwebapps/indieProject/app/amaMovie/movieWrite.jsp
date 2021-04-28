@@ -109,7 +109,7 @@
 		</script>
 	</c:if>
 	<!-- Header -->
-	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
 
 	<!-- Main -->
 	<section id="main">
@@ -142,7 +142,7 @@
 									style="width: 50px; margin: 47% auto auto auto; cursor: pointer;" />
 								</label>
 							</span>
-							<input id="posterImgMain" name="posterImgMain" type="file" onchange="posterAddOk(this)" style="display:none;">
+							<input id="posterImgMain" name="posterImgMain" type="file" accept="image/*" onchange="posterAddOk(this)" style="display:none;">
 						</div>
 					</div>
 					
@@ -158,7 +158,7 @@
 									style="width: 50px; margin: 47% auto auto auto; cursor: pointer;" />
 								</label>
 							</span>
-							<input id="stillCutImgMain1" name="stillCutImg" type="file" onchange="stillCutAddOk(this)" style="display:none;">
+							<input id="stillCutImgMain1" name="stillCutImg" type="file" accept="image/*" onchange="stillCutAddOk(this)" style="display:none;">
 						</div>
 					</div>
 					<br>
@@ -384,7 +384,7 @@
 		</div>
 	</section>
 	<!-- Footer -->
-	<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
 
 	<!-- Scripts -->
 	<script>var contextPath = "${pageContext.request.contextPath}" </script>

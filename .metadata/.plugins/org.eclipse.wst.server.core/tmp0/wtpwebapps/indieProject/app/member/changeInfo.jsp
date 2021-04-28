@@ -52,7 +52,7 @@
 		</c:if>
 
 		<!-- Header -->
-		<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
+		<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
 
 		<!-- Main -->
 			<section id="main">
@@ -63,8 +63,8 @@
 							<!-- Content -->
 							<section id="content">
 								<header class="major">
-									<h2 id="test">내 정보 수정</h2>
-									<p>개인정보를 안전하게 보호하기 위해 비밀번호 확인 후 변경할 수 있습니다.</p>
+									<h2 onclick="javascript: location.href='${pageContext.request.contextPath}/member/memberMyPage.me';" style="cursor:pointer;" >마이페이지</h2>
+									<p>내 정보 수정</p>
 								</header>
 								<fieldset style="padding: 15px; margin-bottom: 0; border-width: 3px; background:#8080800f;">
 									<form method="post" name="ChangeInfoForm" action="${pageContext.request.contextPath}/member/MemberChangeInfoOkAction.me">
@@ -169,7 +169,7 @@
 			<br>
 			<br>
 		<!-- Footer -->
-		<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
+		<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
 
 		<!-- Scripts -->
 		<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>

@@ -101,9 +101,9 @@
 		UPDATE POPCORN_USE_TABLE SET POPCORNCONTENT = #{content} WHERE SENDNUM = #{sendNum}
 	</update>
 	<select id="amaMovieKorList" parameterType="string" resultType="amaMovieVO">
-	SELECT * FROM AMAMOVIE_TABLE WHERE AMATITLEKOR = #{amaTitleKor}
+	SELECT * FROM AMAMOVIE_TABLE WHERE REPLACE (AMATITLEKOR, ' ', '') LIKE '%' || #{amaTitleKor} || '%'
 	</select>
 	<select id="amaMovieEngList" parameterType="string" resultType="amaMovieVO">
-	SELECT * FROM AMAMOVIE_TABLE WHERE AMATITLEENG = #{amaTitleEng}
+	SELECT * FROM AMAMOVIE_TABLE WHERE UPPER(AMATITLEENG) LIKE UPPER( #{amaTitleEng} ) AND LOWER(AMATITLEENG) LIKE LOWER( #{amaTitleEng} )
 	</select>
 </mapper>

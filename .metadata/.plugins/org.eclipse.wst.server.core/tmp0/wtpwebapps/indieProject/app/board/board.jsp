@@ -165,7 +165,7 @@
 	<c:set var="totalPageCnt" value="${totalPageCnt}"/>
 	
 	<!-- Header -->
-	<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
 
 	<!-- Main -->
 	<section id="main">
@@ -233,13 +233,21 @@
 							</c:otherwise>
 						</c:choose>
 					</div>
+					<c:choose>
+						<c:when test="${boards != null and fn:length(boards) > 0}">
+							<div id="scrollDone">
+								<p style="margin-top: 2rem; margin-bottom: 0.5rem;color: black;">스크롤 해서 더 보기</p>
+								<img src="${pageContext.request.contextPath}/images/down-arrow.png" style="height:2rem;">
+							</div>
+						</c:when>
+					</c:choose>
 				</div>	
 			</section>
 		</div>
 	</section>
 
 	<!-- Footer -->
-
+		<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
 	<!-- Scripts -->
 	<script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>

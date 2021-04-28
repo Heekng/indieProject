@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <!--
 	Gravity by Pixelarity
@@ -45,7 +46,7 @@
 		}
 		@media screen and (max-width: 736px) {
 			.myDiv {
-				width: 32% !important;
+				width: 35% !important;
 			}
 			#popcornBtnDiv {
 				width:70%;
@@ -58,6 +59,7 @@
 		@media screen and (max-width: 480px) {
 			.popcornDisplay {
 				margin-left:0;
+				width:32%;
 			}
 			#popcornBtnDiv {
 				width:100%;
@@ -92,7 +94,7 @@
 		</c:if>
 		
 		<!-- Header -->
-		<jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
+		<jsp:include page="${pageContext.request.contextPath}/header.jsp" />
 
 		<!-- Main -->
 			<section id="main">
@@ -174,9 +176,9 @@
 									<table style="margin-bottom: 0;">
 										<thead>
 											<tr>
+												<th>번호</th>
 												<th>영화 제목</th>
-												<th>작성자</th>
-												<th>조회수</th>
+												<th>작성 날짜</th>
 											</tr>
 										</thead>
 										<c:choose>
@@ -184,9 +186,10 @@
 												<c:forEach var="m_vo" items="${movies}">
 													<tbody>
 														<tr>
+															<td>${m_vo.getAmaNum()}</td>
 															<td>${m_vo.getAmaTitleKor()}</td>
-															<td>${m_vo.getMemberId()}</td>
-															<td>${m_vo.getAmaCount()}</td>
+															<fmt:parseDate var="amaDate" value="${m_vo.getAmaDate()}" pattern="yyyy-MM-dd HH:mm"/>
+															<td><fmt:formatDate value="${amaDate}" pattern="yyyy-MM-dd HH:mm"/></td>
 														</tr>
 													</tbody>
 												</c:forEach>
@@ -202,7 +205,7 @@
 									</table>
 								</fieldset>
 								<hr style="margin-bottom: 0;">
-								<fieldset style="padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+								<fieldset style="padding: 15px; border-radius: 10px; margin-bottom: 15px;" id="myReview">
 									<div style="height:60px;">
 										<div style="float: left;"><h2>내가 쓴 감상평</h2></div>
 										<div style="text-align: right; margin-right: 11px;"><a href="${pageContext.request.contextPath}/member/memberMyReview.me" style="text-decoration:none;">더보기 ></a></div>
@@ -213,7 +216,7 @@
 												<th>영화 제목</th>
 												<th>별점</th>
 												<th>내용</th>
-												<th>작성시간</th>
+												<th>작성 날짜</th>
 											</tr>
 										</thead>
 										<c:choose>
@@ -242,7 +245,64 @@
 																</c:choose>
 															</td>
 															<td>${r_vo.getReplyContent()}</td>
-															<td>${r_vo.getReplyDate()}</td>
+															<fmt:parseDate var="reviewDate" value="${r_vo.getReplyDate()}" pattern="yyyy-MM-dd HH:mm"/>
+															<td><fmt:formatDate value="${reviewDate}" pattern="yyyy-MM-dd HH:mm"/></td>
+														</tr>
+													</tbody>
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
+												<tbody>
+													<tr>
+														<td colspan="4" align="center">내가 쓴 감상평이 없습니다.</td>
+													</tr>
+												</tbody>
+											</c:otherwise>
+										</c:choose>
+									</table>
+								</fieldset>
+								<fieldset style="padding: 15px; border-radius: 10px; margin-bottom: 15px; display:none;" id="myReviewMobile">
+									<div style="height:60px;">
+										<div style="float: left;"><h2>내가 쓴 감상평</h2></div>
+										<div style="text-align: right; margin-right: 11px;"><a href="${pageContext.request.contextPath}/member/memberMyReview.me" style="text-decoration:none;">더보기 ></a></div>
+									</div>
+									<table style="margin-bottom: 0;">
+										<thead>
+											<tr>
+												<th>영화 제목</th>
+												<th>별점 / 내용</th>
+												<th>작성 날짜</th>
+											</tr>
+										</thead>
+										<c:choose>
+											<c:when test="${reviews != null and fn:length(reviews) > 0}">
+												<c:forEach var="r_vo" items="${reviews}">
+													<tbody>
+														<tr>
+															<td>
+																<c:set var="loop_flag" value="false"/>
+																<c:forEach var="mt_vo"  items="${movieTitles}" >
+																	<c:if test="${not loop_flag }">
+				               								 			<c:if test="${r_vo.getAmaNum() eq mt_vo.getAmaNum()}"> 
+				               												<c:out value="${mt_vo.getAmaTitleKor()}"/>
+				               												<c:set var="loop_flag" value="true"/>
+				               							 				</c:if>
+				               							 			</c:if>
+			               										</c:forEach>
+															</td>
+															<td>
+																<c:choose>
+																	<c:when test="${r_vo.getStars() eq 1}">⭐</c:when>
+																	<c:when test="${r_vo.getStars() eq 2}">⭐⭐</c:when>
+																	<c:when test="${r_vo.getStars() eq 3}">⭐⭐⭐</c:when>
+																	<c:when test="${r_vo.getStars() eq 4}">⭐⭐⭐⭐</c:when>
+																	<c:when test="${r_vo.getStars() eq 5}">⭐⭐⭐⭐⭐</c:when>
+																</c:choose>
+																<br>
+																${r_vo.getReplyContent()}
+															</td>
+															<fmt:parseDate var="reviewDate" value="${r_vo.getReplyDate()}" pattern="yyyy-MM-dd HH:mm"/>
+															<td><fmt:formatDate value="${reviewDate}" pattern="yyyy-MM-dd HH:mm"/></td>
 														</tr>
 													</tbody>
 												</c:forEach>
@@ -267,9 +327,8 @@
 										<thead>
 											<tr>
 												<th>번호</th>
-												<th>글 내용</th>
-												<th>작성날짜</th>
-												<th>조회수</th>
+												<th>내용</th>
+												<th>작성 날짜</th>
 											</tr>
 										</thead>
 										<c:choose>
@@ -279,8 +338,8 @@
 														<tr>
 															<td>${b_vo.getBoardNum()}</td>
 															<td>${b_vo.getBoardContent()}</td>
-															<td>${b_vo.getBoardDate()}</td>
-															<td>${b_vo.getBoardCount()}</td>
+															<fmt:parseDate var="boardDate" value="${b_vo.getBoardDate()}" pattern="yyyy-MM-dd HH:mm"/>
+															<td><fmt:formatDate value="${boardDate}" pattern="yyyy-MM-dd HH:mm"/></td>
 														</tr>
 													</tbody>
 												</c:forEach>
@@ -306,7 +365,7 @@
 											<tr>
 												<th>글 번호</th>
 												<th>내용</th>
-												<th>작성시간</th>
+												<th>작성 날짜</th>
 											</tr>
 										</thead>
 										<c:choose>
@@ -316,7 +375,8 @@
 														<tr>
 															<td>${rp_vo.getReplyNum()}</td>
 															<td>${rp_vo.getReplyContent()}</td>
-															<td>${rp_vo.getReplyDate()}</td>
+															<fmt:parseDate var="replyDate" value="${rp_vo.getReplyDate()}" pattern="yyyy-MM-dd HH:mm"/>
+															<td><fmt:formatDate value="${replyDate}" pattern="yyyy-MM-dd HH:mm"/></td>
 														</tr>
 													</tbody>
 												</c:forEach>
@@ -342,7 +402,7 @@
 			</section>
 
 		<!-- Footer -->
-		<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
+		<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
 
 		<!-- Scripts -->
 		<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
@@ -356,7 +416,9 @@
 		<script>$("#my").css("background", "rgba(144, 144, 144, 0.075)");</script>
 			
 		<script>
-			if(window.matchMedia('(max-width: 9999px)').matches){
+			if(window.matchMedia('(max-width: 480px)').matches){
+				$("#myReview").hide();
+				$("#myReviewMobile").show();
 			}
 		</script>
 		

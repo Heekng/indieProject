@@ -89,30 +89,6 @@
 }
 </style>
 	<body class="landing is-preload">
-		<c:if test="${session_id ne null}">
-		   <script>
-		         window.onload = function(){
-		        	 var signUp = document.getElementById("signUp");
-		             var logIn = document.getElementById("logIn");
-		             
-		             signUp.href = contextPath + "/member/memberMyPage.me";
-		             logIn.href = contextPath + "/member/MemberLogOutAction.me";
-		             
-		            $("#signUp").parent().css("right", "6em");
-		            
-	            	var b1 = signUp.children;
-	            	var b2 = logIn.children;
-	            	
-	            	b1[0].innerHTML = "MyPage";
-	            	b2[0].innerHTML = "LogOut";
-	            	
-	            	console.log(b1);
-	            	console.log(b2);
-	            	
-		         
-	         }
-         </script>
-		</c:if>
 		<%-- <c:if test="${session_id eq null}">
 			<script>
 				window.onload = function(){
@@ -142,20 +118,27 @@
 						<li><a href="${pageContext.request.contextPath}/amaMovie/AmaMovie.ama">AmateurMovie</a></li>
 						<li><a href="${pageContext.request.contextPath}/board/Board.bo">Board</a></li>
 						<li><a href="${pageContext.request.contextPath}/member/MemberCustomerOk.me">Customer</a></li>
-						<li style="position: absolute;right: 4.55em;"><a href="${pageContext.request.contextPath}/member/SignUp.me" id="signUp"><b>SignUp</b></a></li>
-						<li style="position: absolute;right: 0;"><a href="${pageContext.request.contextPath}/member/Login.me" id="logIn"><b>Login</b></a></li>										
-					</ul>
+						<c:if test="${session_id ne null}">
+						<li><a href="${pageContext.request.contextPath} /member/memberMyPage.me" id="signUp"><b>MyPage</b></a></li>
+						<li style="margin-left:0.5rem;"><a href="${pageContext.request.contextPath}/member/MemberLogOutAction.me" id="logIn"><b>LogOut</b></a></li>			
+						</c:if>		
+						<c:if test="${session_id eq null}">
+						<li><a href="${pageContext.request.contextPath}/member/SignUp.me" id="signUp"><b>SignUp</b></a></li>
+						<li style="margin-left:0.5rem;"><a href="${pageContext.request.contextPath}/member/Login.me" id="logIn"><b>Login</b></a>
+						</c:if>
+				
+
+			</ul>
 
 				</nav>
 			</div>
 		
-			<section id="banner">
+			<section id="banner" style="padding-left:0; padding-right:0;">
 				<div class="container">
 					<h2>최신 업로드 영화</h2>
 				</div>
 				
 				<section class="carousel" id="amaMovieSlide" style="margin-bottom:3%;">
-					<script src="assets/js/indexAma.js"></script>	
 				</section>
 				
 				<div class="container">
@@ -167,7 +150,6 @@
 					<h2>현재 상영 중인 영화</h2>
 				</div>
 				<section class="carousel" id = "proMovieSlide" style="margin-bottom:3%;">
-					<script src="assets/js/indexPro.js"></script>
 				</section>
 				<div class="container">
 					<ul class="actions special">
@@ -206,20 +188,43 @@
 			</section>
 
 		<!-- Footer -->
-		<jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
-
+		<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
+		
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
 			<script src="assets/js/jquery.dropotron.min.js"></script>
 			<script src="assets/js/jquery.poptrox.min.js"></script>
-			
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-         
-         
+         	<script src="assets/js/indexPro.js"></script>
+         	<script src="assets/js/indexAma.js"></script>	
 
+<%-- <c:if test="${session_id ne null}">
+		   <script>
+				  $(document).ready(function(){
+		        	 var signUp = document.getElementById("signUp");
+		             var logIn = document.getElementById("logIn");
+		             
+		             signUp.href = contextPath + "/member/memberMyPage.me";
+		             logIn.href = contextPath + "/member/MemberLogOutAction.me";
+		             
+		            $("#signUp").parent().css("right", "6em");
+		            
+	            	var b1 = signUp.children;
+	            	var b2 = logIn.children;
+	            	
+	            	b1[0].innerHTML = "MyPage";
+	            	b2[0].innerHTML = "LogOut";
+	            	
+	            	console.log(b1);
+	            	console.log(b2);
+	            	
+		         
+	         });
+         </script>
+		</c:if> --%>
 </body>
 </html>

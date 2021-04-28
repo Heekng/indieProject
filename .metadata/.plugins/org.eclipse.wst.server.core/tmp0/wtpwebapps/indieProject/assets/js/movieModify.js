@@ -100,6 +100,20 @@ $(document).ready(function(){
 
 
 function posterAddOk(obj){
+	var fileValue = $(obj).val().split("\\");
+	var fileName = fileValue[fileValue.length-1];
+	if(fileName.length > 100){
+		alert("파일명은 100자 이내로 설정해주세요.");
+		$(obj).val("");
+		return false;
+	}
+	var ext = $(obj).val().slice($(obj).val().lastIndexOf(".")+1).toLowerCase();
+	if(ext != 'jpg' && ext != 'jpeg' && ext != 'png'){
+		alert("이미지 파일 확장자는 jpg, jpeg, png만 가능합니다.");
+		$(obj).val("");
+		return false;
+	}
+	
 	$(obj).parent().children(".posterImgView").attr("src", URL.createObjectURL(event.target.files[0]));
 	$(obj).parent().children(".posterImgView").css("objectFit", "contain");
 	$(obj).parent().children(".posterImgView").css("display", "block");
@@ -119,6 +133,20 @@ function posterAddOk(obj){
 };
 
 function stillCutAddOk(obj){
+	var fileValue = $(obj).val().split("\\");
+	var fileName = fileValue[fileValue.length-1];
+	if(fileName.length > 100){
+		alert("파일명은 100자 이내로 설정해주세요.");
+		$(obj).val("");
+		return false;
+	}
+	var ext = $(obj).val().slice($(obj).val().lastIndexOf(".")+1).toLowerCase();
+	if(ext != 'jpg' && ext != 'jpeg' && ext != 'png'){
+		alert("이미지 파일 확장자는 jpg, jpeg, png만 가능합니다.");
+		$(obj).val("");
+		return false;
+	}
+	
 	$(obj).parent().children(".stillCutImgView").attr("src", URL.createObjectURL(event.target.files[0]));
 	$(obj).parent().children(".stillCutImgView").css("objectFit", "contain");
 	$(obj).parent().children(".stillCutImgView").css("display", "block");

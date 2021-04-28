@@ -3,16 +3,26 @@
  */
 var nowPage = 1;
 
-$(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
-	if($(window).scrollTop() >= $(document).height() - $(window).height()){
+if(window.matchMedia('(max-width: 480px)').matches){
+	$("#scrollDone").css("cursor", "pointer");
+	$("#scrollDone").children().text("더 보기");
+	
+	$(document).on("click", "#scrollDone", function(){
 		loadPage();
-	}
-});
+	});
+}else{
+	$(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
+		if($(window).scrollTop() >= $(document).height() - $(window).height()){
+			loadPage();
+		}
+	});	
+}
 
 function loadPage(){
 	var startRow = (nowPage * boardSize) + 1;
 	var endRow;
 	if(totalPageCnt <= nowPage){
+		$("#scrollDone").hide();
 		return false;
 	}
 	if(totalPageCnt == (nowPage+1)){
@@ -39,7 +49,7 @@ function showPage(movies){
 			var text = "<div class='col-poster' style='width: 30%; height: 10%; margin: 10px;'>"+
 					"<div class='image fit posterTag' style='margin-bottom: 0px;'>"+
 					"<img  style='cursor: pointer;' src='"+contextPath+"/images/amaMovie/"+movie.fileName+"' alt='"+movie.fileName+"' onclick='moveDetail("+movie.amaNum+")'/>"+
-					"<p>"+movie.amaTitleKor+"<span style='position: absolute; right:0;'><a style='text-decoration:none' href='javascript:modifyMovie("+movie.amaNum+")'>[수정]</a>"+
+					"<p><span style='display:block;'>"+movie.amaTitleKor+"</span><span><a style='text-decoration:none' href='javascript:modifyMovie("+movie.amaNum+")'>[수정]</a>"+
 					"<a style='text-decoration:none' href='javascript:deleteMovie("+movie.amaNum+")'>[삭제]</a></span></p>"+
 					"</div>"+
 					"</div>";
