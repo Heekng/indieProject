@@ -24,8 +24,6 @@ function search(){
 	var date2 = document.getElementById("date2").value.toString();
 	var newDate1 = new Date(date1);
 	var newDate2 = new Date(date2);
-	console.log(newDate1.getTime());
-	console.log(newDate2.getTime());
 	if(date1 == "" || date2 == ""){
 		alert("기간이 올바르지 않습니다.");
 		return false;
@@ -36,8 +34,6 @@ function search(){
 	}
 	else{
 		
-		console.log(date1);
-		console.log(date2);
 		$.ajax({
 			url: contextPath + "/member/MemberMyPopcornDateSearchAction.me",
 		    type: "POST",
@@ -47,8 +43,6 @@ function search(){
 				var table = document.getElementById("table");	
 				
 				if(result.trim() != ""){
-					console.log("if 들어옴");
-					console.log(result + "result");
 					var k = 1;
 					if(table.rows.length > 1){
 						while(table.rows.length > 1){
@@ -64,10 +58,8 @@ function search(){
 						}
 						var row = table.insertRow(i+1);
 						
-						console.log(popCorn);
 						var popCornEl;
 						for (let j = 0; j < popCorn[i].length; j++) {
-							console.log("for 들어옴");
 							popCornEl = popCorn[i].split("+");
 							
 
@@ -167,7 +159,6 @@ $("#check_module1").click(function () {
 	(카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
 	*/
 	}, function (rsp) {
-		console.log(rsp);
 			if (rsp.success) {
 				var msg = '결제가 완료되었습니다.';
 				alert(msg);
@@ -184,7 +175,6 @@ $("#check_module1").click(function () {
 						}
 					},
 					error:function(data){
-				    	  console.log(data);
 				    	console.log("팝콘 충전 오류");
 				    }
 				});
@@ -245,7 +235,6 @@ $("#check_module2").click(function () {
 	(카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
 	*/
 	}, function (rsp) {
-		console.log(rsp);
 			if (rsp.success) {
 			var msg = '결제가 완료되었습니다.';
 			
@@ -306,7 +295,6 @@ $("#check_module3").click(function () {
 	(카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
 	*/
 	}, function (rsp) {
-		console.log(rsp);
 			if (rsp.success) {
 			var msg = '결제가 완료되었습니다.';
 			
@@ -367,7 +355,6 @@ $("#check_module4").click(function () {
 	(카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
 	*/
 	}, function (rsp) {
-		console.log(rsp);
 			if (rsp.success) {
 			var msg = '결제가 완료되었습니다.';
 			
@@ -386,7 +373,6 @@ function goExchange(){
 		type:"get",
 		dataType:"text",
 		success:function(result){
-			console.log(result);
 			if(result.trim() == "ok"){
 				exchange();
 			}else{

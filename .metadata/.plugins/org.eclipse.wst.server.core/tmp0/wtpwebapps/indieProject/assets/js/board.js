@@ -22,7 +22,7 @@ function link(boardNum){
 		alert("로그인 후 이용해 주십시오.");
 		location.replace(contextPath+"/member/Login.me?to=board");
 	}else{
-		$(".LinkBoardView").attr("href", contextPath + "/board/BoardView.bo?boardNum="+boardNum);
+		/*$(".LinkBoardView").attr("href", contextPath + "/board/BoardView.bo?boardNum="+boardNum);*/
 	}
 }
 
@@ -69,9 +69,7 @@ function loadPage(){
 	if(!sFlag){
 		return false;
 	}
-	console.log("로드");
 	var startRow = (nowPage * boardSize) + 1;
-	console.log("startRow"+startRow);
 	var endRow;
 	if(totalPageCnt <= nowPage){
 		sFlag = false;

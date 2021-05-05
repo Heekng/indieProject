@@ -13,7 +13,8 @@
 	href="${pageContext.request.contextPath}/assets/css/main.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/jquery-ui.css" />
-
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/camera2.png" type="image/x-icon">
+<link rel="icon" href="${pageContext.request.contextPath}/images/camera2.png" type="image/x-icon">
 </head>
 <style>
 

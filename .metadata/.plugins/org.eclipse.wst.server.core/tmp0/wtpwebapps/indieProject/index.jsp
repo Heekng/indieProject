@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="assets/css/main.css" />
+<link rel="shortcut icon" href="images/camera2.png" type="image/x-icon">
+<link rel="icon" href="images/camera2.png" type="image/x-icon">
 <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
 <script>var contextPath = "${pageContext.request.contextPath}";</script>
 

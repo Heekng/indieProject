@@ -9,7 +9,8 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
       <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
       <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-      
+      <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/camera2.png" type="image/x-icon">
+	<link rel="icon" href="${pageContext.request.contextPath}/images/camera2.png" type="image/x-icon">
    </head>
    <style>
    
@@ -36,7 +37,7 @@
       <c:set var="to" value="${to}"/>
       <c:set var="amaNum" value="${amaNum}"/>
       <!-- Header -->
-         <jsp:include page="${pageContext.request.contextPath}/../header.jsp" />
+         <jsp:include page="${pageContext.request.contextPath}/header.jsp" />
 
       <!-- Main -->
          <section id="main">
@@ -79,7 +80,7 @@
          </section>
 
       <!-- Footer -->
-         <jsp:include page="${pageContext.request.contextPath}/../footer.jsp" />
+         <jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
 
       <!-- Scripts -->
          <script>var contextPath = "${pageContext.request.contextPath}";</script>
@@ -92,7 +93,7 @@
          <script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
          <script type="text/javascript">
             // 사용할 앱의 JavaScript 키를 설정해 주세요.
-            Kakao.init('76684830bcbf9ce29741fc3352483f76');
+            Kakao.init('bd8f64e4e22ed1c588932887413ed86f');
             // 카카오 로그인 버튼을 생성합니다.
             Kakao.Auth.createLoginButton({
               container: '#kakao-login-btn',
@@ -108,19 +109,14 @@
                      dataType: "text",
                       success:function(result){
                          if(result.trim() == "success"){
-                           console.log("세션저장 성공");
                                 loginForm.submit();
                         }else{
-                           console.log("세션저장 실패");
                            var id = result.split(",")[0];
                            var name = result.split(",")[1];
-                           console.log(id + " kid");
-                           console.log(name + " kname");
                            window.location.href = contextPath+"/member/kakaoSignup.me?id="+id+"&name="+name;
                         }
                       },
                       error:function(data){
-                           console.log(data);
                          console.log("로그인안됨");
                       }
                   });

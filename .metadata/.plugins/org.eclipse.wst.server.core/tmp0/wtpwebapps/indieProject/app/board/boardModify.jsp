@@ -12,6 +12,8 @@
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/main.css" />
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/camera2.png" type="image/x-icon">
+<link rel="icon" href="${pageContext.request.contextPath}/images/camera2.png" type="image/x-icon">
 </head>
 <style>
 fieldset {
@@ -31,6 +33,8 @@ fieldset {
 }
 @media screen and (max-width: 480px) {
 	.button {
+		float:none !important;
+		width: 100%;
 		padding: 0 32px !important;
 	}
 }
@@ -84,65 +88,9 @@ fieldset {
 						<section style="margin-right: auto; margin-left: auto;">
 							<form action="${pageContext.request.contextPath}/board/BoardModifyOk.bo" method="post" name="boardForm" enctype="multipart/form-data">
 								<input type="hidden" name="boardNum" value="${b_vo.getBoardNum()}">
-
-											<div class="photos" style="display: flex;">
-								<%-- 	 <div class="col-4 col-3-small photo"
-													style="text-align: center; margin-right: auto; margin-left: auto; width: 40%;">
-													<div class="poster image fit" style="padding-left: 0;">
-														<img id="firstImg" class="img" alt="" src=""
-															style="display: none; width: 100%; height: 100%;">
-														<span id="span1" class="image fit"
-															style="padding-bottom: 30%;"> <label
-															for="first-file-input"> <img id="firstImg2"
-																class="camera"
-																src="${pageContext.request.contextPath}/images/board/${images.getImageName()}"
-																alt="영화 포스터"
-																style="width: 50px; margin: 47% auto auto auto; cursor: pointer;" />
-														</label> <input name="boardImage1" id="first-file-input"
-															type="file" onchange="preview1()" style="display: none;" />
-														</span>
-
-													</div>
-													<a href="#" onclick="delete1()">삭제</a>
-												</div> 
-												<div class="col-4 col-3-small photo"
-													style="text-align: center; margin-right: auto; margin-left: auto; width: 40%;">
-													<div class="poster image fit" style="padding-left: 0;">
-														<img id="secondImg" alt="" src="${pageContext.request.contextPath}/images/board/${images.getImageName()}" class="img"
-															style="display: none; width: 100%; height: 100%;">
-														<span id="span2" class="image fit"
-															style="padding-bottom: 30%;"> <label
-															for="second-file-input"> <img id="secondImg2"
-																class="camera"
-																src="${pageContext.request.contextPath}/images/add.png"
-																alt="영화 포스터"
-																style="width: 50px; margin: 47% auto auto auto; cursor: pointer;" />
-														</label> <input name="boardImage2" id="second-file-input"
-															type="file" onchange="preview2()" style="display: none;" />
-														</span>
-
-													</div>
-													<a href="#" onclick="delete2()">삭제</a>
-												</div>
-												<div class="col-4 col-3-small photo"
-													style="text-align: center; margin-right: auto; margin-left: auto; width: 40%;">
-													<div class="poster image fit" style="padding-left: 0;">
-														<img id="thirdImg" alt="" src="${pageContext.request.contextPath}/images/board/${images.getImageName()}" class="img"
-															style="display: none; width: 100%; height: 100%;">
-														<span id="span3" class="image fit"
-															style="padding-bottom: 30%;"> <label
-															for="third-file-input"> <img id="thirdImg2"
-																class="camera"
-																src="${pageContext.request.contextPath}/images/add.png"
-																alt="영화 포스터"
-																style="width: 50px; margin: 47% auto auto auto; cursor: pointer;" />
-														</label> <input name="boardImage3" id="third-file-input"
-															type="file" onchange="preview3()" style="display: none;" />
-														</span>
-
-													</div>
-													<a href="#" onclick="delete3()">삭제</a>
-												</div> --%>
+								<input type="hidden" name="photoChanged">
+								<div class="photos" style="display: flex;">
+									<!-- 동적으로 사진 가져오기 -->
 								</div>
 
 								<div>
@@ -155,7 +103,8 @@ fieldset {
 									<input type="hidden" id="contentCnt" value="${fn:length(b_vo.getBoardContent())}">
 										<span id="current_count">0</span> <span id="maximum_count">/
 											200</span> 
-									<a href="javascript: submit();" class="button" style="float: right;">수정완료</a>
+									<a href="javascript: submit();" class="button small" style="float: right;">수정 완료</a>
+									<a href="javascript: photo();" class="button alt small" style="float: right;">사진 수정</a>
 									</div>
 								</div>
 							</form>

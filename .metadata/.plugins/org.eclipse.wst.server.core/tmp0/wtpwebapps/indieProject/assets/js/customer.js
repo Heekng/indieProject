@@ -23,7 +23,6 @@ function submit(){
 	var message = $("#message").val();
 	//카테고리 값 가져오기
 	var category=$("select[name='category']").val();
-	console.log(emailCheck);
 
 	if(memberName == "" ){
 		alert("이름을 입력해주세요.");

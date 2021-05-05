@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
-
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/camera2.png" type="image/x-icon">
+<link rel="icon" href="${pageContext.request.contextPath}/images/camera2.png" type="image/x-icon">
 <title>팝콘 보내기</title>
 </head>
 <style>

@@ -94,9 +94,8 @@ function showPage(boards){
 //삭제 버튼
 function deleteBoard(boardNum){
 //	var boardNum=$("input#"+num).val();
-	var con=confirm("정말로 삭제 하시겠습니까?boardNum:"+boardNum);
+	var con=confirm("정말 삭제 하시겠습니까?");
 	if(con==true){
-		console.log( boardNum);
 		$.ajax({
 			url : contextPath + "/board/BoardDelete.bo?boardNum=" + boardNum,
 			type : "get",

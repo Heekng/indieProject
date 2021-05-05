@@ -10,6 +10,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
+		<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/camera2.png" type="image/x-icon">
+		<link rel="icon" href="${pageContext.request.contextPath}/images/camera2.png" type="image/x-icon">
 	</head>
 	<style>
 		@media screen and (min-width:481px) {
@@ -49,7 +51,8 @@
 							<div class="col-8 col-12-medium">
 								<header class="major">
 									<h2><c:out value="${ama_vo.getAmaTitleKor()}"/> (<c:out value="${ama_vo.getAmaTitleEng()}"></c:out>)</h2>
-									<p><c:out value="${ama_vo.getAmaMakeDate()}"/></p>
+									<fmt:parseDate var="amaMakeDate" value="${ama_vo.getAmaMakeDate()}" pattern="yyyy-MM-dd"/>
+									<p><fmt:formatDate value="${amaMakeDate}" pattern="yyyy-MM-dd"/></p>
 								</header>
 									<p>
 										감독 : <c:out value="${ama_vo.getAmaDirector()}"/><br>

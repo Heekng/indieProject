@@ -13,6 +13,8 @@
 			content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jquery-ui.css" />
+		<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/camera2.png" type="image/x-icon">
+		<link rel="icon" href="${pageContext.request.contextPath}/images/camera2.png" type="image/x-icon">
 		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 		<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 		 <meta name="viewport" content="width=device-width; initial-scale=1.0"> 
@@ -339,28 +341,28 @@ div.left {
 												src="${pageContext.request.contextPath}/images/smallpopcorn.png"
 												alt="x10개" style="width: 19%; vertical-align: middle;">
 												<span style="font-weight: 700; margin-top: 5%;">X 10
-													개</span></span> <a href="#" class="button primary small"
+													개</span></span> <a class="button primary small"
 											id="check_module1" style="width: 40%; float: right;">1,000원</a></li>
 
 										<li><span class="inner-left"> <img
 												src="${pageContext.request.contextPath}/images/smallpopcorn.png"
 												style="width: 19%; vertical-align: middle;"><span
 												style="font-weight: 700; margin-top: 5%;"> X 50 개</span>
-										</span> <a href="#" class="button primary small" id="check_module2"
+										</span> <a class="button primary small" id="check_module2"
 											style="width: 40%; float: right;">5,000원</a></li>
 
 										<li><span class="inner-left"> <img
 												src="${pageContext.request.contextPath}/images/smallpopcorn.png"
 												style="width: 19%; vertical-align: middle;"><span
 												style="font-weight: 700; margin-top: 5%;"> X 100 개</span>
-										</span> <a href="#" class="button primary small" id="check_module3"
+										</span> <a class="button primary small" id="check_module3"
 											style="width: 40%; float: right;">10,000원</a></li>
 
 										<li><span class="inner-left"> <img
 												src="${pageContext.request.contextPath}/images/smallpopcorn.png"
 												style="width: 19%; vertical-align: middle;"> <span
 												style="font-weight: 700; margin-top: 5%;">X 500 개</span>
-										</span> <a href="#" class="button primary small" id="check_module4"
+										</span> <a class="button primary small" id="check_module4"
 											style="width: 40%; float: right;">50,000원</a></li>
 									</ul>
 								</div>

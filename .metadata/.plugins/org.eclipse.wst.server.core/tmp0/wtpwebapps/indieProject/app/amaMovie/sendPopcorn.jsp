@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
-
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/camera2.png" type="image/x-icon">
+<link rel="icon" href="${pageContext.request.contextPath}/images/camera2.png" type="image/x-icon">
 <title>팝콘 보내기</title>
 </head>
 <style>
@@ -68,8 +69,6 @@
 		var myPopcorn = "${myPopcorn}";
  		var popcornNum = $("input[name='popcorn']").val();
  		var text = "영화 ["+amaTitle + "]에 팝콘 " + popcornNum +" 개를 선물합니다.\n진행하시겠습니까?";
- 		console.log("내거"+myPopcorn);
- 		console.log("입력"+popcornNum);
  		
 		if(popcornNum == ""){
 			alert("팝콘 수를 입력해 주십시오.");

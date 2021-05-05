@@ -62,7 +62,6 @@ $(document).ready(function(){getBoardReplies();});
 
 // 댓글 목록
 function getBoardReplies(){
-	console.log(boardNum);
 	$.ajax({
 		url : pageContext + "/board/BoardReplyList.bo?boardNum="+ boardNum,
 		type : "get",
@@ -72,7 +71,6 @@ function getBoardReplies(){
 }
 
 function showBoardReplies(replies){
-	console.log(replies);
 		var text = "";
 		
 		if(replies != null && replies.length != 0){
@@ -134,7 +132,6 @@ function updateReply(num){
 }
 function updateReplyOk(replyNum, seq){
 	var content = $("#t"+seq).val();
-	console.log(replyNum);
 	$.ajax({
 		url : pageContext + "/board/BoardReplyUpdate.bo",
 		type : "post",

@@ -144,5 +144,4 @@ function saveInfo(){
 	
 	alert("내 정보 변경이 완료되었습니다.");
 	document.ChangeInfoForm.submit();
-	console.log("폼 보내기 성공");
 }
